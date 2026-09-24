@@ -17,7 +17,9 @@ dependencies = []
 eval = ["datasets>=2.18", "verifiers>=0.1"]
 
 [project.scripts]
-assetforge-author = "assetforge.tools.run_constructed_qa_author:main"
+assetforge-author = "assetforge.tools.run_author:main"
+assetforge-author-plan = "assetforge.tools.run_constructed_qa_author:main"
+assetforge-evaluate = "assetforge.eval:main"
 
 [tool.setuptools.packages.find]
 include = ["assetforge*"]

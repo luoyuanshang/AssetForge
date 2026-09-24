@@ -95,6 +95,32 @@ for o in (cjk_offenders + identity_offenders)[:5]:
 check(not cjk_offenders, "repository is English-only")
 check(not identity_offenders, f"pipeline is free of benchmark identity (outside {EVAL_DIR}/)")
 
+# 6 --------------------------------------------------------------------------
+import hashlib as _h, json as _j
+plan = ROOT / "examples/plan.json"
+rubric = ROOT / "examples/rubric_support.md"
+ok_plan = plan.exists() and rubric.exists()
+if ok_plan:
+    d = _j.loads(plan.read_text())
+    ref = (d.get("cells") or [{}])[0].get("rubric") or {}
+    ok_plan = ref.get("sha256") == _h.sha256(rubric.read_bytes()).hexdigest()
+print(f"[6] example plan bound to its Rubric: {ok_plan}")
+check(ok_plan, "the example plan is bound to its Rubric by hash")
+
+# 7 --------------------------------------------------------------------------
+# The Author stage must have its own loop, not depend on a framework that is not here.
+try:
+    import importlib as _i
+    _i.import_module("assetforge.agent.author_runner")
+    _i.import_module("assetforge.agent.tools")
+    _i.import_module("assetforge.tools.run_author")
+    stage_ok = True
+except Exception as exc:
+    print(f"      author stage import failed: {exc}")
+    stage_ok = False
+print(f"[7] author-stage runner present: {stage_ok}")
+check(stage_ok, "the author stage carries its own agent loop")
+
 print()
 if FAILS:
     print(f"FAILED ({len(FAILS)}):")

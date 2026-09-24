@@ -1,0 +1,21 @@
+{
+ "schema_version": "assetforge-plan-v1",
+ "business_time": "2026-01-15T09:00:00Z",
+ "route": {
+  "note": "The Author calls the operator's model endpoint. Credentials come from ASSETFORGE_API_KEY / ASSETFORGE_API_BASE_URL / ASSETFORGE_MODEL; nothing is stored here.",
+  "provider": "operator-supplied"
+ },
+ "catalog": null,
+ "cells": [
+  {
+   "cell": "support_demo",
+   "domain": "support",
+   "rubric": {
+    "path": "examples/rubric_support.md",
+    "sha256": "a191133ec09ffa92970db077fb77f8109a14150f37a53c0e32d9b84ffb32fe6b"
+   },
+   "application_count": 3,
+   "require_admitted_asset": true
+  }
+ ]
+}

@@ -1135,23 +1135,33 @@ def _official_imports() -> dict[str, Any]:
     parent = str(OFFICIAL_PACKAGE_PARENT)
     if parent not in sys.path:
         sys.path.insert(0, parent)
-    if OFFICIAL_RELEASE == 'the pinned runtime':
-        import runtime
-        if Path(runtime.__file__).resolve().parent != OFFICIAL_ROOT / RUNTIME_PACKAGE:
-            raise ValueError('Author/Reviewer imported wrong Runtime release')
-    from runtime.rubric import (  # type: ignore
-        create_rubric,
-        partial_credit,
-        task_completed_correctly,
-    )
-    from runtime.rubric.registry import AssertionRegistry  # type: ignore
-    from runtime.schema.world import WorldState  # type: ignore
-    from runtime.tools.api import API_TOOLS, api_fetch  # type: ignore
-    from runtime.tools.api.fetch import _url_to_internal_path, _router_service  # type: ignore
-    from runtime.tools.api.search import (  # type: ignore
-        _compute_url,
-        _load_schemas,
-    )
+    pkg = RUNTIME_PACKAGE
+    from importlib import import_module
+    if pkg not in sys.modules:
+        import_module(pkg)
+    module = sys.modules[pkg]
+    if OFFICIAL_ROOT is not None:
+        expected = OFFICIAL_ROOT / RUNTIME_PACKAGE
+        if Path(module.__file__).resolve().parent != expected:
+            raise ValueError("the imported runtime is not the one bound by ASSETFORGE_RUNTIME_ROOT")
+    rubric = import_module(pkg + ".rubric")
+    registry = import_module(pkg + ".rubric.registry")
+    world = import_module(pkg + ".schema.world")
+    api = import_module(pkg + ".tools.api")
+    fetch = import_module(pkg + ".tools.api.fetch")
+    search_mod = import_module(pkg + ".tools.api.search")
+
+    create_rubric = rubric.create_rubric
+    partial_credit = rubric.partial_credit
+    task_completed_correctly = rubric.task_completed_correctly
+    AssertionRegistry = registry.AssertionRegistry
+    WorldState = world.WorldState
+    API_TOOLS = api.API_TOOLS
+    api_fetch = api.api_fetch
+    _url_to_internal_path = fetch._url_to_internal_path
+    _router_service = fetch._router_service
+    _compute_url = search_mod._compute_url
+    _load_schemas = search_mod._load_schemas
 
     return {
         "create_rubric": create_rubric,

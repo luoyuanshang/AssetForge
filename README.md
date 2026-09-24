@@ -30,16 +30,33 @@ by prompt convention. See "Design constraints" below.
 ## Quick start
 
 ```bash
-git clone <this-repo> && cd AssetForge
-python -m pip install -r requirements.txt      # or: pip install -e .
+git clone https://github.com/luoyuanshang/AssetForge.git && cd AssetForge
+python -m pip install -e .          # the pipeline itself needs only the standard library
 
 # 1. bring your own model endpoint (any OpenAI-compatible one)
 export ASSETFORGE_API_KEY=...
 export ASSETFORGE_API_BASE_URL=https://your-endpoint/v1
+export ASSETFORGE_MODEL=my-model
 
-# 2. run a task-synthesis round
-python -m assetforge.tools.run_constructed_qa_author --help
+# 2. point at a native runtime (see below)
+export ASSETFORGE_RUNTIME_ROOT=/path/that/contains/the/runtime/package
+
+# 3. author one task from a Rubric
+python -m assetforge.tools.run_author \
+    --rubric examples/rubric_support.md --domain support \
+    --run-root runs/demo --ordinal 1
+
+# or drive a batch from a frozen plan
+python -m assetforge.tools.run_constructed_qa_author \
+    --plan examples/plan.json --plan-sha256 "$(cat examples/plan.sha256)" \
+    --cell support_demo --run-root runs/plan-demo
 ```
+
+The Author stage carries its **own** agent loop (`assetforge/agent/`), so nothing but a model
+endpoint is required to run it: the loop calls `search` / `visit` / `code_exec`, the read-only
+contract inspector, and finally `compile_and_test_task_package`, which validates the authored
+task against the native runtime and the scorer before it is kept. A deployment that already has
+an agent framework can inject it instead.
 
 Two things are the operator's to supply, exactly as they are for any pipeline of this kind:
 
@@ -81,6 +98,19 @@ assetforge/
 evaluation/       benchmark evaluation driver (see below)
 verification/     the self-check used to verify this repository
 ```
+
+## Stages and entry points
+
+| Stage | Entry point | What it does |
+|---|---|---|
+| Author | `python -m assetforge.tools.run_author` | one Author session from a Rubric |
+| Author (plan) | `python -m assetforge.tools.run_constructed_qa_author` | the same session driven from a frozen, hash-bound plan |
+| Gate | `python -m assetforge.tools.validate_construction_assets`, `…admit_construction_assets`, `…gate_automation_18k_distribution` | mechanical, fail-closed checks |
+| Reviewer | `python -m assetforge.tools.run_constructed_qa_reviewer`, `…review_construction_assets` | independent review of tasks that executed |
+| QA | `python -m assetforge.tools.process_constructed_qa`, `…run_construction_factory` | repair dispatch and version admission |
+
+Every one of these runs whether or not the native runtime is installed; only the steps that
+compile or execute a task need it.
 
 ## Evaluation
 
