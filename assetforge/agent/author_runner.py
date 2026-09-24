@@ -119,4 +119,4 @@ def run_author(*, system_prompt: str, user_prompt: str, tools: dict[str, Callabl
             messages.append({"role": "tool", "tool_call_id": call.get("id", ""),
                              "content": str(result)[:20000]})
     return {"status": "exhausted" if emitted is None else "emitted", "record": emitted,
-            "trace": trace, "messages": messages, "turns": max_turns}
+            "trace": trace, "messages": messages, "turns": len(trace)}
