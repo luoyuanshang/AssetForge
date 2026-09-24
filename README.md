@@ -64,10 +64,18 @@ Two things are the operator's to supply, exactly as they are for any pipeline of
 2. **A native runtime.** AssetForge *compiles and validates* tasks; it does not implement the
    simulated world, the native API surface or the scorer. Those live in a separate native
    runtime, wired in through one interface —
-   `assetforge/pipeline/native_runtime_interface.py`. Point
-   `ASSETFORGE_RUNTIME_ROOT` at it (or install it so it is importable) and set
-   `ASSETFORGE_RUNTIME_PIN` to its build identifier. Nothing else in the package needs to
-   change; every module imports cleanly whether or not the runtime is present.
+   `assetforge/pipeline/native_runtime_interface.py`:
+
+   ```bash
+   export ASSETFORGE_RUNTIME_ROOT=/path/that/contains/the/runtime/package
+   # only if its module name is not discovered automatically:
+   export ASSETFORGE_RUNTIME_PACKAGE=my_runtime
+   export ASSETFORGE_RUNTIME_PIN=my-build        # recorded in every artefact this pipeline emits
+   ```
+
+   Every module imports cleanly whether or not the runtime is present. The steps that genuinely
+   need it — compiling an authored task, executing a review — say so plainly and tell you what to
+   set; they never surface a raw import error.
 
 ## Design constraints
 

@@ -117,6 +117,17 @@ def main(argv=None):
 
     # The controller-side tools: the contract inspector and the compiler.  Both come from the
     # pipeline, so the validation the Author sees is the pipeline's own.
+    #
+    # Compiling a task means validating it against the native runtime, so this stage genuinely
+    # needs the runtime.  Say so clearly instead of letting a raw import error surface.
+    from assetforge.pipeline.native_runtime_interface import is_available as _runtime_available
+    if not _runtime_available():
+        raise SystemExit(
+            "the Author stage needs the native runtime: its job is to compile the authored task "
+            "and check it against the runtime's schema, API and scorer.\n"
+            "Install the runtime, or set ASSETFORGE_RUNTIME_ROOT to the directory that contains "
+            "its package (and ASSETFORGE_RUNTIME_PACKAGE to that package's importable name if it "
+            "is not discovered automatically), then retry.")
     from assetforge.pipeline.official_task_package import (OfficialContractInspectorTool,
                                                            OfficialTaskPackageTool)
     candidate_path = run_root / "candidates" / (candidate_id + ".json")
