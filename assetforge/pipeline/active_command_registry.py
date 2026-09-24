@@ -38,7 +38,15 @@ def _signature(path):
 
 
 def read_registry(path=None, *, attempts=5, retry_seconds=0.2):
+    """Read the optional command registry.
+
+    The registry is a convenience for operator-owned deployments: it records which commands are
+    registered and under what conditions they may run.  It is not required to use the stages
+    directly, so a missing registry yields an empty one rather than an error.
+    """
     path = Path(path or ROOT / "commands.yaml")
+    if not path.exists():
+        return {}
     if not 1 <= attempts <= 10 or not 0 <= retry_seconds <= 1:
         raise ValueError("registry retry budget out of bounds")
     for attempt in range(attempts):

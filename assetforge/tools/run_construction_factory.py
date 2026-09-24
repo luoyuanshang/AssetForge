@@ -650,7 +650,7 @@ class Factory:
   return None
 
  async def run(self):
-  (ROOT/'PROJECT_CONSTRAINTS.md').read_text();os.umask(0o077)
+  (ROOT/'POLICY.md').read_text();os.umask(0o077)
   pre=json.loads(bound(reference(self.a.preflight)).read_text());require(pre['passed'] and pre['provider_calls']==0,'cell preflight missing')
   # Cell preflights are written by more than one generator.  The legacy shape
   # used ``plan``; the current capture preflight binds the same immutable plan

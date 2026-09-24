@@ -169,7 +169,7 @@ def _sandbox_payloads(catalog,examples,definitions):
 
 
 def main():
-    (ROOT/'PROJECT_CONSTRAINTS.md').read_text();os.umask(0o077)
+    (ROOT/'POLICY.md').read_text();os.umask(0o077)
     p=argparse.ArgumentParser();p.add_argument('--validation',type=Path,required=True)
     p.add_argument('--validation-sha256',required=True);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--preflight',action='store_true')

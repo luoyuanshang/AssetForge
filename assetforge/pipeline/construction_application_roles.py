@@ -10,7 +10,7 @@ CONTRACT='construction-application-roles-v1'
 def derive_roles(source, profile=None, oracle_rows=None, construction=None):
     """Derive the application roles mechanically instead of asking the Author.
 
-    User ruling 2026-09-16 (PROJECT_CONSTRAINTS.md top section): the role split is a fact
+    Policy (POLICY.md, section 3): the role split is a fact
     about the compiled task, not a business decision the Author should hand-write, and the
     Author's old declaration was additionally self-reported proof that the controller then
     re-verified by replay (measured run3: 916 pointer failures, 176 missing background

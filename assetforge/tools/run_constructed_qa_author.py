@@ -18,7 +18,7 @@ def configure(plan,cell):
   os.environ['QA18K_AUTHOR_ROUTE_MANIFEST'] = str(bound(plan['route']))
 
 def _main():
- (ROOT/'PROJECT_CONSTRAINTS.md').read_text();os.umask(0o077)
+ (ROOT/'POLICY.md').read_text();os.umask(0o077)
  p=argparse.ArgumentParser();p.add_argument('--plan',type=Path,required=True);p.add_argument('--plan-sha256',required=True)
  p.add_argument('--cell',required=True);p.add_argument('--ordinal',type=int,required=True)
  p.add_argument('--arm',choices=['assets','control'],required=True);p.add_argument('--run-root',type=Path,required=True)

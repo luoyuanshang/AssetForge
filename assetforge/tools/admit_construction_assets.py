@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
 
 def main():
-    (ROOT/'PROJECT_CONSTRAINTS.md').read_text()
+    (ROOT/'POLICY.md').read_text()
     p=argparse.ArgumentParser();p.add_argument('--review',type=Path,required=True)
     p.add_argument('--review-sha256',required=True);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--review-plan',type=Path);p.add_argument('--review-plan-sha256');args=p.parse_args()

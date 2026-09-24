@@ -32,7 +32,7 @@ def _tool_list(info):
     """Declared tool list of an external row, under any accepted key."""
     if not isinstance(info, dict):
         return []
-    for key in ("tool_names", "tools", "zapier_tools", "api_tools"):
+    for key in _accepted_tool_keys():
         value = info.get(key)
         if isinstance(value, (list, tuple)):
             return [str(v) for v in value if isinstance(v, str)]

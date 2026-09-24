@@ -81,7 +81,7 @@ def qualify(a):
  require(len(result['items'])==1,'independent review/profile/hold qualification failed')
 
 if __name__=='__main__':
- (ROOT/'PROJECT_CONSTRAINTS.md').read_text();os.umask(0o077)
+ (ROOT/'POLICY.md').read_text();os.umask(0o077)
  p=argparse.ArgumentParser();p.add_argument('--mode',choices=['prepare','qualify'],required=True)
  p.add_argument('--plan',type=Path,required=True);p.add_argument('--plan-sha256',required=True)
  p.add_argument('--cell');p.add_argument('--completed',type=Path);p.add_argument('--review',type=Path)

@@ -72,6 +72,16 @@ def assertion_handlers() -> set[str]:
     return set(registry._handlers)
 
 
+def rubric_module():
+    """The runtime's rubric module (assertions, scoring helpers, registry)."""
+    return _import("rubric")
+
+
+def api_module():
+    """The runtime's native API module (fetch, search, tool catalogue)."""
+    return _import("tools.api")
+
+
 def domain_dataset(domain: str):
     """Iterable of released tasks for one business domain, used for structural analysis."""
     return _import(f"{RUNTIME_PACKAGE}.domains").get_domain_dataset(domain)

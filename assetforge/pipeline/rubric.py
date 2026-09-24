@@ -7,6 +7,8 @@ new executable generator without turning the public set into a paraphrase seed.
 """
 from __future__ import annotations
 
+import os
+
 import argparse
 import hashlib
 import json
@@ -36,14 +38,19 @@ def canonical(value: object) -> str:
 # External task rows may name their tool list differently across runtime builds.  These are
 # the spellings we accept when *reading* someone else's task; our own artifacts use
 # ``tool_names``.
-_TOOL_LIST_KEYS = ("tool_names", "tools", "zapier_tools", "api_tools")
+# Tool-list keys accepted when reading an external task row.  Configurable because a runtime
+# build may name it differently; the neutral names cover the common cases.
+def _accepted_tool_keys():
+    extra = os.environ.get("ASSETFORGE_TOOL_LIST_KEYS", "")
+    return tuple(k for k in ("tool_names", "tools", "api_tools")
+                 + tuple(x.strip() for x in extra.split(",") if x.strip()))
 
 
 def tool_list(info: dict) -> list:
     """The declared tool list of an external task row, under any accepted key."""
     if not isinstance(info, dict):
         return []
-    for key in _TOOL_LIST_KEYS:
+    for key in _accepted_tool_keys():
         value = info.get(key)
         if isinstance(value, (list, tuple)):
             return [str(item) for item in value if isinstance(item, str)]

@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
 
 def main():
-    (ROOT/'PROJECT_CONSTRAINTS.md').read_text()
+    (ROOT/'POLICY.md').read_text()
     p=argparse.ArgumentParser();p.add_argument('--catalog',type=Path,required=True)
     p.add_argument('--catalog-sha256',required=True);p.add_argument('--output',type=Path,required=True);args=p.parse_args()
     from assetforge.pipeline import release_runtime as release

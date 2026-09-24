@@ -359,7 +359,7 @@ def _terminate(process: subprocess.Popen[bytes]) -> None:
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
-    (ROOT / "PROJECT_CONSTRAINTS.md").read_text(encoding="utf-8")
+    (ROOT / "POLICY.md").read_text(encoding="utf-8")
     args.controller_id = _safe_id(args.controller_id)
     for name in ("rubric", "taskset", "lexical_audit"):
         setattr(args, name, _inside(Path(getattr(args, name)), ROOT, label=name))
