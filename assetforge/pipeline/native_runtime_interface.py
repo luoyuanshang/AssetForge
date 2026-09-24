@@ -30,14 +30,39 @@ from pathlib import Path
 # The identifier the artifacts here were frozen against.  Override with
 # ASSETFORGE_RUNTIME_PIN when running against another runtime build.
 DEFAULT_RUNTIME_PIN = "assetforge-runtime-1"
-RUNTIME_PACKAGE = "native_runtime"
+# Candidate module names for the native runtime.  The first one that is importable wins, so an
+# operator who installs the runtime under any of these names needs no configuration; setting
+# ASSETFORGE_RUNTIME_PACKAGE overrides the search.
+RUNTIME_PACKAGE_CANDIDATES = (
+    os.environ.get("ASSETFORGE_RUNTIME_PACKAGE"),
+    "native_runtime",
+)
+_RESOLVED = {"name": None}
+
+
+def runtime_package() -> str:
+    """Importable name of the native runtime package, resolved once."""
+    if _RESOLVED["name"]:
+        return _RESOLVED["name"]
+    _ensure_importable()
+    import importlib.util
+    for name in RUNTIME_PACKAGE_CANDIDATES:
+        if not name:
+            continue
+        try:
+            if importlib.util.find_spec(name) is not None:
+                _RESOLVED["name"] = name
+                return name
+        except (ImportError, ValueError):
+            continue
+    return "native_runtime"
 
 _MISSING = (
     "The native runtime is not available in this environment. This pipeline compiles and "
     "validates tasks against a separate native runtime, which the operator supplies (the same "
     "way provider credentials are supplied). Install the runtime, or set ASSETFORGE_RUNTIME_ROOT "
     "to the directory that contains the '{pkg}' package, then retry."
-).format(pkg=RUNTIME_PACKAGE)
+).format(pkg=", ".join(c for c in RUNTIME_PACKAGE_CANDIDATES if c))
 
 
 def runtime_pin() -> str:
@@ -63,12 +88,12 @@ def _import(module: str):
 
 def world_state_type():
     """The runtime's world-state model class (its fields describe the legal world shape)."""
-    return _import(f"{RUNTIME_PACKAGE}.schema").WorldState
+    return _import("schema").WorldState
 
 
 def assertion_handlers() -> set[str]:
     """Names of the assertions the runtime registers as available."""
-    registry = _import(f"{RUNTIME_PACKAGE}.rubric.registry").AssertionRegistry
+    registry = _import("rubric.registry").AssertionRegistry
     return set(registry._handlers)
 
 
@@ -84,12 +109,13 @@ def api_module():
 
 def domain_dataset(domain: str):
     """Iterable of released tasks for one business domain, used for structural analysis."""
-    return _import(f"{RUNTIME_PACKAGE}.domains").get_domain_dataset(domain)
+    return _import("domains").get_domain_dataset(domain)
 
 
 def is_available() -> bool:
     try:
         _ensure_importable()
-        return __import__(RUNTIME_PACKAGE, fromlist=["_"]) is not None
+        import importlib.util
+        return runtime_package() and importlib.util.find_spec(runtime_package()) is not None
     except Exception:
         return False

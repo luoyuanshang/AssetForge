@@ -18,11 +18,14 @@ from pathlib import Path
 # The runtime's importable package name.  Its distribution and module name are the
 # operator's choice; we resolve it once, and ASSETFORGE_RUNTIME_PACKAGE short-circuits the
 # search when the name is known.
-RUNTIME_PACKAGE_CANDIDATES = (
-    os.environ.get("ASSETFORGE_RUNTIME_PACKAGE"),
-    "native_eval_runtime",
-    "automationbench",
-)
+def _candidates():
+    """Module names to try, in order: the operator's choice first, then the common ones."""
+    names = [os.environ.get("ASSETFORGE_RUNTIME_PACKAGE"), "native_eval_runtime", "automationbench"]
+    out = []
+    for n in names:
+        if n and n not in out:
+            out.append(n)
+    return tuple(out)
 _RESOLVED = {"name": None}
 
 
@@ -32,12 +35,12 @@ def runtime_package() -> str:
         return _RESOLVED["name"]
     _root()
     import importlib.util
-    for name in RUNTIME_PACKAGE_CANDIDATES:
+    for name in _candidates():
         if name and importlib.util.find_spec(name) is not None:
             _RESOLVED["name"] = name
             return name
     # not importable: report the preferred name so the error message is actionable
-    return RUNTIME_PACKAGE_CANDIDATES[0] or "native_eval_runtime"
+    return _candidates()[0]
 DEFAULT_DOMAINS = ("sales", "marketing", "operations", "support", "finance", "hr")
 
 _MISSING = (
@@ -73,8 +76,8 @@ def _import(suffix: str):
     try:
         return __import__(module, fromlist=["_"])
     except ImportError as exc:
-        raise RuntimeError(_MISSING.format(cands=", ".join(
-            c for c in RUNTIME_PACKAGE_CANDIDATES if c)) + f"  (tried {module!r})") from exc
+        raise RuntimeError(_MISSING.format(cands=", ".join(_candidates()))
+                           + f"  (tried {module!r})") from exc
 
 
 # --------------------------------------------------------------------------- runtime pieces
@@ -130,7 +133,6 @@ def is_available() -> bool:
     try:
         _root()
         import importlib.util
-        return any(c and importlib.util.find_spec(c) is not None
-                   for c in RUNTIME_PACKAGE_CANDIDATES)
+        return any(importlib.util.find_spec(c) is not None for c in _candidates())
     except Exception:
         return False

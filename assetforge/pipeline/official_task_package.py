@@ -59,7 +59,8 @@ def _discover_runtime_root():
     return Path(spec.origin).resolve().parent.parent
 
 
-RUNTIME_PACKAGE = os.environ.get("ASSETFORGE_RUNTIME_PACKAGE", "native_runtime")
+from .native_runtime_interface import runtime_package as _runtime_package
+RUNTIME_PACKAGE = _runtime_package()
 OFFICIAL_ROOT = _discover_runtime_root()
 OFFICIAL_PACKAGE_PARENT = OFFICIAL_ROOT
 
