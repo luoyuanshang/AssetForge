@@ -1,0 +1,54 @@
+{
+ "application_scoring_evidence": {
+  "google_calendar": "google_calendar_event_exists"
+ },
+ "applications": [
+  "google_calendar"
+ ],
+ "assertion_types": [
+  "google_calendar_event_exists"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  }
+ ],
+ "id": "app_google_calendar",
+ "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "google_calendar"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "google_calendar",
+   "parameters": {
+    "application": "google_calendar",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "calendar_title": "Review meetings",
+     "end": "2026-10-14T10:00:00Z",
+     "start": "2026-10-14T09:00:00Z"
+    }
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "google_calendar"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

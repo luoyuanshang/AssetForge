@@ -1,0 +1,66 @@
+{
+ "application_scoring_evidence": {
+  "hubspot": "hubspot_contact_property_equals"
+ },
+ "applications": [
+  "hubspot"
+ ],
+ "assertion_types": [
+  "hubspot_contact_property_equals"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {}
+ ],
+ "id": "app_hubspot",
+ "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "hubspot"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "hubspot",
+   "parameters": {
+    "application": "hubspot",
+    "business_context": "Customer renewal",
+    "protected_fields": [
+     "email"
+    ],
+    "records": [
+     {
+      "entity": "cedar",
+      "fields": {
+       "email": "cedar@example.org",
+       "jobtitle": "Initial role"
+      }
+     },
+     {
+      "entity": "birch",
+      "fields": {
+       "email": "birch@example.org",
+       "jobtitle": "Initial role"
+      }
+     }
+    ],
+    "scope_name": "Review 1709",
+    "target_entity": "cedar",
+    "value": "Renewal review outcome"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "hubspot"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

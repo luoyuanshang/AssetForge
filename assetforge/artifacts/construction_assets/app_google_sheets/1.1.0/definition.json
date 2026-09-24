@@ -1,0 +1,62 @@
+{
+ "application_scoring_evidence": {
+  "google_sheets": "google_sheets_row_cell_equals"
+ },
+ "applications": [
+  "google_sheets"
+ ],
+ "assertion_types": [
+  "google_sheets_row_cell_equals",
+  "google_sheets_worksheet_exists"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {}
+ ],
+ "id": "app_google_sheets",
+ "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "google_sheets"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "google_sheets",
+   "parameters": {
+    "application": "google_sheets",
+    "business_context": "Customer renewal",
+    "cells": {
+     "review_state": "Renewal review outcome"
+    },
+    "headers": [
+     "row_key",
+     "review_state",
+     "locked_note"
+    ],
+    "protected_fields": [
+     "locked_note"
+    ],
+    "protected_values": {
+     "locked_note": "Original approval"
+    },
+    "row_key": "case-1709",
+    "spreadsheet_title": "Review ledger",
+    "worksheet_title": "Cases"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "google_sheets"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

@@ -1,0 +1,48 @@
+{
+ "application_scoring_evidence": {
+  "helpscout": "helpscout_conversation_exists"
+ },
+ "applications": [
+  "helpscout"
+ ],
+ "assertion_types": [
+  "helpscout_conversation_exists",
+  "helpscout_conversation_has_reply"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {}
+ ],
+ "id": "app_helpscout",
+ "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "helpscout"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "helpscout",
+   "parameters": {
+    "application": "helpscout",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "protected_field": "subject",
+    "protected_value": "Unchanged original request"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "helpscout"
+ ],
+ "version": "1.2.0",
+ "weak_scoring_applications": []
+}

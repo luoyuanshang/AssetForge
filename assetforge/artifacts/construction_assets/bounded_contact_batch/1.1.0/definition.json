@@ -1,0 +1,65 @@
+{
+ "application_scoring_evidence": {},
+ "applications": [
+  "hubspot",
+  "slack"
+ ],
+ "assertion_types": [],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {},
+  {}
+ ],
+ "id": "bounded_contact_batch",
+ "implementation": "assetforge/pipeline/construction_identity_policy_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "hubspot_contacts",
+  "slack_users"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "hubspot_contacts",
+   "parameters": {
+    "business_context": "Customer renewal",
+    "entity_refs": [
+     "join.target.cedar"
+    ],
+    "protected_fields": [
+     "phone"
+    ],
+    "public_scope": "Only the counterpart matched by the complete business email",
+    "updates": {
+     "jobtitle": "Renewal review outcome"
+    }
+   }
+  },
+  {
+   "adapter": "slack_users",
+   "parameters": {
+    "business_context": "Customer renewal",
+    "entity_refs": [
+     "join.target.cedar"
+    ],
+    "protected_fields": [
+     "status_emoji"
+    ],
+    "public_scope": "Only the counterpart matched by the complete business email",
+    "updates": {
+     "status_text": "Renewal review outcome"
+    }
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": false,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

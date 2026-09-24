@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: AssetForge
+message: If you use AssetForge in your work, please cite this repository.
+type: software
+license: MIT
+version: 0.1.0
+abstract: >-
+  Task synthesis for business-automation agents. AssetForge compiles a business area and a set
+  of reusable construction assets into executable, scoreable tasks through a four-stage
+  pipeline: (Assets + Rubrics) -> Author -> Gate -> Reviewer -> QA.
+authors:
+  - name: AssetForge contributors

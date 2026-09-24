@@ -1,0 +1,7 @@
+# AssetForge itself needs only the standard library.
+#
+# The evaluation driver additionally needs the native runtime you intend to evaluate against,
+# plus its client dependency. Install the runtime per your chosen build; the two names below
+# are the common ones.
+datasets>=2.18
+verifiers>=0.1

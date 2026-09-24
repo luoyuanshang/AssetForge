@@ -1,0 +1,1922 @@
+{
+ "schema_version": "assetforge-construction-catalog-v1",
+ "runtime_commit": "assetforge-runtime-1",
+ "production_admitted": true,
+ "note": "Release catalog: every entry carries a Markdown description (ASSET.md) and a machine-readable definition, both hash-bound here. The native runtime is supplied by the operator.",
+ "assets": [
+  {
+   "id": "app_airtable",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_airtable/1.1.0/definition.json",
+    "sha256": "54af748b726a22a3d176c0ba0d1bf98834dabf585bdc69ba58db028493d92b9b"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_airtable/1.1.0/ASSET.md",
+    "sha256": "b8ee3eb66dabd2ecd5af4bcf49e78349dc69ea610611b4da5f545c59a26043cc"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "airtable"
+   ],
+   "matrix_adapters": [
+    "airtable"
+   ],
+   "application_scoring_evidence": {
+    "airtable": "airtable_record_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_asana",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_asana/1.1.0/definition.json",
+    "sha256": "8f8a67050ca44f278867eb5e1383ffd407b871655bdfbad0949810aae2bad422"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_asana/1.1.0/ASSET.md",
+    "sha256": "64722ff623b4c8b5db3152dec7af9fe89f36159149583017e41a4144f9455826"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "asana"
+   ],
+   "matrix_adapters": [
+    "asana"
+   ],
+   "application_scoring_evidence": {
+    "asana": "asana_action_exists"
+   },
+   "weak_scoring_applications": [
+    "asana"
+   ],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_bamboohr",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_bamboohr/1.1.0/definition.json",
+    "sha256": "deb7640870f663e20c939e30c2eac47958ee2b07b8c4ee2e81b1d0408e91286e"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_bamboohr/1.1.0/ASSET.md",
+    "sha256": "3c8e59e810207970e76619c6e41ebaf9b01615b2a62e9863c318addc4e7cf547"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "bamboohr"
+   ],
+   "matrix_adapters": [
+    "bamboohr"
+   ],
+   "application_scoring_evidence": {
+    "bamboohr": "bamboohr_action_exists"
+   },
+   "weak_scoring_applications": [
+    "bamboohr"
+   ],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_basecamp3",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_basecamp3/1.1.0/definition.json",
+    "sha256": "5dd06dc89a4e41e827105ff74694821f80a880f9386be0d7d752e73ad5330d1c"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_basecamp3/1.1.0/ASSET.md",
+    "sha256": "10ae78bbe9d1fd8df5967d84b88d959fd323bbd5351e8c44b6094ce2b946ec7b"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "basecamp3"
+   ],
+   "matrix_adapters": [
+    "basecamp3"
+   ],
+   "application_scoring_evidence": {
+    "basecamp3": "basecamp3_action_exists"
+   },
+   "weak_scoring_applications": [
+    "basecamp3"
+   ],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_buffer",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_buffer/1.1.0/definition.json",
+    "sha256": "ad911925d30b09b0b68749458fc9dc0e978aa6c4802d6551e242ab156943c889"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_buffer/1.1.0/ASSET.md",
+    "sha256": "321a91d21c5c29532ab729a54bf540416b7852f6259c9007fdf6803061e8e830"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "buffer"
+   ],
+   "matrix_adapters": [
+    "buffer"
+   ],
+   "application_scoring_evidence": {
+    "buffer": "buffer_post_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_calendly",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_calendly/1.1.0/definition.json",
+    "sha256": "c35eaf3cdaa1f203aad379de0acab70eec15be3b01bd73931c0fa4311238c456"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_calendly/1.1.0/ASSET.md",
+    "sha256": "853a57c46367ff1fc4d0c29f73256cf2f21ec3f9285afbe5fa7affb82afe6d6e"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "calendly"
+   ],
+   "matrix_adapters": [
+    "calendly"
+   ],
+   "application_scoring_evidence": {
+    "calendly": "calendly_event_type_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_canva",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_canva/1.1.0/definition.json",
+    "sha256": "c3087fa045ae32a053e49f0df23cc6ab5fbca6f2449fbacbb4f58ed3c78fae9b"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_canva/1.1.0/ASSET.md",
+    "sha256": "19c738c0169e201b07f7d076781dc000bf8521367ff7749ac521548185dbeb5b"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "canva"
+   ],
+   "matrix_adapters": [
+    "canva"
+   ],
+   "application_scoring_evidence": {
+    "canva": "canva_design_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_chatgpt",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_chatgpt/1.1.0/definition.json",
+    "sha256": "2a344ce2428f99af58065fbb03986b13d549d1e24750772322613d1c2711a498"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_chatgpt/1.1.0/ASSET.md",
+    "sha256": "835fcfd3f50b5100fdbd1973c162c9ec7225439e7b6e3852ab4462a9a9a63fef"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "chatgpt"
+   ],
+   "matrix_adapters": [
+    "chatgpt"
+   ],
+   "application_scoring_evidence": {
+    "chatgpt": "chatgpt_completion_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_confluence",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_confluence/1.1.0/definition.json",
+    "sha256": "ca2ae1e1c7246562cf10dc50473971ddac152fc09b44cc26785c22a7f7dc3e26"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_confluence/1.1.0/ASSET.md",
+    "sha256": "5c07bbb6a88d79b0f0ee8cac4db214313426d88c40df13eeb02d2c7a910bcbc1"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "confluence"
+   ],
+   "matrix_adapters": [
+    "confluence"
+   ],
+   "application_scoring_evidence": {
+    "confluence": "confluence_action_exists"
+   },
+   "weak_scoring_applications": [
+    "confluence"
+   ],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_docusign",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_docusign/1.1.0/definition.json",
+    "sha256": "410c32405a0311717c08ba850e35eefe1508ab95e4f05441e05c26b6985b189e"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_docusign/1.1.0/ASSET.md",
+    "sha256": "98fe88a175198b94c7e21350b175bad584ab0b4768f7f9e568e92d055ea34279"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "docusign"
+   ],
+   "matrix_adapters": [
+    "docusign"
+   ],
+   "application_scoring_evidence": {
+    "docusign": "docusign_envelope_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_facebook_conversions",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_facebook_conversions/1.1.0/definition.json",
+    "sha256": "ea591f6422926e4d33b0e79f3e6d10d00e564c0fec02f9cc15f0a1c326a3b3b0"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_facebook_conversions/1.1.0/ASSET.md",
+    "sha256": "07414c3f66c1758db8d2194d5004abc66a02b8cedcd27756c2a3922a18d9c673"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "facebook_conversions"
+   ],
+   "matrix_adapters": [
+    "facebook_conversions"
+   ],
+   "application_scoring_evidence": {},
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": false
+  },
+  {
+   "id": "app_facebook_lead_ads",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_facebook_lead_ads/1.1.0/definition.json",
+    "sha256": "3775c4cb26ec05882e9e095e1a24a5882460824a1da4fe587ce8517862345989"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_facebook_lead_ads/1.1.0/ASSET.md",
+    "sha256": "8a7ca1f5ea0e4ab91a209dc924a8b9291c0fc76f21e1850ba45546b5b15d65bb"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "facebook_lead_ads"
+   ],
+   "matrix_adapters": [
+    "facebook_lead_ads"
+   ],
+   "application_scoring_evidence": {},
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": false
+  },
+  {
+   "id": "app_facebook_pages",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_facebook_pages/1.1.0/definition.json",
+    "sha256": "a63da3971d64388e54a1f8ea3da23281c8c50a5dd75b58c6a29caf70d238230b"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_facebook_pages/1.1.0/ASSET.md",
+    "sha256": "7c64f86cd81bfb467d74dbaced5c081b952a711216ffb796094dab11b1ce28e6"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "facebook_pages"
+   ],
+   "matrix_adapters": [
+    "facebook_pages"
+   ],
+   "application_scoring_evidence": {},
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": false
+  },
+  {
+   "id": "app_freshdesk",
+   "version": "1.2.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_freshdesk/1.2.0/definition.json",
+    "sha256": "c886234acc0f12bcc185fc50d9c0bcc1023ce2d6ffa23ce7afa25072002521ce"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_freshdesk/1.2.0/ASSET.md",
+    "sha256": "d5ff87518c77a0809181e4af1ffeba81d4d90b6ee1968706a9e758ba664f4bed"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "freshdesk"
+   ],
+   "matrix_adapters": [
+    "freshdesk"
+   ],
+   "application_scoring_evidence": {
+    "freshdesk": "freshdesk_ticket_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_gmail",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_gmail/1.1.0/definition.json",
+    "sha256": "61ddf045bacde2e3fd0f750cab8438a3e92bbd3fe76fef42b31ca7763f8a2820"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_gmail/1.1.0/ASSET.md",
+    "sha256": "d0f5b8f9c456b7c4b73ebf4472169273784437a8c1af9b9064f17f1d887e6aae"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "gmail"
+   ],
+   "matrix_adapters": [
+    "gmail"
+   ],
+   "application_scoring_evidence": {
+    "gmail": "gmail_message_has_label"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_google_ads",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_google_ads/1.1.0/definition.json",
+    "sha256": "042c3aefb68131ed1b24728dc50b2e8e40ad085cb9a1d1c7a252c8ffb3077586"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_google_ads/1.1.0/ASSET.md",
+    "sha256": "ebacd7b8cc38f7f9b65ca26a1e44534acc5f7d60cf88a3c14bb4d563f820ba63"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "google_ads"
+   ],
+   "matrix_adapters": [
+    "google_ads"
+   ],
+   "application_scoring_evidence": {
+    "google_ads": "google_ads_campaign_status"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_google_calendar",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_google_calendar/1.1.0/definition.json",
+    "sha256": "4cc2db4852783a78ec86c8331055deaccc477a133ccce02f6378bc1d0e9f2d4d"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_google_calendar/1.1.0/ASSET.md",
+    "sha256": "7de0a1ba45eb90d48d93ddf1631fd8b215708d101b3e784b10b78076fde9f3be"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "google_calendar"
+   ],
+   "matrix_adapters": [
+    "google_calendar"
+   ],
+   "application_scoring_evidence": {
+    "google_calendar": "google_calendar_event_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_google_drive",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_google_drive/1.1.0/definition.json",
+    "sha256": "4a3b8a4b1c1eaba416020fa51a29303eea9540cd316b1f4d0769098f3024236f"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_google_drive/1.1.0/ASSET.md",
+    "sha256": "39a2921c43f8e696e7cf2c80961970b4db36f751d1390041702afe9bda4fe85e"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "google_drive"
+   ],
+   "matrix_adapters": [
+    "google_drive"
+   ],
+   "application_scoring_evidence": {
+    "google_drive": "google_drive_action_exists"
+   },
+   "weak_scoring_applications": [
+    "google_drive"
+   ],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_google_sheets",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_google_sheets/1.1.0/definition.json",
+    "sha256": "2fa22a5fac0897a6f646570f694323bdde3fe54d48e1bcf202786b20f3abe37d"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_google_sheets/1.1.0/ASSET.md",
+    "sha256": "72fe1724c74e2c360fbb00a23ee0dca4552da1cc713451cb2d9856883d5ed19d"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "google_sheets"
+   ],
+   "matrix_adapters": [
+    "google_sheets"
+   ],
+   "application_scoring_evidence": {
+    "google_sheets": "google_sheets_row_cell_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_gorgias",
+   "version": "1.2.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_gorgias/1.2.0/definition.json",
+    "sha256": "e2d3353c3285feb0924dc271833f3e648dbaebaf8ccc7ebb62ba513b825fef82"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_gorgias/1.2.0/ASSET.md",
+    "sha256": "653166ed2d99470833c7980c9921f431264bf0519cc53d9b3c93ceeb127b67c4"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "gorgias"
+   ],
+   "matrix_adapters": [
+    "gorgias"
+   ],
+   "application_scoring_evidence": {
+    "gorgias": "gorgias_ticket_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_helpcrunch",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_helpcrunch/1.1.0/definition.json",
+    "sha256": "9bb2de0d5c5831108727bc38e37f9429b1ede72159abbaec24046f5f50f7c51b"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_helpcrunch/1.1.0/ASSET.md",
+    "sha256": "d4fcbb92e10f0119fe89d789fdda8b4f3a65aeabf4723ff98b11da860de62eb0"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "helpcrunch"
+   ],
+   "matrix_adapters": [
+    "helpcrunch"
+   ],
+   "application_scoring_evidence": {
+    "helpcrunch": "helpcrunch_customer_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_helpscout",
+   "version": "1.2.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_helpscout/1.2.0/definition.json",
+    "sha256": "a476070df5ee66411076742ddb1a1e23d5e3190d7abd412496f5500cf9281c4b"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_helpscout/1.2.0/ASSET.md",
+    "sha256": "9e769ffdf06fb48992eb026df4fecef7f5de61d56f890352460331d796676250"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "helpscout"
+   ],
+   "matrix_adapters": [
+    "helpscout"
+   ],
+   "application_scoring_evidence": {
+    "helpscout": "helpscout_conversation_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_hiver",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_hiver/1.1.0/definition.json",
+    "sha256": "c51e4959347592126d03e22ebc2d9fa060a03b45d4566e25e4726a6ec5574572"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_hiver/1.1.0/ASSET.md",
+    "sha256": "e68838638da2d44691ed96c2394b98959cf62d0769ad0c9b0778bda3589a0a29"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "hiver"
+   ],
+   "matrix_adapters": [
+    "hiver.shared_mailboxes",
+    "hiver.conversations",
+    "hiver.users"
+   ],
+   "application_scoring_evidence": {},
+   "weak_scoring_applications": [],
+   "asset_role": "background_distractor",
+   "scored_capable": false
+  },
+  {
+   "id": "app_hubspot",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_hubspot/1.1.0/definition.json",
+    "sha256": "5420578bd956e900967004edc0ab5cd3b6fd57aea2943ab2eda87c7747052e60"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_hubspot/1.1.0/ASSET.md",
+    "sha256": "2da95fcb8e78754df36d4c757c29d120d12089f67348c40b7c8b6bcba1500834"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "hubspot"
+   ],
+   "matrix_adapters": [
+    "hubspot"
+   ],
+   "application_scoring_evidence": {
+    "hubspot": "hubspot_contact_property_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_instagram",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_instagram/1.1.0/definition.json",
+    "sha256": "d556885993126d8f51517c5308a083f6632b433038a0913148785f94f155703b"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_instagram/1.1.0/ASSET.md",
+    "sha256": "d012a0638aa99ce282291fa0b2327c3e7f754bcdb53df34b0388c88420d3d834"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "instagram"
+   ],
+   "matrix_adapters": [
+    "instagram"
+   ],
+   "application_scoring_evidence": {
+    "instagram": "instagram_media_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_intercom",
+   "version": "1.2.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_intercom/1.2.0/definition.json",
+    "sha256": "f3814db657fe489c25667d17c70e62123a0b21a17601e62cc98257a316d216ce"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_intercom/1.2.0/ASSET.md",
+    "sha256": "44818a18ef672f93a575088d203986ccff36828e81306f01a926a4306e766193"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "intercom"
+   ],
+   "matrix_adapters": [
+    "intercom"
+   ],
+   "application_scoring_evidence": {
+    "intercom": "intercom_contact_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_jira",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_jira/1.1.0/definition.json",
+    "sha256": "69a73547ab6bd4a1767d2b3eaca0ad59f2c5af5eeb17e836e45274d45a9b1a39"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_jira/1.1.0/ASSET.md",
+    "sha256": "b9d699c387ec2cd44b249898d7f75c911df949c2059ba95dfa81849816f014c5"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "jira"
+   ],
+   "matrix_adapters": [
+    "jira"
+   ],
+   "application_scoring_evidence": {
+    "jira": "jira_issue_exists_with_summary"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_linkedin",
+   "version": "1.2.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_linkedin/1.2.0/definition.json",
+    "sha256": "e357403a14b5b2f4dee0bf3049e0d4245630d59bb2784c2820b6ab0b630d2a0e"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_linkedin/1.2.0/ASSET.md",
+    "sha256": "fe49c811baafa32d3ad9be22b4a097d02fa1cdd4aa40dcd928f9929ff4c72db1"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_create_effect_asset_v3.py",
+    "sha256": "980499e9935aea09e65312012950d24cf6190edb3f1df8a7e464d2d59f81b1a2"
+   },
+   "applications": [
+    "linkedin"
+   ],
+   "matrix_adapters": [
+    "linkedin"
+   ],
+   "application_scoring_evidence": {
+    "linkedin": "linkedin_post_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_linkedin_ads",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_linkedin_ads/1.1.0/definition.json",
+    "sha256": "0b9063337c1813c17c989ffbabcabe2b3e1896786ff9d566793c6844d9481a07"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_linkedin_ads/1.1.0/ASSET.md",
+    "sha256": "9e04d3a1dfbb45e657a73979d4d523ff76fd586f070f73b58159bd88a85e6ef8"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "linkedin_ads"
+   ],
+   "matrix_adapters": [
+    "linkedin_ads"
+   ],
+   "application_scoring_evidence": {
+    "linkedin_ads": "linkedin_ads_audience_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_linkedin_conversions",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_linkedin_conversions/1.1.0/definition.json",
+    "sha256": "bad906238193a779baabddb1a0a23dc388c9b78fb60f4ed95f1a615ddb0099f2"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_linkedin_conversions/1.1.0/ASSET.md",
+    "sha256": "748ef0cb37a9530fdeee7b88d341556cdde4764c27b18eeeb56f517b8af6ccda"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "linkedin_conversions"
+   ],
+   "matrix_adapters": [
+    "linkedin_conversions"
+   ],
+   "application_scoring_evidence": {},
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": false
+  },
+  {
+   "id": "app_mailchimp",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_mailchimp/1.1.0/definition.json",
+    "sha256": "8aa386650b7df8bd94c41001429c744f45690377133f6a848c8564aa8e220699"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_mailchimp/1.1.0/ASSET.md",
+    "sha256": "201f277664fede884f4d3ca59339f98bd9480eb1b1c96ea79401688f17a13157"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "mailchimp"
+   ],
+   "matrix_adapters": [
+    "mailchimp"
+   ],
+   "application_scoring_evidence": {
+    "mailchimp": "mailchimp_subscriber_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_monday",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_monday/1.1.0/definition.json",
+    "sha256": "0ab57544c82f9e3864c333faa34bb6a9d4990479e8bc91acbb7ae5ec89645250"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_monday/1.1.0/ASSET.md",
+    "sha256": "311191f5293fb10db24b07ad8cca0894db75dd793597fd65e99eb5da56e4f673"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "monday"
+   ],
+   "matrix_adapters": [
+    "monday"
+   ],
+   "application_scoring_evidence": {
+    "monday": "monday_action_exists"
+   },
+   "weak_scoring_applications": [
+    "monday"
+   ],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_notion",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_notion/1.1.0/definition.json",
+    "sha256": "84791e268b60bb4ae8a7e095e1a010df344c95856721fafe9cbfa2d5e77c9fdc"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_notion/1.1.0/ASSET.md",
+    "sha256": "83d2f1bfefb9afb1949beae14334985d0b8b63d31b4b7e8438a64cc15d250e45"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "notion"
+   ],
+   "matrix_adapters": [
+    "notion"
+   ],
+   "application_scoring_evidence": {
+    "notion": "notion_action_exists"
+   },
+   "weak_scoring_applications": [
+    "notion"
+   ],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_pipefy",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_pipefy/1.1.0/definition.json",
+    "sha256": "4c9a4957c87ef1f2406a90fc08faca23bbef69123a3e9c5b5fc756e6f0b57d24"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_pipefy/1.1.0/ASSET.md",
+    "sha256": "6ded2fa1b507fcf22fb3a7fea7321139e4f1678c487578cdcebea60a9a092f8f"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "pipefy"
+   ],
+   "matrix_adapters": [
+    "pipefy"
+   ],
+   "application_scoring_evidence": {
+    "pipefy": "pipefy_action_exists"
+   },
+   "weak_scoring_applications": [
+    "pipefy"
+   ],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_quickbooks",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_quickbooks/1.1.0/definition.json",
+    "sha256": "ae09671a02483808d737c0c64a60a89dbb99a0f60c10732b630ef9d628299d63"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_quickbooks/1.1.0/ASSET.md",
+    "sha256": "8fde21b9aa205e86ba855de4166c38e9a26de3d5c9e09f095ef66e721e70efe7"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "quickbooks"
+   ],
+   "matrix_adapters": [
+    "quickbooks"
+   ],
+   "application_scoring_evidence": {
+    "quickbooks": "quickbooks_invoice_field_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_reamaze",
+   "version": "1.2.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_reamaze/1.2.0/definition.json",
+    "sha256": "929a929e881f0767bd817c9fe0b45e6e389b0f3351874ac4cc8d35ec7ed61c97"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_reamaze/1.2.0/ASSET.md",
+    "sha256": "d3e83e83e989754f66741f9b36d17af6d4bfa2374b14d596050ce8424ed037c7"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "reamaze"
+   ],
+   "matrix_adapters": [
+    "reamaze"
+   ],
+   "application_scoring_evidence": {
+    "reamaze": "reamaze_conversation_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_recruitee",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_recruitee/1.1.0/definition.json",
+    "sha256": "033052619da307f509fca32e9093b78a2d6ae530f1073f9f7e8639435a9638d6"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_recruitee/1.1.0/ASSET.md",
+    "sha256": "383b5b8f17b5d5aab25db47322c7c6e6f90d87e192298f121dd9aa289317fe97"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "recruitee"
+   ],
+   "matrix_adapters": [
+    "recruitee"
+   ],
+   "application_scoring_evidence": {
+    "recruitee": "recruitee_action_exists"
+   },
+   "weak_scoring_applications": [
+    "recruitee"
+   ],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_salesforce",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_salesforce/1.1.0/definition.json",
+    "sha256": "0cbb49f051c030e784b4f847151afdb45d52aed24a2534e95a7e1de774dde278"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_salesforce/1.1.0/ASSET.md",
+    "sha256": "b070278be713baa9043658c2e4b77bc0b5a46575c3de0a4a0445c7c394ba99c9"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "salesforce"
+   ],
+   "matrix_adapters": [
+    "salesforce"
+   ],
+   "application_scoring_evidence": {
+    "salesforce": "salesforce_contact_field_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_slack",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_slack/1.1.0/definition.json",
+    "sha256": "95145e8b2e66940412e033ab0dc2a2aca69aa7f5ab85842e4ae9d3cbde01b582"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_slack/1.1.0/ASSET.md",
+    "sha256": "7a25206073111f1c108d29edffa43a2bbd14c19eea84677504f24f22208dfd52"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "slack"
+   ],
+   "matrix_adapters": [
+    "slack"
+   ],
+   "application_scoring_evidence": {
+    "slack": "slack_channel_topic_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_trello",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_trello/1.1.0/definition.json",
+    "sha256": "d5d10977fd9f2a9a371da4de6b9814884424ed88a5744e05f10fde857ccb845b"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_trello/1.1.0/ASSET.md",
+    "sha256": "fc18185c1ebd054c553234c1aa4b58152edc229dadccb497198e03f1c20eeaf4"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "trello"
+   ],
+   "matrix_adapters": [
+    "trello"
+   ],
+   "application_scoring_evidence": {
+    "trello": "trello_action_exists"
+   },
+   "weak_scoring_applications": [
+    "trello"
+   ],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_twilio",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_twilio/1.1.0/definition.json",
+    "sha256": "67dd65de0cb4635a7330824ef66c0b053eb676e513ae8dd831d35c83f09e3847"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_twilio/1.1.0/ASSET.md",
+    "sha256": "7f5472ca195d1edb35d493c0f2f25273cc99eef6788878ec049f179a632586a0"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "twilio"
+   ],
+   "matrix_adapters": [
+    "twilio"
+   ],
+   "application_scoring_evidence": {
+    "twilio": "twilio_sms_sent"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_twitter",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_twitter/1.1.0/definition.json",
+    "sha256": "6e6b972fff963f2df2b51f382e313cb86c5e47164e05fa6e7ace627708723276"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_twitter/1.1.0/ASSET.md",
+    "sha256": "d362d74c1cddc5035fb7932826a0cf714471798e67df2cab124864c7484bc09d"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "twitter"
+   ],
+   "matrix_adapters": [
+    "twitter"
+   ],
+   "application_scoring_evidence": {
+    "twitter": "twitter_tweet_posted"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_wave",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_wave/1.1.0/definition.json",
+    "sha256": "ade685c273e2c567adac0200007e5888704938755865a132da64677c9af79a8a"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_wave/1.1.0/ASSET.md",
+    "sha256": "38830b8c9ea4204029d655d2a48732b7bc9ce3fbc0407bf6db2236b68227c247"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "wave"
+   ],
+   "matrix_adapters": [
+    "wave"
+   ],
+   "application_scoring_evidence": {
+    "wave": "wave_customer_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_xero",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_xero/1.1.0/definition.json",
+    "sha256": "82b5320b5af6b7c881403053195e68bc340311e7533c7102ff61ee5bd825987a"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_xero/1.1.0/ASSET.md",
+    "sha256": "af813d58bef72ca83657377e5715013558e987fc605fe6b658e153b81527e554"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "xero"
+   ],
+   "matrix_adapters": [
+    "xero"
+   ],
+   "application_scoring_evidence": {
+    "xero": "xero_invoice_field_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_zendesk",
+   "version": "1.2.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_zendesk/1.2.0/definition.json",
+    "sha256": "86c8844c44bb9e32cbb6a9834e25d92c41322bbc70f3ba55c2a544bcadbb14aa"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_zendesk/1.2.0/ASSET.md",
+    "sha256": "3edb7b130aaa370e83facc1de9bfdb5203e7082a6e6fe7a7eed0ed2120008ba3"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "zendesk"
+   ],
+   "matrix_adapters": [
+    "zendesk"
+   ],
+   "application_scoring_evidence": {
+    "zendesk": "zendesk_ticket_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_zoho_desk",
+   "version": "1.2.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_zoho_desk/1.2.0/definition.json",
+    "sha256": "2525ec98a0c3536f06c7e6e38092126cc259a5c399eca2776d75f8ee65a0859e"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_zoho_desk/1.2.0/ASSET.md",
+    "sha256": "51d22e3bb604b2375e81147be765b8269284abe985e169d22a02720e43cb3eda"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "zoho_desk"
+   ],
+   "matrix_adapters": [
+    "zoho_desk"
+   ],
+   "application_scoring_evidence": {
+    "zoho_desk": "zoho_desk_ticket_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "app_zoom",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/app_zoom/1.1.0/definition.json",
+    "sha256": "61d134ef255a3c8573924e282906f1a2618488991dbb20b00b124f5f415c7d46"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/app_zoom/1.1.0/ASSET.md",
+    "sha256": "c41292db627247adc9f2488dbb8ad0543db45f0106e8ac92ed96e484ff10c4b4"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_app_asset_v2.py",
+    "sha256": "3c02dfd514f97bcc95fcde960b2a69317f5df68e95c1ff041f92885d012bbd1c"
+   },
+   "applications": [
+    "zoom"
+   ],
+   "matrix_adapters": [
+    "zoom"
+   ],
+   "application_scoring_evidence": {
+    "zoom": "zoom_meeting_field_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "application_record_effect",
+   "version": "1.0.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/application_record_effect/1.0.0/definition.json",
+    "sha256": "138990f6b68e22c50abd80dd54e8c4302dad64730303fbb570d859171ec571d5"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/application_record_effect/1.0.0/ASSET.md",
+    "sha256": "7af4fce7eff6152e659fbf131647fe02459cc9e6a60a06e6acc7b71d705a73d6"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_record_effect_asset.py",
+    "sha256": "49c7a88b5b20dd28399744784b1216cb87b922367ab989937769b0ac0f7a2202"
+   },
+   "applications": [
+    "gmail",
+    "hubspot",
+    "mailchimp",
+    "salesforce",
+    "slack"
+   ],
+   "matrix_adapters": [
+    "gmail",
+    "hubspot",
+    "mailchimp",
+    "salesforce",
+    "slack"
+   ],
+   "application_scoring_evidence": {
+    "gmail": "gmail_message_has_label",
+    "hubspot": "hubspot_contact_property_equals",
+    "mailchimp": "mailchimp_subscriber_exists",
+    "salesforce": "salesforce_contact_field_equals",
+    "slack": "slack_channel_topic_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "approval_decision_state",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/approval_decision_state/1.1.0/definition.json",
+    "sha256": "4849659a35ce9d1af52f486b12d01fcacb6c0e5e96540e4cb4584acf2a08ee24"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/approval_decision_state/1.1.0/ASSET.md",
+    "sha256": "54abaae1193c800463af61a180a05d6780813826232fe8174dd8534b5e2fce39"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_support_workflows_v2.py",
+    "sha256": "5551927568137bb22524883b96e923da06f059a53aa8d227499e3987d7429167"
+   },
+   "applications": [
+    "freshdesk",
+    "gorgias",
+    "helpscout",
+    "reamaze",
+    "zoho_desk"
+   ],
+   "matrix_adapters": [
+    "helpscout",
+    "freshdesk",
+    "reamaze",
+    "gorgias",
+    "zoho_desk"
+   ],
+   "application_scoring_evidence": {
+    "freshdesk": "freshdesk_ticket_exists",
+    "gorgias": "gorgias_ticket_exists",
+    "helpscout": "helpscout_conversation_exists",
+    "reamaze": "reamaze_conversation_exists",
+    "zoho_desk": "zoho_desk_ticket_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "audit_archive_state",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/audit_archive_state/1.1.0/definition.json",
+    "sha256": "46b7c06905153e4a87640330ed7492cf84d0a41a4ef93560fd2ad7d19a8cf22a"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/audit_archive_state/1.1.0/ASSET.md",
+    "sha256": "a4d15c27f3650d132334cf0a0ad639b050340507e40c59cec5d556b8c9d11a10"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_business_extensions_v2.py",
+    "sha256": "80c6ae7277aa5a454c6a58ed02c6d988d012516a63ff8af6be61a22de2df12f4"
+   },
+   "applications": [
+    "airtable",
+    "freshdesk",
+    "helpscout",
+    "zendesk"
+   ],
+   "matrix_adapters": [
+    "zendesk",
+    "freshdesk",
+    "helpscout"
+   ],
+   "application_scoring_evidence": {
+    "airtable": "airtable_record_exists",
+    "freshdesk": "freshdesk_ticket_exists",
+    "helpscout": "helpscout_conversation_exists",
+    "zendesk": "zendesk_ticket_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "bounded_contact_batch",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/bounded_contact_batch/1.1.0/definition.json",
+    "sha256": "e59cb0d64a1d77d98debf52d711a8d38762502eb447c88222182ce907c2b0ae8"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/bounded_contact_batch/1.1.0/ASSET.md",
+    "sha256": "e97d0488ab0f15033e9608a07129979c00376b675e9d632161417fe2fb43d901"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_identity_policy_v2.py",
+    "sha256": "ed69dba96baa78d79604fee8bc9270014d8932b0216df706de90845444b39391"
+   },
+   "applications": [
+    "hubspot",
+    "slack"
+   ],
+   "matrix_adapters": [
+    "hubspot_contacts",
+    "slack_users"
+   ],
+   "application_scoring_evidence": {},
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": false
+  },
+  {
+   "id": "customer_link",
+   "version": "1.3.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/customer_link/1.3.0/definition.json",
+    "sha256": "454590f57b2c5def09d6a685d1d40d2e3819a3e3b15d507e5788b4c2888be21f"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/customer_link/1.3.0/ASSET.md",
+    "sha256": "e405114ee70887dedcfabbadde827cc0f00c128599fdd576ab4ea342c81c07af"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_identity_policy_v2.py",
+    "sha256": "ed69dba96baa78d79604fee8bc9270014d8932b0216df706de90845444b39391"
+   },
+   "applications": [
+    "freshdesk",
+    "gmail",
+    "helpscout",
+    "hubspot",
+    "intercom",
+    "mailchimp",
+    "salesforce",
+    "slack",
+    "xero",
+    "zendesk"
+   ],
+   "matrix_adapters": [
+    "freshdesk_contacts",
+    "gmail_messages",
+    "helpscout_customers",
+    "hubspot_contacts",
+    "intercom_contacts",
+    "mailchimp_subscribers",
+    "salesforce_contacts",
+    "slack_users",
+    "xero_contacts",
+    "zendesk_users"
+   ],
+   "application_scoring_evidence": {},
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": false
+  },
+  {
+   "id": "native_append_effect",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/native_append_effect/1.1.0/definition.json",
+    "sha256": "a538ad37a1a1142e9104ad49f84e8b3aea077387f05314bb914e663415272115"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/native_append_effect/1.1.0/ASSET.md",
+    "sha256": "862144009f2ec7fc8e6c0e57a18041327c50d1a898c9ea0d00b0a992138fc8c7"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_append_effect_asset_v2.py",
+    "sha256": "af19a0613a4391654101136291c2a245aacbf68544376740450b6e8840adc5d7"
+   },
+   "applications": [
+    "freshdesk",
+    "gorgias",
+    "helpscout",
+    "intercom",
+    "reamaze",
+    "zendesk",
+    "zoho_desk"
+   ],
+   "matrix_adapters": [
+    "freshdesk",
+    "gorgias",
+    "helpscout",
+    "intercom",
+    "reamaze",
+    "zendesk",
+    "zoho_desk"
+   ],
+   "application_scoring_evidence": {
+    "freshdesk": "freshdesk_ticket_exists",
+    "gorgias": "gorgias_ticket_exists",
+    "helpscout": "helpscout_conversation_exists",
+    "intercom": "intercom_contact_exists",
+    "reamaze": "reamaze_conversation_exists",
+    "zendesk": "zendesk_ticket_exists",
+    "zoho_desk": "zoho_desk_ticket_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "native_create_effect",
+   "version": "1.2.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/native_create_effect/1.2.0/definition.json",
+    "sha256": "54e6fe87acc3c56bcd9ab9c5b7e50a92941a2ec77ffd5eb1609d895ce71f23c9"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/native_create_effect/1.2.0/ASSET.md",
+    "sha256": "831271696ab26327ff0ecab40d4b0c5c368c9f3674c2b9d3300f3ce57c249b92"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_create_effect_asset_v3.py",
+    "sha256": "980499e9935aea09e65312012950d24cf6190edb3f1df8a7e464d2d59f81b1a2"
+   },
+   "applications": [
+    "airtable",
+    "calendly",
+    "chatgpt",
+    "docusign",
+    "google_calendar",
+    "gorgias",
+    "jira",
+    "linkedin",
+    "reamaze",
+    "twilio",
+    "wave",
+    "zoho_desk"
+   ],
+   "matrix_adapters": [
+    "airtable",
+    "calendly",
+    "chatgpt",
+    "docusign",
+    "google_calendar",
+    "gorgias",
+    "jira",
+    "linkedin",
+    "reamaze",
+    "twilio",
+    "wave",
+    "zoho_desk"
+   ],
+   "application_scoring_evidence": {
+    "airtable": "airtable_record_exists",
+    "calendly": "calendly_event_type_exists",
+    "chatgpt": "chatgpt_completion_exists",
+    "docusign": "docusign_envelope_exists",
+    "google_calendar": "google_calendar_event_exists",
+    "gorgias": "gorgias_ticket_exists_with_subject",
+    "jira": "jira_issue_exists_with_summary",
+    "linkedin": "linkedin_post_exists",
+    "reamaze": "reamaze_conversation_exists_with_subject",
+    "twilio": "twilio_sms_sent",
+    "wave": "wave_customer_exists",
+    "zoho_desk": "zoho_desk_ticket_exists_with_subject"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "native_discovered_effect",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/native_discovered_effect/1.1.0/definition.json",
+    "sha256": "25479eabb642fdb981fe7c991306751d4c7ecf88a8803b2b87c477994eba33ce"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/native_discovered_effect/1.1.0/ASSET.md",
+    "sha256": "b3961d3d7ae7b16fec65f92e692a43b2d4f7c723f55a26001619627688edfcc8"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_discovered_effect_asset_v2.py",
+    "sha256": "9f7c7548283142c4e6776a69d73b0785f2ccd35bb7c17b9a199b45480fe29576"
+   },
+   "applications": [
+    "asana",
+    "bamboohr",
+    "basecamp3",
+    "buffer",
+    "canva",
+    "confluence",
+    "facebook_conversions",
+    "facebook_lead_ads",
+    "facebook_pages",
+    "google_ads",
+    "google_drive",
+    "helpcrunch",
+    "instagram",
+    "linkedin_ads",
+    "linkedin_conversions",
+    "monday",
+    "notion",
+    "pipefy",
+    "recruitee",
+    "trello",
+    "twitter"
+   ],
+   "matrix_adapters": [
+    "asana",
+    "bamboohr",
+    "basecamp3",
+    "buffer",
+    "canva",
+    "confluence",
+    "facebook_conversions",
+    "facebook_lead_ads",
+    "facebook_pages",
+    "google_ads",
+    "google_drive",
+    "helpcrunch",
+    "instagram",
+    "linkedin_ads",
+    "linkedin_conversions",
+    "monday",
+    "notion",
+    "pipefy",
+    "recruitee",
+    "trello",
+    "twitter"
+   ],
+   "application_scoring_evidence": {
+    "asana": "asana_action_exists",
+    "bamboohr": "bamboohr_action_exists",
+    "basecamp3": "basecamp3_action_exists",
+    "buffer": "buffer_post_exists",
+    "canva": "canva_design_exists",
+    "confluence": "confluence_action_exists",
+    "google_ads": "google_ads_campaign_status",
+    "google_drive": "google_drive_action_exists",
+    "helpcrunch": "helpcrunch_customer_exists",
+    "instagram": "instagram_media_exists",
+    "linkedin_ads": "linkedin_ads_audience_exists",
+    "monday": "monday_action_exists",
+    "notion": "notion_action_exists",
+    "pipefy": "pipefy_action_exists",
+    "recruitee": "recruitee_action_exists",
+    "trello": "trello_action_exists",
+    "twitter": "twitter_tweet_posted"
+   },
+   "weak_scoring_applications": [
+    "asana",
+    "bamboohr",
+    "basecamp3",
+    "confluence",
+    "google_drive",
+    "monday",
+    "notion",
+    "pipefy",
+    "recruitee",
+    "trello"
+   ],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "native_field_state",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/native_field_state/1.1.0/definition.json",
+    "sha256": "46a841378840e9a441d37e3b33734d3e9dbe318010111704429836096fa545bf"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/native_field_state/1.1.0/ASSET.md",
+    "sha256": "33344125aebafc003a519b735d5c350cab1062de5407ac1eac9be869a2cfc829"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_field_state_asset_v2.py",
+    "sha256": "c787ecb62dfcc99c647431635721b905fc8c3d3a8b2662ed32376b20bf25c5e2"
+   },
+   "applications": [
+    "quickbooks",
+    "xero",
+    "zoom"
+   ],
+   "matrix_adapters": [
+    "quickbooks",
+    "quickbooks_customers",
+    "xero",
+    "xero_contacts",
+    "zoom"
+   ],
+   "application_scoring_evidence": {
+    "quickbooks": "quickbooks_customer_field_equals",
+    "xero": "xero_contact_field_equals",
+    "zoom": "zoom_meeting_field_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "queue_handoff_state",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/queue_handoff_state/1.1.0/definition.json",
+    "sha256": "634be0c79a1af2ee6064f7bebc459f1833c32ac38ae6a05d53039502db0c81ec"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/queue_handoff_state/1.1.0/ASSET.md",
+    "sha256": "0ac9651112eed45db4947c5622bcd03e224c68d1201cd736bdf7e1af740602fb"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_support_workflows_v2.py",
+    "sha256": "5551927568137bb22524883b96e923da06f059a53aa8d227499e3987d7429167"
+   },
+   "applications": [
+    "freshdesk",
+    "gorgias",
+    "helpscout",
+    "reamaze",
+    "zendesk"
+   ],
+   "matrix_adapters": [
+    "zendesk",
+    "freshdesk",
+    "helpscout",
+    "reamaze",
+    "gorgias"
+   ],
+   "application_scoring_evidence": {
+    "freshdesk": "freshdesk_ticket_exists",
+    "gorgias": "gorgias_ticket_exists",
+    "helpscout": "helpscout_conversation_exists",
+    "reamaze": "reamaze_conversation_exists",
+    "zendesk": "zendesk_ticket_exists"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "readable_background_records",
+   "version": "1.0.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/readable_background_records/1.0.0/definition.json",
+    "sha256": "16e6bfb8c8a65f46581997d6a3ce62f0c202d855f61e8fdded3c228bbfd56c1f"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/readable_background_records/1.0.0/ASSET.md",
+    "sha256": "aaab017617035bbb12fc026f47653b4d2c9771f5064518ba9eabc9247cced062"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_background_asset.py",
+    "sha256": "b3b56d9c810bdf0e81158698f56caa60734b5b2cab7fbd172f0fda45e9ce04a8"
+   },
+   "applications": [
+    "hiver",
+    "slack"
+   ],
+   "matrix_adapters": [
+    "hiver.conversations",
+    "hiver.shared_mailboxes",
+    "hiver.users",
+    "slack.channels"
+   ],
+   "application_scoring_evidence": {},
+   "weak_scoring_applications": [],
+   "asset_role": "background_distractor",
+   "scored_capable": false
+  },
+  {
+   "id": "readable_policy_exception",
+   "version": "1.2.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/readable_policy_exception/1.2.0/definition.json",
+    "sha256": "3e56c3c69fbbc108217fd1c4e855d32545bd6b0ac9e514c32fd8ee62a7b40a3a"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/readable_policy_exception/1.2.0/ASSET.md",
+    "sha256": "c98ee00fb3b775a8fb44bfa0fac45efecd832ad4a061fc2685ba4aa51266800c"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_identity_policy_v2.py",
+    "sha256": "ed69dba96baa78d79604fee8bc9270014d8932b0216df706de90845444b39391"
+   },
+   "applications": [
+    "gmail",
+    "slack"
+   ],
+   "matrix_adapters": [
+    "slack_topic",
+    "gmail_message_body"
+   ],
+   "application_scoring_evidence": {
+    "gmail": "gmail_message_body_contains",
+    "slack": "slack_channel_topic_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "reconciliation_adjustment",
+   "version": "1.1.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/reconciliation_adjustment/1.1.0/definition.json",
+    "sha256": "27acd58b6dd799f2f308bf41ac806a519d9ff961187b021e34f087b3f742cd18"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/reconciliation_adjustment/1.1.0/ASSET.md",
+    "sha256": "a65717d6e1b383660316ba51d7b7c5758bfd7392ef1a971474b4ef3fdb22e19e"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_business_extensions_v2.py",
+    "sha256": "80c6ae7277aa5a454c6a58ed02c6d988d012516a63ff8af6be61a22de2df12f4"
+   },
+   "applications": [
+    "google_sheets",
+    "quickbooks",
+    "xero"
+   ],
+   "matrix_adapters": [
+    "xero",
+    "quickbooks"
+   ],
+   "application_scoring_evidence": {
+    "google_sheets": "google_sheets_row_cell_equals",
+    "quickbooks": "quickbooks_invoice_field_equals",
+    "xero": "xero_invoice_field_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": "business_structure",
+   "scored_capable": true
+  },
+  {
+   "id": "sheet_row_state",
+   "version": "1.0.0",
+   "definition": {
+    "path": "assetforge/artifacts/construction_assets/sheet_row_state/1.0.0/definition.json",
+    "sha256": "f86cd0aec7e3c02d0463b514558fd7aa6c2c0090371a235e013551b7731625d5"
+   },
+   "description": {
+    "path": "assetforge/artifacts/construction_assets/sheet_row_state/1.0.0/ASSET.md",
+    "sha256": "37e42de901d644bae679429085fa39711de4fb0b2e2eaa818359d9cfa3c8eb5b"
+   },
+   "implementation": {
+    "path": "assetforge/pipeline/construction_sheet_row_asset.py",
+    "sha256": "84339b45b6e5b65af1dcc4c88e05cee3c6fa8254bdf656fa7243a4c2a1285f5c"
+   },
+   "applications": [
+    "google_sheets"
+   ],
+   "matrix_adapters": null,
+   "application_scoring_evidence": {
+    "google_sheets": "google_sheets_row_cell_equals"
+   },
+   "weak_scoring_applications": [],
+   "asset_role": null,
+   "scored_capable": null
+  }
+ ]
+}

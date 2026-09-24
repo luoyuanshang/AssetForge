@@ -1,0 +1,293 @@
+{
+ "application_scoring_evidence": {
+  "airtable": "airtable_record_exists",
+  "calendly": "calendly_event_type_exists",
+  "chatgpt": "chatgpt_completion_exists",
+  "docusign": "docusign_envelope_exists",
+  "google_calendar": "google_calendar_event_exists",
+  "gorgias": "gorgias_ticket_exists_with_subject",
+  "jira": "jira_issue_exists_with_summary",
+  "linkedin": "linkedin_post_exists",
+  "reamaze": "reamaze_conversation_exists_with_subject",
+  "twilio": "twilio_sms_sent",
+  "wave": "wave_customer_exists",
+  "zoho_desk": "zoho_desk_ticket_exists_with_subject"
+ },
+ "applications": [
+  "airtable",
+  "calendly",
+  "chatgpt",
+  "docusign",
+  "google_calendar",
+  "gorgias",
+  "jira",
+  "linkedin",
+  "reamaze",
+  "twilio",
+  "wave",
+  "zoho_desk"
+ ],
+ "assertion_types": [
+  "airtable_record_exists",
+  "calendly_event_type_exists",
+  "chatgpt_completion_exists",
+  "docusign_envelope_exists",
+  "google_calendar_event_exists",
+  "gorgias_ticket_exists_with_subject",
+  "jira_issue_exists_with_summary",
+  "linkedin_post_exists",
+  "reamaze_conversation_exists_with_subject",
+  "twilio_sms_sent",
+  "wave_customer_exists",
+  "zoho_desk_ticket_exists_with_subject"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  }
+ ],
+ "id": "native_create_effect",
+ "implementation": "assetforge/pipeline/construction_create_effect_asset_v3.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "airtable",
+  "calendly",
+  "chatgpt",
+  "docusign",
+  "google_calendar",
+  "gorgias",
+  "jira",
+  "linkedin",
+  "reamaze",
+  "twilio",
+  "wave",
+  "zoho_desk"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "airtable",
+   "parameters": {
+    "application": "airtable",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "base_name": "Review ledger",
+     "field": "Outcome",
+     "table_name": "Decisions"
+    }
+   }
+  },
+  {
+   "adapter": "calendly",
+   "parameters": {
+    "application": "calendly",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "duration_minutes": 45
+    }
+   }
+  },
+  {
+   "adapter": "chatgpt",
+   "parameters": {
+    "application": "chatgpt",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "model": "business-assistant"
+    }
+   }
+  },
+  {
+   "adapter": "docusign",
+   "parameters": {
+    "application": "docusign",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "status": "sent"
+    }
+   }
+  },
+  {
+   "adapter": "google_calendar",
+   "parameters": {
+    "application": "google_calendar",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "calendar_title": "Review meetings",
+     "end": "2026-10-14T10:00:00Z",
+     "start": "2026-10-14T09:00:00Z"
+    }
+   }
+  },
+  {
+   "adapter": "gorgias",
+   "parameters": {
+    "application": "gorgias",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "channel": "email"
+    }
+   }
+  },
+  {
+   "adapter": "jira",
+   "parameters": {
+    "application": "jira",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "project_key": "OPS"
+    }
+   }
+  },
+  {
+   "adapter": "linkedin",
+   "parameters": {
+    "application": "linkedin",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "visibility": "PUBLIC"
+    }
+   }
+  },
+  {
+   "adapter": "reamaze",
+   "parameters": {
+    "application": "reamaze",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "category": "priority"
+    }
+   }
+  },
+  {
+   "adapter": "twilio",
+   "parameters": {
+    "application": "twilio",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "from_number": "+14155559876",
+     "to_number": "+14155551234"
+    }
+   }
+  },
+  {
+   "adapter": "wave",
+   "parameters": {
+    "application": "wave",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "email": "cedar@example.org"
+    }
+   }
+  },
+  {
+   "adapter": "zoho_desk",
+   "parameters": {
+    "application": "zoho_desk",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "department": "Service desk"
+    }
+   }
+  }
+ ],
+ "parameter_limits": {
+  "linkedin.operation_fields.visibility": [
+   "PUBLIC"
+  ]
+ },
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "airtable",
+  "calendly",
+  "chatgpt",
+  "docusign",
+  "google_calendar",
+  "gorgias",
+  "jira",
+  "linkedin",
+  "reamaze",
+  "twilio",
+  "wave",
+  "zoho_desk"
+ ],
+ "version": "1.2.0",
+ "weak_scoring_applications": []
+}

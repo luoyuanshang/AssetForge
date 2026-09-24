@@ -1,0 +1,48 @@
+{
+ "application_scoring_evidence": {
+  "google_ads": "google_ads_campaign_status"
+ },
+ "applications": [
+  "google_ads"
+ ],
+ "assertion_types": [
+  "google_ads_campaign_status"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {
+   "output_identity": "seeded_native",
+   "subsequent_id_consumption_supported": true
+  }
+ ],
+ "id": "app_google_ads",
+ "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "google_ads"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "google_ads",
+   "parameters": {
+    "application": "google_ads",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "google_ads"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

@@ -1,0 +1,111 @@
+{
+ "application_scoring_evidence": {
+  "google_sheets": "google_sheets_row_cell_equals",
+  "quickbooks": "quickbooks_invoice_field_equals",
+  "xero": "xero_invoice_field_equals"
+ },
+ "applications": [
+  "google_sheets",
+  "quickbooks",
+  "xero"
+ ],
+ "assertion_types": [
+  "google_sheets_row_cell_equals",
+  "google_sheets_worksheet_exists",
+  "quickbooks_invoice_field_equals",
+  "xero_invoice_field_equals"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {
+   "source_preservation": [
+    "reference",
+    "status"
+   ],
+   "unlisted_source_fields_preserved": "not promised"
+  },
+  {
+   "source_preservation": [
+    "doc_number",
+    "note"
+   ],
+   "unlisted_source_fields_preserved": "not promised"
+  }
+ ],
+ "id": "reconciliation_adjustment",
+ "implementation": "assetforge/pipeline/construction_business_extensions_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "xero",
+  "quickbooks"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "xero",
+   "parameters": {
+    "adjustment_cells": {
+     "adjustment": "Renewal review outcome"
+    },
+    "business_context": "Customer renewal",
+    "headers": [
+     "row_key",
+     "adjustment",
+     "prior_locked"
+    ],
+    "ledger_protected_values": {
+     "prior_locked": "Original approval"
+    },
+    "preserved_source_fields": [
+     "status"
+    ],
+    "row_key": "review-1709",
+    "source_application": "xero",
+    "source_fields": {
+     "reference": "Source invoice",
+     "status": "DRAFT"
+    },
+    "spreadsheet_title": "Reconciliation ledger",
+    "worksheet_title": "Adjustments"
+   }
+  },
+  {
+   "adapter": "quickbooks",
+   "parameters": {
+    "adjustment_cells": {
+     "adjustment": "Renewal review outcome"
+    },
+    "business_context": "Customer renewal",
+    "headers": [
+     "row_key",
+     "adjustment",
+     "prior_locked"
+    ],
+    "ledger_protected_values": {
+     "prior_locked": "Original approval"
+    },
+    "preserved_source_fields": [
+     "note"
+    ],
+    "row_key": "review-1709",
+    "source_application": "quickbooks",
+    "source_fields": {
+     "doc_number": "Source invoice",
+     "note": "Original note"
+    },
+    "spreadsheet_title": "Reconciliation ledger",
+    "worksheet_title": "Adjustments"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

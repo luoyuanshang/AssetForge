@@ -1,0 +1,131 @@
+{
+ "application_scoring_evidence": {
+  "freshdesk": "freshdesk_ticket_exists",
+  "gorgias": "gorgias_ticket_exists",
+  "helpscout": "helpscout_conversation_exists",
+  "reamaze": "reamaze_conversation_exists",
+  "zoho_desk": "zoho_desk_ticket_exists"
+ },
+ "applications": [
+  "freshdesk",
+  "gorgias",
+  "helpscout",
+  "reamaze",
+  "zoho_desk"
+ ],
+ "assertion_types": [
+  "freshdesk_ticket_exists",
+  "freshdesk_ticket_has_note",
+  "gorgias_ticket_exists",
+  "gorgias_ticket_has_message",
+  "helpscout_conversation_exists",
+  "helpscout_conversation_has_note",
+  "reamaze_conversation_exists",
+  "reamaze_conversation_has_message",
+  "zoho_desk_ticket_exists",
+  "zoho_desk_ticket_has_comment"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {},
+  {},
+  {},
+  {},
+  {}
+ ],
+ "id": "approval_decision_state",
+ "implementation": "assetforge/pipeline/construction_support_workflows_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "helpscout",
+  "freshdesk",
+  "reamaze",
+  "gorgias",
+  "zoho_desk"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "helpscout",
+   "parameters": {
+    "application": "helpscout",
+    "business_context": "Customer renewal",
+    "decision": "Approved",
+    "initial_status": "active",
+    "protected_field": "subject",
+    "protected_value": "Original review request",
+    "reason": "Renewal review outcome",
+    "target_status": "closed"
+   }
+  },
+  {
+   "adapter": "freshdesk",
+   "parameters": {
+    "application": "freshdesk",
+    "business_context": "Customer renewal",
+    "decision": "Approved",
+    "initial_status": 2,
+    "protected_field": "subject",
+    "protected_value": "Original review request",
+    "reason": "Renewal review outcome",
+    "target_status": 5
+   }
+  },
+  {
+   "adapter": "reamaze",
+   "parameters": {
+    "application": "reamaze",
+    "business_context": "Customer renewal",
+    "decision": "Approved",
+    "initial_status": "unresolved",
+    "protected_field": "subject",
+    "protected_value": "Original review request",
+    "reason": "Renewal review outcome",
+    "target_status": "resolved"
+   }
+  },
+  {
+   "adapter": "gorgias",
+   "parameters": {
+    "application": "gorgias",
+    "business_context": "Customer renewal",
+    "decision": "Approved",
+    "initial_status": "open",
+    "protected_field": "subject",
+    "protected_value": "Original review request",
+    "reason": "Renewal review outcome",
+    "target_status": "closed"
+   }
+  },
+  {
+   "adapter": "zoho_desk",
+   "parameters": {
+    "application": "zoho_desk",
+    "business_context": "Customer renewal",
+    "decision": "Approved",
+    "initial_status": "Open",
+    "protected_field": "subject",
+    "protected_value": "Original review request",
+    "reason": "Renewal review outcome",
+    "target_status": "Closed"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "freshdesk",
+  "gorgias",
+  "helpscout",
+  "reamaze",
+  "zoho_desk"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

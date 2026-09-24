@@ -1,0 +1,127 @@
+{
+ "application_scoring_evidence": {
+  "quickbooks": "quickbooks_customer_field_equals",
+  "xero": "xero_contact_field_equals",
+  "zoom": "zoom_meeting_field_equals"
+ },
+ "applications": [
+  "quickbooks",
+  "xero",
+  "zoom"
+ ],
+ "assertion_types": [
+  "quickbooks_customer_field_equals",
+  "quickbooks_invoice_field_equals",
+  "xero_contact_field_equals",
+  "xero_invoice_field_equals",
+  "zoom_meeting_field_equals"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {},
+  {},
+  {},
+  {},
+  {}
+ ],
+ "id": "native_field_state",
+ "implementation": "assetforge/pipeline/construction_field_state_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "quickbooks",
+  "quickbooks_customers",
+  "xero",
+  "xero_contacts",
+  "zoom"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "quickbooks",
+   "parameters": {
+    "application": "quickbooks",
+    "business_context": "Customer renewal",
+    "field": "doc_number",
+    "initial_fields": {
+     "doc_number": "Initial invoice",
+     "note": "Protected note"
+    },
+    "protected_field": "note",
+    "value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "quickbooks_customers",
+   "parameters": {
+    "application": "quickbooks_customers",
+    "business_context": "Customer renewal",
+    "field": "display_name",
+    "initial_fields": {
+     "display_name": "Initial customer",
+     "email": "cedar@example.org"
+    },
+    "protected_field": "email",
+    "value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "xero",
+   "parameters": {
+    "application": "xero",
+    "business_context": "Customer renewal",
+    "field": "reference",
+    "initial_fields": {
+     "reference": "Initial reference",
+     "status": "DRAFT"
+    },
+    "protected_field": "status",
+    "value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "xero_contacts",
+   "parameters": {
+    "application": "xero_contacts",
+    "business_context": "Customer renewal",
+    "field": "name",
+    "initial_fields": {
+     "email_address": "cedar@example.org",
+     "name": "Initial customer"
+    },
+    "protected_field": "email_address",
+    "value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "zoom",
+   "parameters": {
+    "application": "zoom",
+    "business_context": "Customer renewal",
+    "field": "topic",
+    "initial_fields": {
+     "agenda": "Protected agenda",
+     "topic": "Initial meeting"
+    },
+    "protected_field": "agenda",
+    "value": "Renewal review outcome"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "quickbooks",
+  "quickbooks_customers",
+  "xero",
+  "xero_contacts",
+  "zoom"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

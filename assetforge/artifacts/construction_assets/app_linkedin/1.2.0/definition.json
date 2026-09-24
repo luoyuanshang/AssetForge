@@ -1,0 +1,57 @@
+{
+ "application_scoring_evidence": {
+  "linkedin": "linkedin_post_exists"
+ },
+ "applications": [
+  "linkedin"
+ ],
+ "assertion_types": [
+  "linkedin_post_exists"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {
+   "output_identity": "unresolved_creation_output",
+   "scoring_boundary": "only the emitted native predicate fields; no exact terminal-state claim for action predicates",
+   "subsequent_id_consumption_supported": false
+  }
+ ],
+ "id": "app_linkedin",
+ "implementation": "assetforge/pipeline/construction_create_effect_asset_v3.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "linkedin"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "linkedin",
+   "parameters": {
+    "application": "linkedin",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "visibility": "PUBLIC"
+    }
+   }
+  }
+ ],
+ "parameter_limits": {
+  "linkedin.operation_fields.visibility": [
+   "PUBLIC"
+  ]
+ },
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "linkedin"
+ ],
+ "version": "1.2.0",
+ "weak_scoring_applications": []
+}

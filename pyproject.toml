@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "assetforge"
+version = "0.1.0"
+description = "Task synthesis for business-automation agents: (Assets + Rubrics) -> Author -> Gate -> Reviewer -> QA"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "AssetForge contributors" }]
+keywords = ["agents", "task-synthesis", "benchmark", "automation", "evaluation"]
+dependencies = []
+
+[project.optional-dependencies]
+eval = ["datasets>=2.18", "verifiers>=0.1"]
+
+[project.scripts]
+assetforge-author = "assetforge.tools.run_constructed_qa_author:main"
+
+[tool.setuptools.packages.find]
+include = ["assetforge*"]
+
+[tool.setuptools.package-data]
+"assetforge" = ["artifacts/**/*", "protocols/*.md"]

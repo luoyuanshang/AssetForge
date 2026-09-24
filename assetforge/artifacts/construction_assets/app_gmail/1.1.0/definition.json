@@ -1,0 +1,79 @@
+{
+ "application_scoring_evidence": {
+  "gmail": "gmail_message_has_label"
+ },
+ "applications": [
+  "gmail"
+ ],
+ "assertion_types": [
+  "gmail_message_has_label",
+  "gmail_message_missing_label"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {}
+ ],
+ "id": "app_gmail",
+ "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "gmail"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "gmail",
+   "parameters": {
+    "application": "gmail",
+    "business_context": "Customer renewal",
+    "protected_fields": [],
+    "records": [
+     {
+      "entity": "cedar",
+      "fields": {
+       "body_plain": "Initial request",
+       "from_": "cedar@example.org",
+       "label_ids": [
+        "INBOX"
+       ],
+       "subject": "cedar request",
+       "to": [
+        "operator@example.org"
+       ]
+      }
+     },
+     {
+      "entity": "birch",
+      "fields": {
+       "body_plain": "Initial request",
+       "from_": "birch@example.org",
+       "label_ids": [
+        "INBOX"
+       ],
+       "subject": "birch request",
+       "to": [
+        "operator@example.org"
+       ]
+      }
+     }
+    ],
+    "scope_name": "Review 1709",
+    "target_entity": "cedar",
+    "value": "Renewal review outcome"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "gmail"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

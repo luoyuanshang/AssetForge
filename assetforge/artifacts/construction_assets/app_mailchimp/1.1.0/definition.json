@@ -1,0 +1,66 @@
+{
+ "application_scoring_evidence": {
+  "mailchimp": "mailchimp_subscriber_exists"
+ },
+ "applications": [
+  "mailchimp"
+ ],
+ "assertion_types": [
+  "mailchimp_subscriber_exists"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {}
+ ],
+ "id": "app_mailchimp",
+ "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "mailchimp"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "mailchimp",
+   "parameters": {
+    "application": "mailchimp",
+    "business_context": "Customer renewal",
+    "protected_fields": [
+     "email"
+    ],
+    "records": [
+     {
+      "entity": "cedar",
+      "fields": {
+       "email": "cedar@example.org",
+       "status": "subscribed"
+      }
+     },
+     {
+      "entity": "birch",
+      "fields": {
+       "email": "birch@example.org",
+       "status": "subscribed"
+      }
+     }
+    ],
+    "scope_name": "Review 1709",
+    "target_entity": "cedar",
+    "value": "unsubscribed"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "mailchimp"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

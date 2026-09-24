@@ -1,0 +1,107 @@
+{
+ "application_scoring_evidence": {
+  "airtable": "airtable_record_exists",
+  "freshdesk": "freshdesk_ticket_exists",
+  "helpscout": "helpscout_conversation_exists",
+  "zendesk": "zendesk_ticket_exists"
+ },
+ "applications": [
+  "airtable",
+  "freshdesk",
+  "helpscout",
+  "zendesk"
+ ],
+ "assertion_types": [
+  "airtable_record_exists",
+  "freshdesk_ticket_exists",
+  "helpscout_conversation_exists",
+  "zendesk_ticket_exists"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {
+   "archive_is_terminal_creation": true,
+   "other_source_fields_preserved": "not promised",
+   "source_preservation": [
+    "subject",
+    "status"
+   ]
+  },
+  {
+   "archive_is_terminal_creation": true,
+   "other_source_fields_preserved": "not promised",
+   "source_preservation": [
+    "subject",
+    "status"
+   ]
+  },
+  {
+   "archive_is_terminal_creation": true,
+   "other_source_fields_preserved": "not promised",
+   "source_preservation": [
+    "subject",
+    "status"
+   ]
+  }
+ ],
+ "id": "audit_archive_state",
+ "implementation": "assetforge/pipeline/construction_business_extensions_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "zendesk",
+  "freshdesk",
+  "helpscout"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "zendesk",
+   "parameters": {
+    "archived_status": "closed",
+    "audit_reference": "Renewal review outcome",
+    "base_name": "Audit archive",
+    "business_context": "Customer renewal",
+    "source_application": "zendesk",
+    "source_status": "open",
+    "source_subject": "Original review",
+    "table_name": "Reviewed cases"
+   }
+  },
+  {
+   "adapter": "freshdesk",
+   "parameters": {
+    "archived_status": "closed",
+    "audit_reference": "Renewal review outcome",
+    "base_name": "Audit archive",
+    "business_context": "Customer renewal",
+    "source_application": "freshdesk",
+    "source_status": 2,
+    "source_subject": "Original review",
+    "table_name": "Reviewed cases"
+   }
+  },
+  {
+   "adapter": "helpscout",
+   "parameters": {
+    "archived_status": "closed",
+    "audit_reference": "Renewal review outcome",
+    "base_name": "Audit archive",
+    "business_context": "Customer renewal",
+    "source_application": "helpscout",
+    "source_status": "active",
+    "source_subject": "Original review",
+    "table_name": "Reviewed cases"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

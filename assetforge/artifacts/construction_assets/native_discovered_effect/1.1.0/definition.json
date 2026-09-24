@@ -1,0 +1,397 @@
+{
+ "application_scoring_evidence": {
+  "asana": "asana_action_exists",
+  "bamboohr": "bamboohr_action_exists",
+  "basecamp3": "basecamp3_action_exists",
+  "buffer": "buffer_post_exists",
+  "canva": "canva_design_exists",
+  "confluence": "confluence_action_exists",
+  "google_ads": "google_ads_campaign_status",
+  "google_drive": "google_drive_action_exists",
+  "helpcrunch": "helpcrunch_customer_exists",
+  "instagram": "instagram_media_exists",
+  "linkedin_ads": "linkedin_ads_audience_exists",
+  "monday": "monday_action_exists",
+  "notion": "notion_action_exists",
+  "pipefy": "pipefy_action_exists",
+  "recruitee": "recruitee_action_exists",
+  "trello": "trello_action_exists",
+  "twitter": "twitter_tweet_posted"
+ },
+ "applications": [
+  "asana",
+  "bamboohr",
+  "basecamp3",
+  "buffer",
+  "canva",
+  "confluence",
+  "facebook_conversions",
+  "facebook_lead_ads",
+  "facebook_pages",
+  "google_ads",
+  "google_drive",
+  "helpcrunch",
+  "instagram",
+  "linkedin_ads",
+  "linkedin_conversions",
+  "monday",
+  "notion",
+  "pipefy",
+  "recruitee",
+  "trello",
+  "twitter"
+ ],
+ "assertion_types": [
+  "asana_action_exists",
+  "bamboohr_action_exists",
+  "basecamp3_action_exists",
+  "buffer_post_exists",
+  "canva_design_exists",
+  "confluence_action_exists",
+  "google_ads_campaign_status",
+  "google_drive_action_exists",
+  "helpcrunch_customer_exists",
+  "instagram_media_exists",
+  "linkedin_ads_audience_exists",
+  "monday_action_exists",
+  "notion_action_exists",
+  "pipefy_action_exists",
+  "recruitee_action_exists",
+  "trello_action_exists",
+  "twitter_tweet_posted"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "seeded_native",
+   "subsequent_id_consumption_supported": true
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  },
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  }
+ ],
+ "id": "native_discovered_effect",
+ "implementation": "assetforge/pipeline/construction_discovered_effect_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "asana",
+  "bamboohr",
+  "basecamp3",
+  "buffer",
+  "canva",
+  "confluence",
+  "facebook_conversions",
+  "facebook_lead_ads",
+  "facebook_pages",
+  "google_ads",
+  "google_drive",
+  "helpcrunch",
+  "instagram",
+  "linkedin_ads",
+  "linkedin_conversions",
+  "monday",
+  "notion",
+  "pipefy",
+  "recruitee",
+  "trello",
+  "twitter"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "asana",
+   "parameters": {
+    "application": "asana",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "bamboohr",
+   "parameters": {
+    "application": "bamboohr",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "basecamp3",
+   "parameters": {
+    "application": "basecamp3",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "buffer",
+   "parameters": {
+    "application": "buffer",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "canva",
+   "parameters": {
+    "application": "canva",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "confluence",
+   "parameters": {
+    "application": "confluence",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "facebook_conversions",
+   "parameters": {
+    "application": "facebook_conversions",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "facebook_lead_ads",
+   "parameters": {
+    "application": "facebook_lead_ads",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "operation_fields": {
+     "creative_name": "Event invitation",
+     "form": "review-registration",
+     "link": "https://example.org/events/review",
+     "message": "Register for the review event"
+    }
+   }
+  },
+  {
+   "adapter": "facebook_pages",
+   "parameters": {
+    "application": "facebook_pages",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "google_ads",
+   "parameters": {
+    "application": "google_ads",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "google_drive",
+   "parameters": {
+    "application": "google_drive",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "helpcrunch",
+   "parameters": {
+    "application": "helpcrunch",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "instagram",
+   "parameters": {
+    "application": "instagram",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "linkedin_ads",
+   "parameters": {
+    "application": "linkedin_ads",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "linkedin_conversions",
+   "parameters": {
+    "application": "linkedin_conversions",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "monday",
+   "parameters": {
+    "application": "monday",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "notion",
+   "parameters": {
+    "application": "notion",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "pipefy",
+   "parameters": {
+    "application": "pipefy",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "recruitee",
+   "parameters": {
+    "application": "recruitee",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "trello",
+   "parameters": {
+    "application": "trello",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  },
+  {
+   "adapter": "twitter",
+   "parameters": {
+    "application": "twitter",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "asana",
+  "bamboohr",
+  "basecamp3",
+  "buffer",
+  "canva",
+  "confluence",
+  "facebook_conversions",
+  "facebook_lead_ads",
+  "facebook_pages",
+  "google_ads",
+  "google_drive",
+  "helpcrunch",
+  "instagram",
+  "linkedin_ads",
+  "linkedin_conversions",
+  "monday",
+  "notion",
+  "pipefy",
+  "recruitee",
+  "trello",
+  "twitter"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": [
+  "asana",
+  "bamboohr",
+  "basecamp3",
+  "confluence",
+  "google_drive",
+  "monday",
+  "notion",
+  "pipefy",
+  "recruitee",
+  "trello"
+ ]
+}

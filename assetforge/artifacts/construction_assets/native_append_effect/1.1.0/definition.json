@@ -1,0 +1,150 @@
+{
+ "application_scoring_evidence": {
+  "freshdesk": "freshdesk_ticket_exists",
+  "gorgias": "gorgias_ticket_exists",
+  "helpscout": "helpscout_conversation_exists",
+  "intercom": "intercom_contact_exists",
+  "reamaze": "reamaze_conversation_exists",
+  "zendesk": "zendesk_ticket_exists",
+  "zoho_desk": "zoho_desk_ticket_exists"
+ },
+ "applications": [
+  "freshdesk",
+  "gorgias",
+  "helpscout",
+  "intercom",
+  "reamaze",
+  "zendesk",
+  "zoho_desk"
+ ],
+ "assertion_types": [
+  "freshdesk_ticket_exists",
+  "freshdesk_ticket_has_note",
+  "gorgias_ticket_exists",
+  "gorgias_ticket_has_message",
+  "helpscout_conversation_exists",
+  "helpscout_conversation_has_reply",
+  "intercom_contact_exists",
+  "intercom_contact_has_note",
+  "reamaze_conversation_exists",
+  "reamaze_conversation_has_message",
+  "zendesk_ticket_exists",
+  "zendesk_ticket_has_tag",
+  "zoho_desk_ticket_exists",
+  "zoho_desk_ticket_has_comment"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {}
+ ],
+ "id": "native_append_effect",
+ "implementation": "assetforge/pipeline/construction_append_effect_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "freshdesk",
+  "gorgias",
+  "helpscout",
+  "intercom",
+  "reamaze",
+  "zendesk",
+  "zoho_desk"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "freshdesk",
+   "parameters": {
+    "application": "freshdesk",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "protected_field": "subject",
+    "protected_value": "Unchanged original request"
+   }
+  },
+  {
+   "adapter": "gorgias",
+   "parameters": {
+    "application": "gorgias",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "protected_field": "subject",
+    "protected_value": "Unchanged original request"
+   }
+  },
+  {
+   "adapter": "helpscout",
+   "parameters": {
+    "application": "helpscout",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "protected_field": "subject",
+    "protected_value": "Unchanged original request"
+   }
+  },
+  {
+   "adapter": "intercom",
+   "parameters": {
+    "application": "intercom",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "protected_field": "email",
+    "protected_value": "contact@example.org"
+   }
+  },
+  {
+   "adapter": "reamaze",
+   "parameters": {
+    "application": "reamaze",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "protected_field": "subject",
+    "protected_value": "Unchanged original request"
+   }
+  },
+  {
+   "adapter": "zendesk",
+   "parameters": {
+    "application": "zendesk",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "protected_field": "subject",
+    "protected_value": "Unchanged original request"
+   }
+  },
+  {
+   "adapter": "zoho_desk",
+   "parameters": {
+    "application": "zoho_desk",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome",
+    "protected_field": "subject",
+    "protected_value": "Unchanged original request"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "freshdesk",
+  "gorgias",
+  "helpscout",
+  "intercom",
+  "reamaze",
+  "zendesk",
+  "zoho_desk"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

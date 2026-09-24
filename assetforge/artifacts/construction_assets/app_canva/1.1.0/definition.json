@@ -1,0 +1,48 @@
+{
+ "application_scoring_evidence": {
+  "canva": "canva_design_exists"
+ },
+ "applications": [
+  "canva"
+ ],
+ "assertion_types": [
+  "canva_design_exists"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {
+   "output_identity": "unresolved_creation_output",
+   "subsequent_id_consumption_supported": false
+  }
+ ],
+ "id": "app_canva",
+ "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "canva"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "canva",
+   "parameters": {
+    "application": "canva",
+    "business_context": "Customer renewal",
+    "business_value": "Renewal review outcome"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "canva"
+ ],
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}

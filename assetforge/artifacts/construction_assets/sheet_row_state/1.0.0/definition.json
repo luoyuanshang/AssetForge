@@ -1,0 +1,58 @@
+{
+ "schema_version": "automation-construction-asset-v1",
+ "id": "sheet_row_state",
+ "version": "1.0.0",
+ "runtime_commit": "assetforge-runtime-1",
+ "builder": "sheet_row_state",
+ "supersedes": null,
+ "change_summary": "first Google Sheets carrier asset: one spreadsheet, one worksheet and one explicitly identified row whose Author cells are written and whose declared sibling cells are preserved; every written or protected cell carries a field-level google_sheets cell assertion. Google Sheets is the second most scored application in the pinned reference distribution (about 30% of tasks), and no admitted asset could write Sheets state before this version.",
+ "carriers": [
+  "google_sheets_row"
+ ],
+ "carrier_contract": {
+  "carrier_adapter": "google_sheets_row",
+  "collection": [
+   "google_sheets",
+   "rows"
+  ],
+  "business_key": "row_key",
+  "scoreability_evidence": {
+   "google_sheets_row": "google_sheets_row_cell_equals / google_sheets_cell_equals"
+  },
+  "rule": "every written or protected cell must map to a real field-level Sheets cell assertion; a release without one fails closed at construction"
+ },
+ "obligations": [
+  "scored_row_state",
+  "protected_sibling_state",
+  "stable_row_identity"
+ ],
+ "minimum_native_case_categories": [
+  "wrong_row_result",
+  "protected_cell_preserved"
+ ],
+ "source": {
+  "kind": "self_authored_business_construction_and_public_native_interfaces",
+  "stacks_on": "official per-application assets for: google_sheets"
+ },
+ "parameter_contract": "explicit business_context, spreadsheet_title, worksheet_title, headers, row_key, cells, protected_fields and protected_values; row_key must be a declared header, every write/protection set must be disjoint and no protected cell may lack an asset-seeded value. Written cells are seeded with the explicit placeholder 'unset' and a target value equal to 'unset' is rejected, so every scored cell assertion is a required effect of the agent's own write rather than an initial-state free pass.",
+ "lifecycle": "candidate",
+ "admission": {
+  "native_validation": null,
+  "independent_review": null,
+  "review_plan": null,
+  "note": "candidate version: requires native validation + independent review before any catalog admits it"
+ },
+ "implementation": "assetforge/pipeline/construction_sheet_row_asset.py",
+ "native_fragment_validation": "google_sheets spreadsheets/worksheets/rows fragment accepted by native_runtime.schema.world.WorldState",
+ "applications": [
+  "google_sheets"
+ ],
+ "application_scoring_evidence": {
+  "google_sheets": "google_sheets_row_cell_equals"
+ },
+ "weak_scoring_applications": [],
+ "initial_state_contract": "row.cells initially holds the protected values, the stable row_key, and the placeholder 'unset' for every cell the Author asks the agent to write; the native rows update merges cells, so a positive solution must write the target cells and must not disturb the protected ones.",
+ "stacks_on_applications": [
+  "google_sheets"
+ ]
+}

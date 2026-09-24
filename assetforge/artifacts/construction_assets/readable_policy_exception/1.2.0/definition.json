@@ -1,0 +1,74 @@
+{
+ "application_scoring_evidence": {
+  "gmail": "gmail_message_body_contains",
+  "slack": "slack_channel_topic_equals"
+ },
+ "applications": [
+  "gmail",
+  "slack"
+ ],
+ "assertion_types": [
+  "gmail_message_body_contains",
+  "gmail_message_has_label",
+  "slack_channel_topic_equals"
+ ],
+ "asset_role": "business_structure",
+ "capability_semantics": [
+  {},
+  {
+   "body_match": "official normalized body containment; message body is not mutable through the pinned update API",
+   "business_policy_interpretation": "Author and independent Reviewer; not decided by the carrier builder",
+   "carrier_identity": "native message ID retained with both original labels"
+  }
+ ],
+ "id": "readable_policy_exception",
+ "implementation": "assetforge/pipeline/construction_identity_policy_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "slack_topic",
+  "gmail_message_body"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "slack_topic",
+   "parameters": {
+    "business_context": "Customer renewal",
+    "channel_name": "review-policies",
+    "exception": "Paused accounts remain unchanged.",
+    "precedence": "exception_over_rule",
+    "protected": true,
+    "readable_carrier": "slack_topic",
+    "rule": "Enterprise accounts need a review outcome.",
+    "scope": "Current customer accounts",
+    "title": "Review policy"
+   }
+  },
+  {
+   "adapter": "gmail_message_body",
+   "parameters": {
+    "business_context": "Customer renewal",
+    "exception": "Paused accounts remain unchanged.",
+    "precedence": "exception_over_rule",
+    "protected": true,
+    "readable_carrier": "gmail_message_body",
+    "recipient": "operator@example.org",
+    "rule": "Enterprise accounts need a review outcome.",
+    "scope": "Current customer accounts",
+    "sender": "policy@example.org",
+    "subject": "Current review policy",
+    "title": "Review policy"
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": true,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "version": "1.2.0",
+ "weak_scoring_applications": []
+}

@@ -1,0 +1,129 @@
+{
+ "application_scoring_evidence": {},
+ "applications": [
+  "hiver"
+ ],
+ "assertion_types": [],
+ "asset_role": "background_distractor",
+ "capability_semantics": [
+  {
+   "necessary_effect": false,
+   "preservation": "task-owned when natively supported",
+   "semantic_distractor_confirmed": false
+  },
+  {
+   "necessary_effect": false,
+   "preservation": "task-owned when natively supported",
+   "semantic_distractor_confirmed": false
+  },
+  {
+   "necessary_effect": false,
+   "preservation": "task-owned when natively supported",
+   "semantic_distractor_confirmed": false
+  }
+ ],
+ "id": "app_hiver",
+ "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
+ "independent_review_required": true,
+ "lifecycle": "candidate",
+ "matrix_adapters": [
+  "hiver.shared_mailboxes",
+  "hiver.conversations",
+  "hiver.users"
+ ],
+ "native_validation_required": "each declared adapter in two business contexts with successful wrong-result calls",
+ "parameter_examples": [
+  {
+   "adapter": "hiver.shared_mailboxes",
+   "parameters": {
+    "application": "hiver",
+    "business_context": "Past renewal",
+    "collection": "shared_mailboxes",
+    "exclusion_basis": "These expired records are outside the current request",
+    "read_paths": [
+     {
+      "method": "GET",
+      "url": "https://api2.hiverhq.com/v1/inboxes"
+     }
+    ],
+    "records": [
+     {
+      "entity": "archive",
+      "fields": {
+       "email": "archive@example.org",
+       "name": "expired business mailbox"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "adapter": "hiver.conversations",
+   "parameters": {
+    "application": "hiver",
+    "business_context": "Past renewal",
+    "collection": "conversations",
+    "exclusion_basis": "These expired records are outside the current request",
+    "read_paths": [
+     {
+      "method": "GET",
+      "url": "https://api2.hiverhq.com/v1/inboxes/archive/conversations"
+     }
+    ],
+    "records": [
+     {
+      "entity": "archive",
+      "fields": {
+       "customer_email": "archive@example.org",
+       "status": "closed",
+       "subject": "neutral-value \"neutral-value\" \\ neutral-value"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "adapter": "hiver.users",
+   "parameters": {
+    "application": "hiver",
+    "business_context": "Past renewal",
+    "collection": "users",
+    "exclusion_basis": "These expired records are outside the current request",
+    "read_paths": [
+     {
+      "method": "GET",
+      "url": "https://api2.hiverhq.com/v1/inboxes/archive/users"
+     }
+    ],
+    "records": [
+     {
+      "entity": "archive",
+      "fields": {
+       "email": "archive@example.org",
+       "name": "former approval owner"
+      }
+     }
+    ]
+   }
+  }
+ ],
+ "production_admitted": false,
+ "runtime_commit": "assetforge-runtime-1",
+ "schema_version": "automation-construction-asset-v1",
+ "scored_capable": false,
+ "source": {
+  "kind": "reconstructed_from_pinned_official_interfaces"
+ },
+ "supported_adapters": [
+  "hiver"
+ ],
+ "supported_background_collections": {
+  "hiver": [
+   "conversations",
+   "shared_mailboxes",
+   "users"
+  ]
+ },
+ "version": "1.1.0",
+ "weak_scoring_applications": []
+}
