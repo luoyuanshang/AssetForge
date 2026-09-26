@@ -8,7 +8,7 @@ GUIDANCE = (
     'native record identifiers form a connected graph with at least three application pairs. '
     'Provide 2-4 policy_fixtures for the two jointly necessary conditions. Each fixture changes '
     'exactly one existing scalar, and different fixtures change different scalar leaves. '
-    'Base oracle GET probes must expose each changed scalar and its replacement at the same '
+    'Base reference path GET probes must expose each changed scalar and its replacement at the same '
     'native response leaf in independent reset worlds without taking either value as input. '
     'Recompute the legitimate outcome under the same public rule; both correct action paths '
     'must fail in the opposite world. These are construction witnesses, not required solver '

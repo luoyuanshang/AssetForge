@@ -17,7 +17,7 @@
   {},
   {
    "body_match": "official normalized body containment; message body is not mutable through the pinned update API",
-   "business_policy_interpretation": "Author and independent Reviewer; not decided by the carrier builder",
+   "business_policy_interpretation": "Author and Reviewer; not decided by the carrier builder",
    "carrier_identity": "native message ID retained with both original labels"
   }
  ],

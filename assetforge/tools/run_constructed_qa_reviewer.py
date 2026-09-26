@@ -1,4 +1,4 @@
-"""Existing independent Reviewer with mandatory external construction validation."""
+"""Existing Reviewer with mandatory external construction validation."""
 import os
 import sys
 from pathlib import Path

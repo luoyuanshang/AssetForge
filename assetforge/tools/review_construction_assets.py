@@ -168,7 +168,17 @@ def _sandbox_payloads(catalog,examples,definitions):
     return payloads,{'note':'declared == imported implementation closure','files':declared}
 
 
+def _missing_dependency(what, hint):
+    """Raise one explanatory error instead of a raw ImportError from inside a function."""
+    raise SystemExit(
+        f"this entry point needs {what}, which is deployment infrastructure and is not part "
+        f"of this repository. {hint}"
+    )
+
+
 def main():
+
+
     (ROOT/'POLICY.md').read_text();os.umask(0o077)
     p=argparse.ArgumentParser();p.add_argument('--validation',type=Path,required=True)
     p.add_argument('--validation-sha256',required=True);p.add_argument('--output',type=Path,required=True)
@@ -203,14 +213,20 @@ def main():
             'implementation':reference(Path(__file__))}
     if args.prior_review:inputs['prior_review']={'path':str(args.prior_review.relative_to(ROOT) if args.prior_review.is_absolute() else args.prior_review),'sha256':args.prior_review_sha256}
     immutable_write(out/'owner.json',{'owner':'codex-root','pid':os.getpid(),'inputs':inputs,
-        'stop_condition':'One independent review,300 model responses (=200 + 50% margin),5400seconds/request (=3600 + 50%); sandbox closed in finally',
+        'stop_condition':'One review,300 model responses (=200 + 50% margin),5400seconds/request (=3600 + 50%); sandbox closed in finally',
         'preflight':args.preflight,'qa_release_permission':False})
     first=examples[0]['example']['source']
     task={'task_id':'asset-functional-native-view','migration_target_commit':'frozen-release-commit',
           'prompt':[{'role':'user','content':first['task_instruction']}],
           'info':{'initial_state':first['initial_state'],'assertions':first['assertions'],'tool_names':[]}}
     immutable_write(out/'candidate.json',task)
-    from assetforge.pipeline.native_review_sandbox import NativeReviewCodeExecTool,REMOTE
+    try:
+        from assetforge.pipeline.native_review_sandbox import NativeReviewCodeExecTool, REMOTE
+    except Exception:
+        _missing_dependency(
+            "the sandboxed native reviewer",
+            "It is deployment infrastructure for reviewing on a live runtime; supply it with "
+            "your runtime build.")
     from assetforge.tools import run_agentic_markdown_reviewer as r
     # The native sandbox backend needs the approved local LBG credentials.  They live in the
     # approved config file (unified_benchmark_eval/.env) and are injected with setdefault, so an
@@ -295,7 +311,12 @@ def main():
         return
     from assetforge.pipeline.turn_journal import JournalIdentity,TurnJournal
     from assetforge.pipeline.multiturn_author_journal import MultiturnAuthorJournalBridge
-    from assetforge.tools.run_multiturn_agentic_qa_author import ProviderCallDeadline
+    try:
+        from assetforge.tools.run_multiturn_agentic_qa_author import ProviderCallDeadline
+    except Exception:
+        _missing_dependency(
+            "the agent-runner deadline helper",
+            "Use the packaged Author runner instead: python -m assetforge.tools.run_author.")
     # Journal identity must name the model that actually runs.  The legacy constants below point at
     # the provider_a/provider_b chain, which the operator forbids for new work; in capture mode the identity
     # therefore follows the capture primary route.
@@ -428,7 +449,7 @@ def main():
         'actual_provider_calls':len([e for e in journal.provider_events() if e.get('event_type')=='request_started']),
         'qa_accepted':False,'released':False})
     (out/'review.md').write_text(memo)
-    if not valid:raise RuntimeError('asset independent review did not complete; original evidence retained')
+    if not valid:raise RuntimeError('asset review did not complete; original evidence retained')
     print(json.dumps({'complete':True,'decision':decision,'qa_released':False},ensure_ascii=False))
 
 if __name__=='__main__':main()

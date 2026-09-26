@@ -88,7 +88,7 @@ def run_background_native(construction, source):
             'response_hashes': [digest(response) for response in responses]})
     read_only = native._official_score(initial_state=state, assertions=source['assertions'], world=world)
     native._execute_official_action_sequence(official=official, world=world,
-        actions=source['oracle_actions'], label='background.composed.correct')
+        actions=source['reference_actions'], label='background.composed.correct')
     result = native._official_score(initial_state=state, assertions=source['assertions'], world=world)
     evidence = {'contract': CONTRACT, 'construction_sha256': digest(construction),
         'source_sha256': digest(source), 'obligations': rows,

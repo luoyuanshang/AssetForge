@@ -53,5 +53,5 @@ def policy_with_carriers(params, context, alias):
         part['protected_fields'] += [{'entity': alias + '.policy', 'field': 'label_ids'}]
         part['capability_semantics'] = {'carrier_identity': 'native message ID retained with both original labels',
             'body_match': 'official normalized body containment; message body is not mutable through the pinned update API',
-            'business_policy_interpretation': 'Author and independent Reviewer; not decided by the carrier builder'}
+            'business_policy_interpretation': 'Author and Reviewer; not decided by the carrier builder'}
     return part

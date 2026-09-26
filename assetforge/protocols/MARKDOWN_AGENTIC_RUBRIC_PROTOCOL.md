@@ -29,7 +29,7 @@ domain x cardinality quotas, global ratios/bands/caps, release selection
 policy, downstream training use or Reviewer procedure are controller and code
 concerns. Those forbidden items must be **implemented and enforced in code**
 (quota reservation and solving, the distribution gate, the selection gate, the
-independent Reviewer Prompt, the release gate): their absence from the Rubric
+Reviewer Prompt, the release gate): their absence from the Rubric
 is not a defect, their absence from code is. **Each Rubric version covers
 exactly one cell / one task family and carries only that task's single-task
 information**; different versions are authored separately and must not share
@@ -69,11 +69,11 @@ its business meaning.
 
 ### Reviewer Prompt and Rubric-gap memo
 
-The Reviewer uses an independently versioned Reviewer Prompt. It reads the
+The Reviewer uses its own versioned Reviewer Prompt. It reads the
 frozen Author Rubric only as evidence of what the Author was instructed to do,
 then examines the complete generated QA, native runtime evidence and permitted
-aggregate benchmark references. It never receives solver trajectories or
-training choices.
+aggregate benchmark references. It never receives any downstream consumer's
+material.
 
 The review produces a current-QA decision and, more importantly, identifies
 where the Author Rubric was ambiguous, incomplete or misleading **about this
@@ -89,24 +89,23 @@ Rubric.
 
 ### Mechanical gates
 
-Schema, official-runtime execution, oracle, counterexample, state-preservation,
+Schema, official-runtime execution, reference path, counterexample, state-preservation,
 reset, hash, deduplication and contamination checks live in code. They may
 reject or quarantine an artifact but are not prose sections in the Rubric and
 cannot silently add business requirements.
 
-### Solver trajectories are downstream
+### Downstream use is not a Rubric input
 
-Only accepted and frozen QA packages may enter solver rollout. Trajectory
-collection, protocol checks, SFT/RL selection and exact-token export are
-downstream contracts. Solver identities, answers, trajectories and training
-metadata cannot flow back into the Rubric, Author Prompt or Reviewer Prompt.
+Downstream stages consume accepted and frozen QA packages; their contracts are separate from
+this one. Nothing about a downstream consumer may flow back into the Rubric, Author Prompt or
+Reviewer Prompt.
 
 ## Integrity boundary
 
 The Author Rubric may describe required *properties* of a world and verifier,
 but it must never expose a benchmark answer, heldout state or concrete target
 task verifier. Private compiler/scorer payloads cannot appear in the public
-task request, trajectory labels or training-visible messages. Audit JSON is
+task request or any message visible to a downstream consumer. Audit JSON is
 limited to hashes, paths, immutable versions and bounded statuses; substantive
 Author and Reviewer judgments remain in their separate Markdown artifacts.
 
@@ -117,17 +116,17 @@ Author and Reviewer judgments remain in their separate Markdown artifacts.
 2. **Author Rubric:** a Rubric agent turns that profile into one immutable,
    domain-specific Author Prompt.
 3. **Author:** the QA Author generates a fresh text–program–state task packet.
-4. **Mechanical pre-gates:** official runtime tests schema, oracle,
+4. **Mechanical pre-gates:** official runtime tests schema, reference path,
    counterexamples, state preservation and reset.
-5. **Reviewer Prompt:** an independent critic reviews the QA and diagnoses
+5. **Reviewer Prompt:** an critic reviews the QA and diagnoses
    Rubric gaps.
 6. **Freeze or certificate:** accepted QA is replayed, deduplicated and frozen;
    rejection yields a generalized counterexample certificate.
 7. **Rubric evolution:** certificates are aggregated only at a wave boundary to
    produce the next immutable Author Rubric; a small canary must demonstrate
    lower defect recurrence or better yield before scaling.
-8. **Learning:** only accepted QA enters rollout, trajectory gates, verified
-   full-trajectory SFT and optional verifier-grounded RL.
+8. **Downstream consumption:** only accepted and frozen QA packages are consumed downstream,
+   under contracts held separately from this protocol.
 
 This maps directly to the research proposal: the task packet operationalizes
 **C1 / TPST**, role-separated generation and release gates operationalize

@@ -12,4 +12,4 @@ Build one original task in the support domain.
   discoverable business reason for leaving it alone.
 - The task ends with one notification to a named recipient, and the scored assertions are state
   predicates over real records.
-- Provide the narrowest oracle path: the API calls that reach the correct terminal state.
+- Provide the narrowest reference path: the API calls that reach the correct terminal state.

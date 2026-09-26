@@ -13,7 +13,7 @@ import re
 CONTRACT = 'source-bound-task-local-repair-with-independent-rereview-v1'
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE_KEYS = {'initial_state','assertions','forbidden_extra_actions','native_construction_cases',
-    'oracle_actions','policy_fixtures','selection_contract','tool_names'}
+    'reference_actions','policy_fixtures','selection_contract','tool_names'}
 DERIVED_KEYS = {'task_instruction','schema_version','candidate_markdown_sha256','official_source_contract'}
 
 
@@ -151,7 +151,7 @@ def validate_repaired_task(task, context):
         apps=sorted(set(apps)|set(assertion_applications(task['info']['assertions'])))
     if apps!=context['expected_apps']:
         raise ValueError('repair cannot evade its source application scope')
-    # Semantic obligation preservation remains an independent Reviewer judgment.
+    # Semantic obligation preservation remains an Reviewer judgment.
 
 
 def review_context(task, root=ROOT):

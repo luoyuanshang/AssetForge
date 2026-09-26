@@ -40,7 +40,7 @@
   "native_validation": null,
   "independent_review": null,
   "review_plan": null,
-  "note": "candidate version: requires native validation + independent review before any catalog admits it"
+  "note": "candidate version: requires native validation + review before any catalog admits it"
  },
  "implementation": "assetforge/pipeline/construction_sheet_row_asset.py",
  "native_fragment_validation": "google_sheets spreadsheets/worksheets/rows fragment accepted by native_runtime.schema.world.WorldState",

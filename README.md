@@ -17,9 +17,8 @@ executable, scoreable, trainable tasks. The pipeline is:
   the native runtime reports, then self-checks it before submitting.
 * **Gate** — mechanical, fail-closed checks: asset admission and role evidence, application
   distribution, terminal-state gate, stage admission. Plain code, not a model.
-* **Reviewer** — an independent reviewer inspects tasks that actually executed, reproduces
-  positive and negative paths natively, and returns a decision plus generalisable Rubric-gap
-  findings.
+* **Reviewer** — inspects tasks that actually ran, reproduces positive and negative paths
+  natively, and returns a decision plus generalisable Rubric-gap findings.
 * **QA** — repair dispatch and version admission: a rejected task is repaired onto the next
   immutable version, in a bounded number of rounds, with a lineage the gates verify.
 
@@ -85,9 +84,9 @@ These are enforced **in code**, not by convention.
    project-level information — tasks per cell, distribution ratios, global totals,
    corpus-release rules, training purpose — is forbidden inside a Rubric and rejected by a
    code gate.
-2. **The Reviewer is independent.** Reviewer rules and mechanical gates are versioned
-   separately and must never be spliced together. The Reviewer inspects tasks that executed,
-   and never reads the solver's trajectory.
+2. **The Reviewer has its own prompt and version.** Reviewer rules and mechanical gates are
+   versioned separately and must never be spliced together. The Reviewer inspects tasks that
+   executed; it reads neither a solver's output nor anything the data is later used for.
 3. **Assets are the unit of composition.** A task is built out of admitted assets, inside the
    capability the runtime reports. An application the runtime marks action-only or check-less
    may hold background or act as a distractor, but must never carry the required effect or the
@@ -114,7 +113,7 @@ verification/     the self-check used to verify this repository
 | Author | `python -m assetforge.tools.run_author` | one Author session from a Rubric |
 | Author (plan) | `python -m assetforge.tools.run_constructed_qa_author` | the same session driven from a frozen, hash-bound plan |
 | Gate | `python -m assetforge.tools.validate_construction_assets`, `…admit_construction_assets`, `…gate_automation_18k_distribution` | mechanical, fail-closed checks |
-| Reviewer | `python -m assetforge.tools.run_constructed_qa_reviewer`, `…review_construction_assets` | independent review of tasks that executed |
+| Reviewer | `python -m assetforge.tools.run_constructed_qa_reviewer`, `…review_construction_assets` | review of tasks that executed |
 | QA | `python -m assetforge.tools.process_constructed_qa`, `…run_construction_factory` | repair dispatch and version admission |
 
 Every one of these runs whether or not the native runtime is installed; only the steps that

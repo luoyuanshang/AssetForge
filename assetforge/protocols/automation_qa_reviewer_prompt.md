@@ -83,9 +83,9 @@ write. Whether a specific write is available must still be checked against the b
 endpoint, method, parameters and initial state. The existence of a general dispatcher is not
 evidence that every real-world operation is supported.
 
-`oracle_response_methods` in the bound receipt summarises the HTTP methods actually requested.
-`oracle_mutation_count` alone does not imply direct edits to world state; this pipeline's
-official oracle routes through the same `api_fetch`. If the receipt records a supported write
+`reference_response_methods` in the bound receipt summarises the HTTP methods actually requested.
+`reference_mutation_count` alone does not imply direct edits to world state; this pipeline's
+official reference path routes through the same `api_fetch`. If the receipt records a supported write
 that reached strict, do not claim the positive path is non-executable merely because the tool is
 named fetch. If you still doubt it, state the fact that conflicts with the specific route or
 receipt and then verify. A successful positive regression does not prove that every wrong

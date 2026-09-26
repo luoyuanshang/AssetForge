@@ -7,7 +7,7 @@ GUIDANCE = (
     'All target and protected sibling reset statuses must be ENABLED or PAUSED. '
     'REMOVED is terminal: no positive, alternate, or negative construction program may edit '
     'a campaign after it becomes REMOVED, including within one batched operations request. '
-    'Build counterexamples from clean reset, or use oracle_complete only when the challenged '
+    'Build counterexamples from clean reset, or use reference_complete only when the challenged '
     'objects have not been removed. Preserve status as the required effect without a public '
     'only-status/no-other-field-change prohibition. Include a single-fact policy fixture that '
     'changes at least two target outcomes relative to the baseline, witnessing a coupled branch.'
@@ -54,7 +54,7 @@ def execute_checked(official, seed, actions, *, label):
     return len(receipts)
 
 
-def validate_source(*, initial_state, assertions, oracle_actions, fixtures, cases,
+def validate_source(*, initial_state, assertions, reference_actions, fixtures, cases,
                     forbidden_extra_actions, scorer_counterexample_tests, instruction):
     from . import official_task_package as p
     official = p._official_imports()
@@ -67,7 +67,7 @@ def validate_source(*, initial_state, assertions, oracle_actions, fixtures, case
         raise ValueError('public only-status protection exceeds the available ID-status scorer')
     if not isinstance(fixtures, list) or len(fixtures) < 3:
         raise ValueError('lifecycle source requires the three independent policy fixtures')
-    programs = [('baseline', initial_state, oracle_actions)]
+    programs = [('baseline', initial_state, reference_actions)]
     baseline = {a['campaign_id']: a['status'] for a in assertions}
     coupled = False
     for i, row in enumerate(fixtures):
@@ -87,19 +87,19 @@ def validate_source(*, initial_state, assertions, oracle_actions, fixtures, case
         # gates. This checks the new shared-policy outcome witness, not prose.
         changes = sum(a['status'] != baseline[a['campaign_id']] for a in expected)
         coupled |= changes >= 2
-        programs.append((f'fixture_{i}', seed, row['oracle_actions']))
+        programs.append((f'fixture_{i}', seed, row['reference_actions']))
     if not coupled:
         raise ValueError('coupled policy needs one single-fact fixture changing at least two target outcomes')
     for i, action in enumerate(forbidden_extra_actions):
-        programs.append((f'forbidden_{i}', initial_state, [*oracle_actions, action]))
+        programs.append((f'forbidden_{i}', initial_state, [*reference_actions, action]))
     for kind, group in [('native', cases or []), ('matrix', scorer_counterexample_tests or [])]:
         for i, row in enumerate(group):
-            if row['start_state'] not in {'initial', 'oracle_complete'}:
+            if row['start_state'] not in {'initial', 'reference_complete'}:
                 raise ValueError('invalid lifecycle case reset boundary')
-            actions = [copy.deepcopy(oracle_actions[a['oracle_index']])
-                       if set(a) == {'oracle_index'} else copy.deepcopy(a) for a in row['actions']]
-            if row['start_state'] == 'oracle_complete':
-                actions = [*oracle_actions, *actions]
+            actions = [copy.deepcopy(reference_actions[a['reference_index']])
+                       if set(a) == {'reference_index'} else copy.deepcopy(a) for a in row['actions']]
+            if row['start_state'] == 'reference_complete':
+                actions = [*reference_actions, *actions]
             programs.append((f'{kind}_{i}', initial_state, actions))
     calls = sum(execute_checked(official, seed, actions, label='lifecycle_' + name)
                 for name, seed, actions in programs)

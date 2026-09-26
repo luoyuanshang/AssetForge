@@ -97,7 +97,7 @@ def normalize(parsed: dict, *, draft_task_source: Mapping[str, Any] | None = Non
         task_source = parsed.get('task_source')
         if isinstance(task_source, dict):
             injected = []
-            for field, source_key in (('assertions', 'assertions'), ('oracle_actions', 'actions')):
+            for field, source_key in (('assertions', 'assertions'), ('reference_actions', 'actions')):
                 owned = [dict(r) for r in (construction.get(source_key) or []) if isinstance(r, dict)]
                 if not owned:
                     continue

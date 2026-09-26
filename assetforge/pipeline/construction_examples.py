@@ -157,18 +157,18 @@ def full_example(context, root_id, seed, catalog):
     mail_corrupt = {'method': 'POST', 'url': 'gmail/v1/users/me/messages/' + mail_id + '/modify',
                     'body': {'removeLabelIds': ['SENT']}}
     cases = [case('wrong_customer', 'wrong_target', c['reads'] + [wrong_target]),
-             case('extra_customer', 'extra_member', [wrong_target], 'oracle_complete'),
+             case('extra_customer', 'extra_member', [wrong_target], 'reference_complete'),
              case('wrong_policy', 'wrong_policy_result', c['reads'] + [wrong_value]),
-             case('protected_field', 'protected_field_corruption', [corrupt], 'oracle_complete'),
-             case('policy_corruption','protected_field_corruption',[policy_corrupt],'oracle_complete',[0]),
+             case('protected_field', 'protected_field_corruption', [corrupt], 'reference_complete'),
+             case('policy_corruption','protected_field_corruption',[policy_corrupt],'reference_complete',[0]),
              case('required_effect_omitted','missing_member',c['reads']),
-             case('ledger_wrong_value','wrong_target', [sheet_wrong_value], 'oracle_complete', ledger_scored),
-             case('ledger_protected_corruption','protected_field_corruption',[sheet_protected],'oracle_complete',ledger_protected),
+             case('ledger_wrong_value','wrong_target', [sheet_wrong_value], 'reference_complete', ledger_scored),
+             case('ledger_protected_corruption','protected_field_corruption',[sheet_protected],'reference_complete',ledger_protected),
              case('ledger_effect_omitted','missing_member',c['reads'] + [batch_action],'initial',ledger_indices),
-             case('policy_mail_corruption','protected_field_corruption',[mail_corrupt],'oracle_complete',policy_mail_assertions),
-             case('policy_mail_wrong_policy','wrong_policy_result',[wrong_value, mail_corrupt],'oracle_complete',
+             case('policy_mail_corruption','protected_field_corruption',[mail_corrupt],'reference_complete',policy_mail_assertions),
+             case('policy_mail_wrong_policy','wrong_policy_result',[wrong_value, mail_corrupt],'reference_complete',
                   sorted(set(policy_mail_assertions) | set(effect))),
-             case('source_corruption','forbidden_action' if hr else 'protected_field_corruption',[source_corrupt],'oracle_complete',source_assertions),
+             case('source_corruption','forbidden_action' if hr else 'protected_field_corruption',[source_corrupt],'reference_complete',source_assertions),
              case('alternate_read_order', 'equivalent_valid_path', list(reversed(c['reads'])) + c['actions'])]
     source_ref = c['entities']['join.source.cedar']
     rows = c['world']['bamboohr']['actions']['employee'] if hr else c['world']['salesforce']['contacts']
@@ -187,9 +187,9 @@ def full_example(context, root_id, seed, catalog):
     # The ledger write is independent of the policy branch, so the alternate branch must perform it
     # too; otherwise the fixture would fail untouched obligations and could not prove the branch.
     fixture = {'public_policy_basis': {'public_request': True}, 'initial_state_replacements': {pointer: 'Pending'},
-               'assertion_replacements': replacements, 'oracle_actions': c['reads'] + [wrong_value, ledger_action]}
+               'assertion_replacements': replacements, 'reference_actions': c['reads'] + [wrong_value, ledger_action]}
     source = {'task_instruction': instruction, 'initial_state': c['world'], 'assertions': assertions,
-              'oracle_actions': actions, 'forbidden_extra_actions': [corrupt, wrong_target],
+              'reference_actions': actions, 'forbidden_extra_actions': [corrupt, wrong_target],
               'native_construction_cases': cases, 'policy_fixtures': [fixture], 'tool_names': []}
     bindings = []
     for obligation in c['obligations']:
@@ -233,14 +233,14 @@ def execute_example(example):
         w.meta.allowed_services = list(s['initial_state'])
         return w
     world = reset(); independent = reset(); initial_other = digest(independent.model_dump(mode='json'))
-    responses, mutations = p._execute_official_action_sequence(official=official, world=world, actions=s['oracle_actions'], label='construction.asset_example')
+    responses, mutations = p._execute_official_action_sequence(official=official, world=world, actions=s['reference_actions'], label='construction.asset_example')
     score = p._official_score(initial_state=s['initial_state'], assertions=s['assertions'], world=world)
     if score['strict_pass'] is not True:
         raise ValueError('functional positive failed: ' + str(score))
     if digest(independent.model_dump(mode='json')) != initial_other:
         raise ValueError('asset task worlds share mutable state')
-    cases = native.run_cases(initial_state=s['initial_state'], assertions=s['assertions'], oracle_actions=s['oracle_actions'],
-                            oracle_world=world, cases=s['native_construction_cases'], allowed_services=list(s['initial_state']),
+    cases = native.run_cases(initial_state=s['initial_state'], assertions=s['assertions'], reference_actions=s['reference_actions'],
+                            reference_world=world, cases=s['native_construction_cases'], allowed_services=list(s['initial_state']),
                             instruction=s['task_instruction'])
     by_case={r['case_id']:r for r in cases['cases']}
     for binding in example['bindings']:
@@ -248,7 +248,7 @@ def execute_example(example):
             result=by_case[cid]
             if not result['expected_strict'] and not set(result['failed_assertion_indices']) & set(binding['assertion_indices']):
                 raise ValueError('case fails an unrelated obligation: '+binding['obligation_id'])
-    fixtures = p._run_policy_fixtures(initial_state=s['initial_state'], assertions=s['assertions'], oracle_actions=s['oracle_actions'],
+    fixtures = p._run_policy_fixtures(initial_state=s['initial_state'], assertions=s['assertions'], reference_actions=s['reference_actions'],
                                      fixtures=s['policy_fixtures'], allowed_services=list(s['initial_state']), instruction=s['task_instruction'])
     # Prove the declared identity keys and policy text really appear in native
     # reads. Matching raw state alone would miss unobservable backing collections.
@@ -270,5 +270,5 @@ def execute_example(example):
             raise ValueError('policy evidence unreadable')
     return {'strict_pass': True, 'state_isolation_passed': True, 'native_reads': read_results,
             'native_construction_case_results': cases, 'policy_fixture_results': fixtures,
-            'mutation_count': mutations, 'oracle_response_bindings': responses,
+            'mutation_count': mutations, 'reference_response_bindings': responses,
             'functional_only': True, 'semantic_accepted': False, 'released': False}

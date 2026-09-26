@@ -3,7 +3,7 @@
 The generator uses a fictional application namespace and typed state machines.
 It does not consume the benchmark prompts or assertion values.  A model may
 later propose scenario blueprints, but compilation and grading remain
-deterministic so malformed teacher output cannot silently become training data.
+deterministic so malformed generator output cannot silently become training data.
 """
 from __future__ import annotations
 
@@ -180,7 +180,7 @@ def _split_hardened_instruction(task: dict, route_rows: list[dict], variant: int
 
 
 def _surface_diverse_instruction(task: dict, variant: int) -> str:
-    """Render a higher-entropy visible surface without changing the oracle.
+    """Render a higher-entropy visible surface without changing the reference path.
 
     Every clause is derived from the already compiled task state and abstract
     family.  No source benchmark wording or answer key is consulted.  The
@@ -285,7 +285,7 @@ def _surface_diverse_instruction(task: dict, variant: int) -> str:
 
 
 def _surface_diverse_instruction_v2(task: dict, variant: int) -> str:
-    """Render split-disjoint visible language while preserving one oracle.
+    """Render split-disjoint visible language while preserving one reference path.
 
     The split-specific banks are deliberately authored from the abstract task
     contract, not from any benchmark item or answer key.  Development,
@@ -1032,7 +1032,7 @@ def _build(
             "generator_seed": seed,
             "generator_index": index,
             "split_assignment_basis": "paired_procedural_v2_structural_signature",
-            "teacher_model_used": False,
+            "generator_model_used": False,
             "source_prompts_seen": False,
         },
     }
@@ -1136,9 +1136,9 @@ def generate_tasks(*, count: int, seed: int, rubric_sha: str) -> list[dict]:
     return tasks
 
 
-def compile_teacher_blueprints(
-    blueprints: list[dict], *, count: int, seed: int, rubric_sha: str, teacher_alias: str, method: str,
-    teacher_model_used: bool = True,
+def compile_blueprints(
+    blueprints: list[dict], *, count: int, seed: int, rubric_sha: str, generator_alias: str, method: str,
+    generator_model_used: bool = True,
     compiler_controls: dict | None = None,
     split_hardening: bool = False,
     split_hardening_splits: tuple[str, ...] | None = None,
@@ -1146,9 +1146,9 @@ def compile_teacher_blueprints(
     surface_diversity_version: str = "v2",
     typed_role_surfaces: bool = False,
 ) -> list[dict]:
-    """Expand validated teacher selections into deterministic executable worlds."""
+    """Expand validated generator selections into deterministic executable worlds."""
     if not blueprints:
-        raise ValueError("at least one teacher blueprint is required")
+        raise ValueError("at least one generator blueprint is required")
     emphasis_text = {
         "identity_join": "Require the roster identity join before any state change.",
         "recency_resolution": "Resolve policy conflicts by the newest active revision.",
@@ -1173,9 +1173,9 @@ def compile_teacher_blueprints(
         difficulty = str(blueprint.get("difficulty", ""))
         emphasis = tuple(dict.fromkeys(blueprint.get("emphasis", [])))
         if family not in FAMILIES or domain not in DOMAINS or difficulty not in {"medium", "hard", "very_hard"}:
-            raise ValueError("teacher blueprint contains an unsupported enum")
+            raise ValueError("generator blueprint contains an unsupported enum")
         if not 2 <= len(emphasis) <= 5 or any(item not in emphasis_text for item in emphasis):
-            raise ValueError("teacher blueprint emphasis is invalid")
+            raise ValueError("generator blueprint emphasis is invalid")
         task = _build(
             index, seed, rubric_sha,
             family_override=family,
@@ -1199,7 +1199,7 @@ def compile_teacher_blueprints(
             for row in task["assertions"]
         )
         signature = (
-            f"teacher:{family}:domain-shape={domain}:eligible={eligible_shape}:"
+            f"generator:{family}:domain-shape={domain}:eligible={eligible_shape}:"
             f"excluded={excluded_shape}:authorization={int('ValuePort' in task['allowed_apps'])}:"
             f"difficulty={difficulty}:emphasis={'+'.join(sorted(emphasis))}:compiler-v2"
         )
@@ -1208,13 +1208,13 @@ def compile_teacher_blueprints(
         task["structural_signature"] = signature
         task["split"] = _split(signature)
         task["generation_provenance"] = {
-            "generator": "benchmark_factory.generator.compile_teacher_blueprints",
+            "generator": "benchmark_factory.generator.compile_blueprints",
             "generator_seed": seed,
             "generator_index": index,
-            "teacher_model_used": teacher_model_used,
-            "teacher_alias": teacher_alias,
-            "teacher_method": method,
-            "teacher_blueprint_id": blueprint.get("blueprint_id"),
+            "generator_model_used": generator_model_used,
+            "generator_alias": generator_alias,
+            "generator_method": method,
+            "generator_blueprint_id": blueprint.get("blueprint_id"),
             "source_prompts_seen": False,
         }
         if controls_active:
@@ -1273,7 +1273,7 @@ def main() -> int:
         "generator_seed": args.seed,
         "splits": {split: sum(task["split"] == split for task in tasks) for split in ("development", "calibration", "heldout")},
         "families": {family: sum(task["family"] == family for task in tasks) for family in FAMILIES},
-        "teacher_model_used": False,
+        "generator_model_used": False,
         "requires_contamination_audit_before_training": True,
         "promotion_status": "candidate_only",
         "eligible_for_training": False,

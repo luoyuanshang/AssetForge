@@ -25,8 +25,18 @@ def prepare(a):
   require(digest(task)==digest(values['task.json']),'materialized task changed after construction')
  from assetforge.pipeline import release_runtime as release
  release.require_verified_protocol()
- from assetforge.tools.migrate_benchmark_qa_release import inspect_one
- from assetforge.tools.revalidate_benchmark_native_qa import native_one
+ try:
+     from assetforge.tools.migrate_benchmark_qa_release import inspect_one
+ except Exception:
+     _missing_dependency(
+         "the release-migration inspector",
+         "It is tied to one runtime release; supply it with your own runtime build.")
+ try:
+     from assetforge.tools.revalidate_benchmark_native_qa import native_one
+ except Exception:
+     _missing_dependency(
+         "the native re-validation helper",
+         "It is tied to one runtime release; supply it with your own runtime build.")
  mechanical=inspect_one(taskpath);a.output.mkdir(parents=True,exist_ok=False)
  if bundle:mechanical['construction_bundle']=reference(bundle/'complete.json')
  immutable_write(a.output/'mechanical.json',mechanical)
@@ -46,7 +56,12 @@ def prepare(a):
  row={'source_sha256':sha,'task_id':cid,'native_evidence':reference(a.output/'native.json'),'inputs':inputs,
     'historical_accepted_corpus_catalog':cell['historical_reference_row']['historical_accepted_corpus_catalog']}
  if bundle:row['construction_bundle']=reference(bundle/'complete.json')
- from assetforge.tools.revalidate_benchmark_original_profiles import evaluate
+ try:
+     from assetforge.tools.revalidate_benchmark_original_profiles import evaluate
+ except Exception:
+     _missing_dependency(
+         "the original-profile evaluator",
+         "It is tied to one runtime release; supply it with your own runtime build.")
  full=evaluate(row);fp=a.output/'full_profile/tasks'/(sha+'.json');immutable_write(fp,full)
  require(full.get('full_original_profile_passed') is True,'full frozen execution profile did not pass')
  require(full['executed_profile']==cell['mechanical_profile'],'cell original profile changed')
@@ -66,7 +81,7 @@ def qualify(a):
   reviewid='v106-'+row['source_sha256'][:28]
   review=json.loads((a.review/'audits'/(reviewid+'.markdown-reviewer.json')).read_text())
   b=review['packet']['source_binding'].get('construction_manifest')
-  require(b and b['validation']['manifest_sha256']==check['manifest_sha256'],'independent review omitted construction manifest')
+  require(b and b['validation']['manifest_sha256']==check['manifest_sha256'],'review omitted construction manifest')
  from assetforge.tools import bind_benchmark_qualified_qa as binder
  previous=sys.argv
  try:
@@ -78,7 +93,7 @@ def qualify(a):
  immutable_write(a.output/'construction_collection_binding.json',{'schema_version':'construction-collection-companion-v1',
    'qualified_manifest':reference(a.output/'manifest.json'),'construction_bundles':companions,
    'control_root_ids':[row['task_id']] if not bundle else []})
- require(len(result['items'])==1,'independent review/profile/hold qualification failed')
+ require(len(result['items'])==1,'review/profile/hold qualification failed')
 
 if __name__=='__main__':
  (ROOT/'POLICY.md').read_text();os.umask(0o077)

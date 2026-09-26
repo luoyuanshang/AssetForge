@@ -34,7 +34,7 @@ from .official_alignment import (
     normalize_runtime_value,
 )
 from .semantic_task_graph import semantic_graph_to_task_source
-from .v9_agentic_rubric_pipeline import validate_candidate_qa_markdown
+from .leak_guard import validate_candidate_markdown
 from .native_validation_cache import evidence_scope, immutable_proof, evidence_statistics
 
 
@@ -152,12 +152,12 @@ SCORER_COUNTEREXAMPLE_START_STATES = {
     "required_fact_omission": "initial",
     "boundary_confusion": "initial",
     "wrong_witness": "initial",
-    "duplicate_effect": "oracle_complete",
-    "wrong_target_effect": "oracle_complete",
-    "source_corruption": "oracle_complete",
-    "extra_effect": "oracle_complete",
-    "target_corruption": "oracle_complete",
-    "scope_violation": "oracle_complete",
+    "duplicate_effect": "reference_complete",
+    "wrong_target_effect": "reference_complete",
+    "source_corruption": "reference_complete",
+    "extra_effect": "reference_complete",
+    "target_corruption": "reference_complete",
+    "scope_violation": "reference_complete",
 }
 SCORER_COUNTEREXAMPLE_MIN_COUNTS = {
     **{category: 1 for category in SCORER_COUNTEREXAMPLE_EXPECTATIONS},
@@ -183,7 +183,7 @@ _COMPACT_OFFICIAL_TASK_SOURCE_FIELDS = frozenset(
         "task_instruction",
         "initial_state",
         "assertions",
-        "oracle_actions",
+        "reference_actions",
         "forbidden_extra_actions",
         "tool_names",
         "selection_contract",
@@ -200,7 +200,7 @@ _SEMANTIC_GRAPH_TOP_LEVEL_FIELDS = frozenset(
         "schema_version",
         "task_instruction",
         "initial_state",
-        "oracle_actions",
+        "reference_actions",
         "forbidden_extra_actions",
         "tool_names",
         "assertion_nodes",
@@ -347,7 +347,7 @@ def _apply_author_repair_fields(
             "task_instruction",
             "initial_state",
             "assertions",
-            "oracle_actions",
+            "reference_actions",
             "forbidden_extra_actions",
             "scorer_counterexample_tests",
             "scorer_obligation_ledger",
@@ -364,7 +364,7 @@ def _apply_author_repair_fields(
             "task_instruction",
             "initial_state",
             "assertions",
-            "oracle_actions",
+            "reference_actions",
             "forbidden_extra_actions",
             "tool_names",
             "assertion_nodes",
@@ -833,7 +833,7 @@ class _StagedTaskValidationError(ValueError):
 # The queue entry 0004 rule is that a zero-execution static rejection must not
 # spend the Author's 1 construction + 2 repair official-regression budget; these
 # are the stages where nothing has been executed yet (measured: the first
-# `_official_score` is the post-oracle stage).
+# `_official_score` is the post-reference path stage).
 _ZERO_EXECUTION_STAGES = frozenset({"task_source_structure", "static_native_contract"})
 
 
@@ -1084,7 +1084,7 @@ def _validate_rubric_mechanical_profile(
         # task that merely seeds four or five services but scores effects in
         # only one to three of them is not a four/five-application scored
         # workflow, even if its prose calls every service causal.  Enforce the
-        # same per-item invariant before expensive oracle execution so such a
+        # same per-item invariant before expensive reference path execution so such a
         # package cannot be materialized and later rejected only by Reviewer or
         # the aggregate distribution gate.  This gate derives no business
         # semantics and invents no assertion; it only checks Author-owned
@@ -1835,7 +1835,7 @@ class OfficialContractInspectorTool:
                     ),
                     "usage": (
                         "Copy these identifiers exactly into task_source.initial_state, "
-                        "oracle_actions and assertions. Do not invent, translate or "
+                        "reference_actions and assertions. Do not invent, translate or "
                         "re-capitalise collection names, endpoint ids or assertion types."),
                 },
                 "tiered_compact": self._tiered_compact,
@@ -1984,7 +1984,7 @@ def _recorded_action_candidates(
     business fields from the seeded record. Returning the exact recorded parameter surface
     is a diagnostic only: it neither adds assertions nor changes the authored task. This keeps
     the Author as the semantic owner while avoiding repeated guesses about a mechanical duplicate
-    of an already executed oracle action.
+    of an already executed reference action.
     """
 
     requested: set[tuple[str, str]] = set()
@@ -2363,7 +2363,7 @@ def _validate_compact_google_sheets_write_surface(
         if "/values/" in url or "/values:" in url:
             continue
         raise ValueError(
-            f"oracle_actions[{index}] uses a Google Sheets structural write that the pinned "
+            f"reference_actions[{index}] uses a Google Sheets structural write that the pinned "
             "official scorer cannot close by stable worksheet identity and exact worksheet "
             "cardinality; use an exact cell/row values operation or redesign the effect"
         )
@@ -2417,7 +2417,7 @@ def _validate_native_action_guard_representation(assertions, initial_state):
             record = params.get('recordId')
             if update and not isinstance(record, str):
                 continue
-            # A guard may concern a record created later by the oracle. Do not
+            # A guard may concern a record created later by the reference path. Do not
             # invent that record or call a failed initial-state probe coverage.
             if seeded_table is None or (update and not any(
                 row.get('id') == record for row in seeded_table.get('records', [])
@@ -2446,7 +2446,7 @@ def _validate_native_action_guard_representation(assertions, initial_state):
         raise ValueError('; '.join(dict.fromkeys(errors)))
 
 
-def _run_policy_fixtures(*, initial_state, assertions, oracle_actions, fixtures,
+def _run_policy_fixtures(*, initial_state, assertions, reference_actions, fixtures,
                          allowed_services, instruction, minimum_count=1,
                          require_independent_readable_facts=False, maximum_count=4,
                          require_five_app_dependencies=False, require_single_scalar_dependency=False,
@@ -2459,7 +2459,7 @@ def _run_policy_fixtures(*, initial_state, assertions, oracle_actions, fixtures,
     All edits and alternate actions are authored, never synthesized by the gate.
     These are private construction tests, not extra solver messages or scored QA.
     The two correct paths must fail under the other world's expected outcome.
-    Semantic fidelity to the same public policy remains an independent review duty.
+    Semantic fidelity to the same public policy remains a review duty.
     """
     if type(maximum_count) is not int or not 1 <= maximum_count <= 12:
         raise ValueError("policy fixture maximum must be an explicit bounded integer 1-12")
@@ -2474,7 +2474,7 @@ def _run_policy_fixtures(*, initial_state, assertions, oracle_actions, fixtures,
         if require_five_app_dependencies or not application_roles:
             raise ValueError('role-aware joins need an explicit separate role contract')
         from .multi_app_policy_dependencies import validate
-        dependency_witnesses=validate(initial_state=initial_state,fixtures=fixtures,oracle_actions=oracle_actions,
+        dependency_witnesses=validate(initial_state=initial_state,fixtures=fixtures,reference_actions=reference_actions,
             allowed_services=allowed_services,official=official,pointer_parts=_json_pointer_parts,canonical=_canonical,
             required_services=application_roles['necessary_applications'],minimum_relationship_pairs=minimum_role_join_pairs,
             require_all_services=False,native_reads_by_effect=True,allow_business_keys=True)
@@ -2483,7 +2483,7 @@ def _run_policy_fixtures(*, initial_state, assertions, oracle_actions, fixtures,
             raise ValueError('single-app and five-app dependency profiles cannot be combined')
         from .multi_app_policy_dependencies import validate
         dependency_witnesses = validate(initial_state=initial_state, fixtures=fixtures,
-            oracle_actions=oracle_actions, allowed_services=allowed_services,
+            reference_actions=reference_actions, allowed_services=allowed_services,
             official=official, pointer_parts=_json_pointer_parts, canonical=_canonical,
             require_single_scalar=require_single_scalar_dependency)
     fact_witnesses = None
@@ -2496,7 +2496,7 @@ def _run_policy_fixtures(*, initial_state, assertions, oracle_actions, fixtures,
     if require_independent_readable_facts or any(condition_profiles):
         from .single_app_policy_facts import validate
         fact_witnesses = validate(initial_state=initial_state, fixtures=fixtures,
-            oracle_actions=oracle_actions, allowed_services=allowed_services,
+            reference_actions=reference_actions, allowed_services=allowed_services,
             instruction=instruction, official=official, pointer_parts=_json_pointer_parts,
             canonical=_canonical,native_json_projection=native_fact_json_projection,
             hr_fiveapp_conditions=require_hr_fiveapp_conditions,
@@ -2507,12 +2507,12 @@ def _run_policy_fixtures(*, initial_state, assertions, oracle_actions, fixtures,
     cohort=None;seen_vectors=set()
     if require_coordinated_status:
         from .marketing_coordinated_status import validate as validate_cohort
-        cohort=validate_cohort(initial_state,assertions,actions=oracle_actions)
+        cohort=validate_cohort(initial_state,assertions,actions=reference_actions)
         seen_vectors.add(tuple(cohort['status_vector']))
     for index, row in enumerate(fixtures):
         label = f"policy_fixtures[{index}]"
         keys = {"public_policy_basis", "initial_state_replacements",
-                "assertion_replacements", "oracle_actions"}
+                "assertion_replacements", "reference_actions"}
         if require_five_app_dependencies or minimum_role_join_pairs:
             keys.add('join_witness')
         if not isinstance(row, dict) or set(row) != keys:
@@ -2640,9 +2640,9 @@ def _run_policy_fixtures(*, initial_state, assertions, oracle_actions, fixtures,
                     f"values"
                 )
             alt_assertions[position] = copy.deepcopy(assertion)
-        actions = row["oracle_actions"]
+        actions = row["reference_actions"]
         if not isinstance(actions, list) or len(actions) > 64:
-            raise ValueError(f"{label}.oracle_actions must be a bounded action list")
+            raise ValueError(f"{label}.reference_actions must be a bounded action list")
         if cohort:
             alternate=validate_cohort(alt_state,alt_assertions,reference=cohort,actions=actions)
             vector=tuple(alternate['status_vector'])
@@ -2667,7 +2667,7 @@ def _run_policy_fixtures(*, initial_state, assertions, oracle_actions, fixtures,
                     "terminal_state_sha256": _sha(world.model_dump(mode="json"))}
 
         correct = execute(alt_state, alt_assertions, actions, "alternate_correct")
-        stale = execute(alt_state, alt_assertions, oracle_actions, "base_path_in_alternate")
+        stale = execute(alt_state, alt_assertions, reference_actions, "base_path_in_alternate")
         reverse = execute(initial_state, assertions, actions, "alternate_path_in_base")
         if not correct["strict_pass"] or stale["strict_pass"] or reverse["strict_pass"]:
             diagnostics = {name: {key: case[key] for key in (
@@ -2705,8 +2705,8 @@ def _run_scorer_counterexample_matrix(
     WorldState: Any,
     initial_state: dict[str, Any],
     assertions: list[dict[str, Any]],
-    oracle_actions: list[dict[str, Any]],
-    oracle_world: Any,
+    reference_actions: list[dict[str, Any]],
+    reference_world: Any,
     allowed_services: list[str],
     tests: Any,
     minimum_effect_calls: int = 2,
@@ -2731,7 +2731,7 @@ def _run_scorer_counterexample_matrix(
     observed_action_sequences: set[str] = set()
     observed_changed_surfaces: dict[str, set[str]] = defaultdict(set)
     results: list[dict[str, Any]] = []
-    oracle_sequence = _canonical(oracle_actions)
+    reference_sequence = _canonical(reference_actions)
     for index, row in enumerate(tests):
         label = f"scorer_counterexample_tests[{index}]"
         if not isinstance(row, Mapping):
@@ -2755,9 +2755,9 @@ def _run_scorer_counterexample_matrix(
                 f"{label}.expected_strict contradicts category {category}"
             )
         start_state = str(row.get("start_state") or "")
-        if start_state not in {"initial", "oracle_complete"}:
+        if start_state not in {"initial", "reference_complete"}:
             raise ValueError(
-                f"{label}.start_state must be initial or oracle_complete"
+                f"{label}.start_state must be initial or reference_complete"
             )
         required_start_state = SCORER_COUNTEREXAMPLE_START_STATES[category]
         if start_state != required_start_state:
@@ -2776,13 +2776,13 @@ def _run_scorer_counterexample_matrix(
         if action_sequence in observed_action_sequences:
             raise ValueError("scorer counterexample action sequences must be distinct")
         observed_action_sequences.add(action_sequence)
-        if category == "equivalent_valid_path" and action_sequence == oracle_sequence:
+        if category == "equivalent_valid_path" and action_sequence == reference_sequence:
             raise ValueError(
-                "equivalent_valid_path must differ from the canonical oracle action order or payload"
+                "equivalent_valid_path must differ from the canonical reference action order or payload"
             )
 
-        if start_state == "oracle_complete":
-            test_world = copy.deepcopy(oracle_world)
+        if start_state == "reference_complete":
+            test_world = copy.deepcopy(reference_world)
         else:
             test_world = WorldState(**normalize_runtime_value(copy.deepcopy(initial_state)))
             test_world.meta.allowed_services = list(allowed_services)
@@ -2891,7 +2891,7 @@ def _validate_public_observability_contract(
 
     Natural sequencing and source-review wording are common in the pinned official public
     tasks, whose scorer intentionally evaluates the resulting state.  Those shapes remain
-    auditable advisories for the independent Reviewer, but are not native incompatibilities.
+    auditable advisories for the Reviewer, but are not native incompatibilities.
     """
 
     lowered = instruction.lower()
@@ -2936,7 +2936,7 @@ def _public_observability_advisories(
     instruction: str,
     assertions: list[dict[str, Any]],
 ) -> list[str]:
-    """Return non-blocking process-language signals for the independent Reviewer."""
+    """Return non-blocking process-language signals for the Reviewer."""
 
     lowered = instruction.lower()
     assertion_types = [str(row.get("type") or "").lower() for row in assertions]
@@ -3033,7 +3033,7 @@ def _public_observability_advisories(
 
 
 
-def _oracle_action_target_service(action: Mapping[str, Any]) -> str:
+def _reference_action_target_service(action: Mapping[str, Any]) -> str:
     """Use the very same service router as execution, never URL-substring guesses.
 
     A worksheet named 'Jira Intake' is still a Google Sheets write; conversely,
@@ -3042,10 +3042,10 @@ def _oracle_action_target_service(action: Mapping[str, Any]) -> str:
     official = _official_imports()
     _, router = official["url_to_internal_path"](str(action.get("url") or ""))
     if router is None:
-        raise ValueError("oracle action URL has no supported official service route")
+        raise ValueError("reference action URL has no supported official service route")
     service = str(official["router_service"](router))
     if not service:
-        raise ValueError("oracle action service cannot be identified by the official router")
+        raise ValueError("reference action service cannot be identified by the official router")
     return service
 
 
@@ -3188,16 +3188,16 @@ class OfficialTaskPackageTool:
     description = (
         "Submit one complete task that you authored for the pinned official Runtime "
         "runtime/scorer. candidate_markdown is natural-language Markdown. task_source contains "
-        "exactly task_instruction, initial_state, assertions, oracle_actions, "
+        "exactly task_instruction, initial_state, assertions, reference_actions, "
         "forbidden_extra_actions, optional scorer_counterexample_tests, optional "
         "scorer_obligation_ledger with field-granular state_paths, optional "
         "state_surface_manifest, optional contract_closure_manifest, and optional "
         "tool_names. Use inspect_official_task_contract "
         "before authoring each app/assertion. "
         "initial_state must validate as official WorldState; assertions must be existing registered "
-        "official types; oracle_actions are private api_fetch calls proving a full-credit path. "
+        "official types; reference_actions are private api_fetch calls proving a full-credit path. "
         "Each forbidden_extra_action is a valid state-changing api_fetch call appended separately "
-        "to the oracle state; the official scorer must reject every such over-completion. "
+        "to the reference path state; the official scorer must reject every such over-completion. "
         "When counterexamples are required, state_surface_manifest must classify every seeded "
         "JSON leaf exactly once. Protected rows use exact leaf paths; one bounded out_of_scope "
         "row may cover a whole seeded subtree. Each row has state_path, classification "
@@ -3206,14 +3206,14 @@ class OfficialTaskPackageTool:
         "exactly one official assertion and one exclusive persisted counterexample; out_of_scope "
         "rows explain the bounded exclusion and bind neither. When contract closure is required, "
         "contract_closure_manifest additionally binds every in-scope collection, all selection "
-        "collections, oracle-grown collections with exact count and stable identity assertions, "
+        "collections, reference path-grown collections with exact count and stable identity assertions, "
         "cross-record dependency edges, and final-state versus event-history semantics. The fixed "
         "counterexample category matrix is a minimum; add exclusive field-closing probes as needed. "
         "The first submission contains candidate_markdown and task_source. After a rejected "
         "submission, prefer repair_fields plus the exact base_revision_sha256 returned by the tool; "
         "each entry replaces one complete top-level Author field while every unmentioned field remains "
         "stable and the tool revalidates the complete package. The tool does not invent task content "
-        "and never exposes oracle actions to the executor."
+        "and never exposes reference actions to the executor."
     )
     parameters = {
         "type": "object",
@@ -3223,7 +3223,7 @@ class OfficialTaskPackageTool:
                 "type": "object",
                 "description": (
                     "Private official task source: task_instruction, initial_state, assertions, "
-                    "oracle_actions, forbidden_extra_actions, optional "
+                    "reference_actions, forbidden_extra_actions, optional "
                     "scorer_counterexample_tests, optional scorer_obligation_ledger and "
                     "state_surface_manifest, optional contract_closure_manifest, and tool_names. Each action "
                     "has method, url, and optional params/body (objects or JSON strings)."
@@ -3242,7 +3242,7 @@ class OfficialTaskPackageTool:
                     "schema_version": {"type": "string"},
                     "task_instruction": {"type": "string"},
                     "initial_state": {"type": "object", "additionalProperties": True},
-                    "oracle_actions": {
+                    "reference_actions": {
                         "type": "array",
                         "items": {
                             "type": "object",
@@ -3353,7 +3353,7 @@ class OfficialTaskPackageTool:
                     "schema_version",
                     "task_instruction",
                     "initial_state",
-                    "oracle_actions",
+                    "reference_actions",
                     "forbidden_extra_actions",
                     "tool_names",
                     "assertion_nodes",
@@ -3481,7 +3481,7 @@ class OfficialTaskPackageTool:
                 "type": "object",
                 "description": (
                     "The compact private implementation paired with candidate_markdown. "
-                    "Supply exactly the official WorldState, official assertions, oracle "
+                    "Supply exactly the official WorldState, official assertions, reference path "
                     "actions, forbidden over-completion actions and executor tools. The public "
                     "task instruction is derived deterministically from candidate_markdown and "
                     "must not be duplicated here."
@@ -3492,7 +3492,7 @@ class OfficialTaskPackageTool:
                         "type": "array",
                         "items": {"type": "object", "additionalProperties": True},
                     },
-                    "oracle_actions": {
+                    "reference_actions": {
                         "type": "array",
                         "items": {
                             "type": "object",
@@ -3558,9 +3558,9 @@ class OfficialTaskPackageTool:
                                 "public_policy_basis": native_cases.public_basis_schema("Exact quote of the conditional rule in the public request."),
                                 "initial_state_replacements": {"type": "object", "additionalProperties": True},
                                 "assertion_replacements": {"type": "object", "additionalProperties": {"type": "object"}},
-                                "oracle_actions": {"type": "array", "maxItems": 64, "items": {"type": "object"}},
+                                "reference_actions": {"type": "array", "maxItems": 64, "items": {"type": "object"}},
                             },
-                            "required": ["public_policy_basis", "initial_state_replacements", "assertion_replacements", "oracle_actions"],
+                            "required": ["public_policy_basis", "initial_state_replacements", "assertion_replacements", "reference_actions"],
                             "additionalProperties": False,
                         },
                     },
@@ -3572,7 +3572,7 @@ class OfficialTaskPackageTool:
                 "required": [
                     "initial_state",
                     "assertions",
-                    "oracle_actions",
+                    "reference_actions",
                     "forbidden_extra_actions",
                     *(["selection_contract"] if self._require_selection_contract else []),
                     *(["policy_fixtures"] if self._rubric_mechanical_profile.get("strict_opposite_policy_fixture") else []),
@@ -3585,7 +3585,7 @@ class OfficialTaskPackageTool:
             self.description = (
                 "Submit one compact task for the pinned official Runtime runtime. "
                 "The first call contains only candidate_markdown and task_source; task_source "
-                "contains initial_state, assertions, oracle_actions, forbidden_extra_actions, "
+                "contains initial_state, assertions, reference_actions, forbidden_extra_actions, "
                 + (
                     "a code-evaluated selection_contract, and "
                     if self._require_selection_contract
@@ -3595,7 +3595,7 @@ class OfficialTaskPackageTool:
                 "and native_construction_cases for its explicit executable-case obligations. task_instruction is derived from "
                 "candidate_markdown. After rejection use only the exact "
                 "base_revision_sha256 and complete top-level repair_fields. The tool reruns "
-                "official WorldState, assertion, public-contract, no-action, oracle, forbidden-"
+                "official WorldState, assertion, public-contract, no-action, reference path, forbidden-"
                 "action and runner compatibility gates and never invents task semantics."
             )
         source_schema = self.parameters['properties'].get('task_source', {})
@@ -3874,7 +3874,7 @@ class OfficialTaskPackageTool:
             return frozenset()
         from .five_app_outcome_sources import witnessed_sources
         return witnessed_sources(instruction=instruction, initial_state=initial_state,
-            oracle_actions=actions, assertions=assertions)
+            reference_actions=actions, assertions=assertions)
 
     def _save_draft(self, candidate: str, source: Mapping[str, Any]) -> str:
         revision = _sha({
@@ -4092,7 +4092,7 @@ class OfficialTaskPackageTool:
                 for kind, count in normalization.items():
                     self.deterministic_semantic_projection_normalization_by_kind[kind] += count
                     self.deterministic_semantic_projection_normalization_count += count
-            validate_candidate_qa_markdown(candidate)
+            validate_candidate_markdown(candidate)
             instruction = extract_task_request(candidate)
             if self._compact_official_task_source:
                 # candidate_markdown is the sole Author-owned public instruction.  Keeping a
@@ -4139,7 +4139,7 @@ class OfficialTaskPackageTool:
                 "task_instruction",
                 "initial_state",
                 "assertions",
-                "oracle_actions",
+                "reference_actions",
                 "forbidden_extra_actions",
                 "scorer_counterexample_tests",
                 "policy_fixtures",
@@ -4148,7 +4148,7 @@ class OfficialTaskPackageTool:
             }
             initial_state = source.get("initial_state")
             assertions = source.get("assertions")
-            actions = source.get("oracle_actions")
+            actions = source.get("reference_actions")
             forbidden_extra_actions = source.get("forbidden_extra_actions")
             scorer_counterexample_tests = source.get("scorer_counterexample_tests")
             scorer_obligation_ledger = source.get("scorer_obligation_ledger")
@@ -4168,7 +4168,7 @@ class OfficialTaskPackageTool:
             # raise one merged diagnostic set before any official execution.
             pre_execution_diagnostics: list[dict[str, Any]] = []
             # Class-(2) gate findings are reported here instead of rejecting the
-            # submission (see the split below); the independent Reviewer decides.
+            # submission (see the split below); the Reviewer decides.
             reviewer_signals: list[dict[str, Any]] = []
 
             def collect_stage(stage: str, checks) -> bool:
@@ -4207,7 +4207,7 @@ class OfficialTaskPackageTool:
                         self, "_collected_role_check",
                         # 2026-09-16 ruling: the Author no longer declares the role split.
                         # Passing `None` makes `validate_roles` derive it mechanically from
-                        # (initial_state, assertions, oracle_actions) and then enforce the
+                        # (initial_state, assertions, reference_actions) and then enforce the
                         # per-cell application contract on the derived facts.  A legacy
                         # lineage that still submits a declaration has it ignored here
                         # rather than trusted.
@@ -4249,10 +4249,10 @@ class OfficialTaskPackageTool:
                         ),
                     ),
                     (
-                        "oracle_actions",
+                        "reference_actions",
                         lambda: _require_condition(
                             isinstance(actions, list) and bool(actions),
-                            "oracle_actions must provide a full-credit official API path",
+                            "reference_actions must provide a full-credit official API path",
                         ),
                     ),
                     (
@@ -4387,9 +4387,9 @@ class OfficialTaskPackageTool:
                 [
                     *[
                         (
-                            f"oracle_action_{index:03d}",
+                            f"reference_action_{index:03d}",
                             lambda index=index, action=action: validate_action_shape(
-                                "oracle_actions",
+                                "reference_actions",
                                 index,
                                 action,
                                 require_state_change=False,
@@ -4485,7 +4485,7 @@ class OfficialTaskPackageTool:
             if self._rubric_mechanical_profile.get('strict_marketing_status_lifecycle'):
                 from .marketing_status_lifecycle import validate_source
                 lifecycle_result = validate_source(initial_state=initial_state, assertions=assertions,
-                    oracle_actions=actions, fixtures=policy_fixtures, cases=construction_cases,
+                    reference_actions=actions, fixtures=policy_fixtures, cases=construction_cases,
                     forbidden_extra_actions=forbidden_extra_actions,
                     scorer_counterexample_tests=scorer_counterexample_tests, instruction=instruction)
             world = WorldState(**normalize_runtime_value(copy.deepcopy(initial_state)))
@@ -4497,7 +4497,7 @@ class OfficialTaskPackageTool:
             selection_contract_result = (
                 _removed_gate(
                     initial_state=initial_state,
-                    oracle_actions=actions,
+                    reference_actions=actions,
                     contract=selection_contract,
                     outcome_source_services=self._selection_outcome_sources(
                         instruction, initial_state, actions, assertions),
@@ -4533,13 +4533,13 @@ class OfficialTaskPackageTool:
             if no_action["strict_pass"]:
                 raise ValueError("official scorer gives full credit to the no-action state")
 
-            oracle_initial_world = copy.deepcopy(world)
-            oracle_responses,mutation_count=_execute_official_action_sequence(
-                official=official,world=world,actions=actions,label='oracle')
+            reference_initial_world = copy.deepcopy(world)
+            reference_responses,mutation_count=_execute_official_action_sequence(
+                official=official,world=world,actions=actions,label='reference path')
             minimum_effect_calls=int(self._rubric_mechanical_profile.get('minimum_business_effect_calls',
                 1 if application_role_check else 2))
             if mutation_count < minimum_effect_calls:
-                raise ValueError('oracle has fewer actual state-changing business operations than the executed profile requires: '
+                raise ValueError('reference path has fewer actual state-changing business operations than the executed profile requires: '
                     +str(mutation_count)+' < '+str(minimum_effect_calls))
             final_score = _official_score(
                 initial_state=initial_state,
@@ -4556,12 +4556,12 @@ class OfficialTaskPackageTool:
                     "score": final_score,
                 }
                 raise ValueError(
-                    "oracle path does not reach official full credit: "
+                    "the reference path does not reach official full credit: "
                     + _canonical(diagnostic)[:12_000]
                 )
             if application_role_check:
-                from .construction_application_roles import oracle_operation_evidence,verify_effect_roles
-                operation_rows,role_world=oracle_operation_evidence(initial_state,actions,assertions)
+                from .construction_application_roles import reference_operation_evidence,verify_effect_roles
+                operation_rows,role_world=reference_operation_evidence(initial_state,actions,assertions)
                 application_role_native_evidence={
                     'role_check':application_role_check,'operations':operation_rows,
                     'effect_checks':verify_effect_roles(application_role_check,initial_state,assertions,operation_rows,role_world)}
@@ -4571,7 +4571,7 @@ class OfficialTaskPackageTool:
                         application_role_check['roles']['non_target_records'],initial_state,assertions,role_world)
                 if self._rubric_mechanical_profile.get('strict_named_gate_causal_services'):
                     application_role_native_evidence['causal_services']=_removed_gate(
-                        instruction=instruction,initial_state=initial_state,oracle_actions=actions,assertions=assertions,
+                        instruction=instruction,initial_state=initial_state,reference_actions=actions,assertions=assertions,
                         application_roles=application_role_check,policy_fixtures=policy_fixtures,
                         minimum_source_services=int(self._rubric_mechanical_profile.get('strict_minimum_private_evidence_sources',1)),
                         require_unique_source_values=bool(self._rubric_mechanical_profile.get('strict_unique_private_evidence_values')))
@@ -4579,7 +4579,7 @@ class OfficialTaskPackageTool:
                     raise ValueError('declared necessary evidence has no enabled causal execution gate')
                 if self._rubric_mechanical_profile.get('strict_native_evidence_readability'):
                     application_role_native_evidence['readability']=_removed_gate(
-                        instruction=instruction,initial_state=initial_state,oracle_actions=actions,assertions=assertions,
+                        instruction=instruction,initial_state=initial_state,reference_actions=actions,assertions=assertions,
                         application_roles=application_role_check,policy_fixtures=policy_fixtures,
                         minimum_source_services=int(self._rubric_mechanical_profile.get('strict_minimum_private_evidence_sources',1)))
             post_oracle_results: dict[str, Any] = {
@@ -4709,8 +4709,8 @@ class OfficialTaskPackageTool:
             repeatable_oracle_collection_sensitivity = post_oracle_results[
                 "repeatable_oracle_collection_sensitivity"
             ]
-            oracle_controlled_field_sensitivity = post_oracle_results[
-                "oracle_controlled_field_sensitivity"
+            reference_controlled_field_sensitivity = post_oracle_results[
+                "reference_controlled_field_sensitivity"
             ]
             central_non_target_field_sensitivity = post_oracle_results[
                 "central_non_target_field_sensitivity"
@@ -4748,8 +4748,8 @@ class OfficialTaskPackageTool:
                         manifest=contract_closure_manifest,
                         instruction=instruction,
                         initial_state=initial_state,
-                        before_world=oracle_initial_world,
-                        oracle_world=world,
+                        before_world=reference_initial_world,
+                        reference_world=world,
                         assertions=assertions,
                         obligation_ledger=scorer_obligation_ledger,
                         state_surface_manifest=state_surface_manifest,
@@ -4759,8 +4759,8 @@ class OfficialTaskPackageTool:
                     WorldState=WorldState,
                     initial_state=initial_state,
                     assertions=assertions,
-                    oracle_actions=actions,
-                    oracle_world=world,
+                    reference_actions=actions,
+                    reference_world=world,
                     allowed_services=list(world.meta.allowed_services),
                     tests=scorer_counterexample_tests,
                     minimum_effect_calls=minimum_effect_calls,
@@ -4768,7 +4768,7 @@ class OfficialTaskPackageTool:
 
             policy_fixture_results = (
                 _run_policy_fixtures(initial_state=initial_state, assertions=assertions,
-                    oracle_actions=actions, fixtures=policy_fixtures,
+                    reference_actions=actions, fixtures=policy_fixtures,
                     allowed_services=list(world.meta.allowed_services), instruction=instruction,
                     application_roles=application_role_check,
                     minimum_role_join_pairs=self._rubric_mechanical_profile.get('minimum_cross_application_joins',0),
@@ -4799,12 +4799,12 @@ class OfficialTaskPackageTool:
                 coordinated_status_result=validate_cohort(initial_state,assertions,world,actions=actions,
                     reset_campaigns=coordinated_reset_campaigns)
             worksheet_parent_results = (native_cases.run_worksheet_parent_cases(
-                initial_state=initial_state, assertions=assertions, oracle_world=world,
+                initial_state=initial_state, assertions=assertions, reference_world=world,
                 allowed_services=list(world.meta.allowed_services))
                 if self._rubric_mechanical_profile.get('strict_google_sheets_scored_row_parent_identity') else None)
             native_case_results = (native_cases.run_cases(
-                initial_state=initial_state, assertions=assertions, oracle_actions=actions,
-                oracle_world=world, cases=construction_cases,
+                initial_state=initial_state, assertions=assertions, reference_actions=actions,
+                reference_world=world, cases=construction_cases,
                 allowed_services=list(world.meta.allowed_services), instruction=instruction,
                 required_categories=self._rubric_mechanical_profile.get('required_native_construction_case_categories', ()))
                 if construction_cases is not None else None)
@@ -4865,7 +4865,7 @@ class OfficialTaskPackageTool:
             if construction_cases is not None:
                 task.setdefault('construction_tests', {'solver_visible': False}).update({
                     'native_construction_cases': copy.deepcopy(construction_cases),
-                    'native_case_oracle_actions': copy.deepcopy(actions),
+                    'native_case_reference_actions': copy.deepcopy(actions),
                     'native_case_contract': native_cases.CONTRACT})
             repair_context = getattr(self, 'repair_context', None)
             if repair_context is not None:
@@ -4883,14 +4883,14 @@ class OfficialTaskPackageTool:
                     "strict_pass": True,
                     "no_action_strict_pass": False,
                     "no_action_partial_credit": no_action["partial_credit"],
-                    "oracle_partial_credit": final_score["partial_credit"],
+                    "reference_partial_credit": final_score["partial_credit"],
                     "assertion_count": len(assertions),
-                    "oracle_call_count": len(actions),
-                    "oracle_mutation_count": mutation_count,
+                    "reference_call_count": len(actions),
+                    "reference_mutation_count": mutation_count,
                     "native_validation_reuse":evidence_statistics(),
                     "application_role_native_evidence":application_role_native_evidence,
-                    "oracle_controlled_field_sensitivity": (
-                        oracle_controlled_field_sensitivity
+                    "reference_controlled_field_sensitivity": (
+                        reference_controlled_field_sensitivity
                     ),
                     "central_non_target_field_sensitivity": (
                         central_non_target_field_sensitivity
@@ -4916,9 +4916,9 @@ class OfficialTaskPackageTool:
                     # ACCEPTED package (measured 2026-09-15: 24/116 tests in
                     # test_official_task_package.py failed for this reason).  Do not
                     # reintroduce the field; a surviving quality signal belongs in
-                    # `reviewer_signals`, which the independent Reviewer owns.
+                    # `reviewer_signals`, which the Reviewer owns.
                     "official_runner": runner,
-                    "oracle_response_bindings": oracle_responses,
+                    "reference_response_bindings": reference_responses,
                     "forbidden_extra_action_results": forbidden_extra_results,
                     "scorer_counterexample_contract": (
                         SCORER_COUNTEREXAMPLE_CONTRACT
@@ -4940,7 +4940,7 @@ class OfficialTaskPackageTool:
                 "runtime_source_sha256": source_sha,
                 "compiled_task_content_sha256": task["content_sha256"],
                 "assertion_count": len(assertions),
-                "oracle_write_call_count": mutation_count,
+                "reference_write_call_count": mutation_count,
                 "forbidden_extra_action_count": len(forbidden_extra_results),
                 "scorer_counterexample_test_count": len(
                     scorer_counterexample_results

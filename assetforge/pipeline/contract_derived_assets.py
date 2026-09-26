@@ -20,7 +20,7 @@ Hard boundaries (a violation is fail-closed):
 * Generation is deterministic and versioned by the official commit; each record
   carries the SHA256 of every source file it consumed plus the SPDX identifier.
 * L1 proves shape legality only.  It is not admission: native positive/negative
-  evidence and the independent Reviewer still decide admission.
+  evidence and the Reviewer still decide admission.
 """
 from __future__ import annotations
 
@@ -265,9 +265,9 @@ def static_contract_check(task_source, catalog, *, construction_bindings=None):
     endpoints = set()
     for record in applications.values():
         endpoints.update(record['endpoint_ids'])
-    for index, action in enumerate(task_source.get('oracle_actions') or []):
+    for index, action in enumerate(task_source.get('reference_actions') or []):
         if not isinstance(action, dict):
-            diagnostics.append({'error_type': 'oracle_action_shape', 'index': index})
+            diagnostics.append({'error_type': 'reference_action_shape', 'index': index})
             continue
         url = str(action.get('url') or '')
         endpoint_id = str(action.get('endpoint_id') or '')
@@ -276,7 +276,7 @@ def static_contract_check(task_source, catalog, *, construction_bindings=None):
                                 'endpoint_id': endpoint_id,
                                 'closest': difflib_close(endpoint_id, sorted(endpoints))})
         if not url and not endpoint_id:
-            diagnostics.append({'error_type': 'oracle_action_missing_endpoint', 'index': index})
+            diagnostics.append({'error_type': 'reference_action_missing_endpoint', 'index': index})
 
     registered = set()
     for record in applications.values():

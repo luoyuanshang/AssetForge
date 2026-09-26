@@ -28,11 +28,11 @@ def validate_profile(profile):
         raise ValueError('outcome-source binding lost original five-app obligations')
 
 
-def witnessed_sources(*, instruction, initial_state, oracle_actions, assertions):
+def witnessed_sources(*, instruction, initial_state, reference_actions, assertions):
     from .official_task_package import (
         _validate_strict_named_gate_causal_services, _validate_native_evidence_readability)
     values = dict(instruction=instruction, initial_state=initial_state,
-        oracle_actions=oracle_actions, assertions=assertions, minimum_source_services=4)
+        reference_actions=reference_actions, assertions=assertions, minimum_source_services=4)
     flow = _validate_strict_named_gate_causal_services(**values, require_unique_source_values=True)
     reads = _validate_native_evidence_readability(**values)
     return frozenset(flow['private_evidence_source_services']) & frozenset(reads['readable_source_services'])

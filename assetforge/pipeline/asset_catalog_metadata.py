@@ -1,6 +1,6 @@
 """Correct capability labels from bound native evidence, without changing asset behavior.
 
-The original definition and independent review remain immutable. Consumers use
+The original definition and review remain immutable. Consumers use
 the catalog's corrected labels only after this separate binding is verified.
 """
 import json

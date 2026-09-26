@@ -8,7 +8,7 @@ CONTRACT = 'single-app-three-distinct-scalar-reset-read-counterfactual-v1'
 GUIDANCE = (
     'For this single-application profile, provide at least three fixtures. Each '
     'changes exactly one different existing scalar JSON pointer. Include native '
-    'GET probes in the base oracle_actions that return each original fact from '
+    'GET probes in the base reference_actions that return each original fact from '
     'reset and its replacement from that separately reset alternate world. '
     'Do not disclose those values in the public request or GET arguments. '
     'The changed fact must remain visible at the same response leaf; an unrelated '
@@ -154,7 +154,7 @@ def _public_fact_disclosed(text, value):
                for match in matches)
 
 
-def validate(*, initial_state, fixtures, oracle_actions, allowed_services, instruction,
+def validate(*, initial_state, fixtures, reference_actions, allowed_services, instruction,
              official, pointer_parts, canonical, native_json_projection=False,
              hr_fiveapp_conditions=False, marketing_fiveapp_conditions=False,
              sales_fiveapp_conditions=False):
@@ -217,7 +217,7 @@ def validate(*, initial_state, fixtures, oracle_actions, allowed_services, instr
             raise ValueError('policy fact GET probe mutated reset state')
         return dict(_leaves(response)), hashlib.sha256(raw.encode()).hexdigest()
 
-    probes = [(i, a) for i, a in enumerate(oracle_actions)
+    probes = [(i, a) for i, a in enumerate(reference_actions)
               if str(a.get('method', 'GET')).upper() == 'GET']
     base_reads = {i:read(initial_state,a) for i,a in probes}
     results = []
@@ -234,16 +234,16 @@ def validate(*, initial_state, fixtures, oracle_actions, allowed_services, instr
                     or isinstance(visible_new,(dict,list))):
                 raise ValueError('native policy fact projection did not change a scalar')
         witnesses = []
-        for oracle_index, action in probes:
+        for reference_index, action in probes:
             if _literal_present(canonical(action), old) or _literal_present(canonical(action), new):
                 continue
-            base, base_sha = base_reads[oracle_index]
+            base, base_sha = base_reads[reference_index]
             changed, changed_sha = read(alternate, action)
             paths = [list(p) for p, value in base.items()
                 if type(value) is type(visible_old) and value == visible_old and p in changed
                 and type(changed[p]) is type(visible_new) and changed[p] == visible_new]
             if paths:
-                witnesses.append(dict(oracle_index=oracle_index, response_paths=paths,
+                witnesses.append(dict(reference_index=reference_index, response_paths=paths,
                     base_response_sha256=base_sha, alternate_response_sha256=changed_sha))
         if not witnesses:
             raise ValueError(f'policy_fixtures[{index}] has no native reset GET witness for its changed scalar')

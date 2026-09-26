@@ -46,7 +46,7 @@ def check_asset_admission(asset, admission, *, catalog=None, catalog_ref=None, _
         current_dependencies={r['path']:r['sha256'] for r in current.get('dependencies',[])}
         require(current.get('dependency_contract') == reviewed_catalog.get('dependency_contract') and
                 reviewed_dependencies and current_dependencies == reviewed_dependencies,
-                'current construction dependency closure differs from independent review')
+                'current construction dependency closure differs from review')
         for ref in current['dependencies']:
             checked(ref)
             if ref.get('frozen_content'):

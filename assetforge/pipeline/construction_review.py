@@ -18,7 +18,7 @@ from .construction_manifest import load_bundle, reference
 BUNDLE_ENV = "ASSETFORGE_CONSTRUCTION_BUNDLE"
 
 ASSEMBLY_NOTE = (
-    "\n\nConstruction-asset assembly record (for independent review only; not visible to the "
+    "\n\nConstruction-asset assembly record (for review only; not visible to the "
     "solver). Check every obligation and the actual task semantics item by item; a local pass "
     "never substitutes for a complete review.\n```json\n{payload}\n```\n"
 )

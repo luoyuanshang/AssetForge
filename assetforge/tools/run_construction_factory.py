@@ -379,7 +379,12 @@ class Factory:
    if code:raise RuntimeError('native_revalidation_failed')
    review_plan=review_input/'review_plan.json';rp=json.loads(review_plan.read_text());row=rp['items'][0]
    review=self.out/'review'/key;review.mkdir(parents=True)
-   from assetforge.tools.run_release_reviews_compact import arguments
+   try:
+       from assetforge.tools.run_release_reviews_compact import arguments
+   except Exception:
+       _missing_dependency(
+           "the compact review driver",
+           "It is tied to one runtime release; supply it with your own runtime build.")
    rid,argv,env=arguments(row,rp,review)
    # Capture-only workers resolve only capture_1/capture_2/capture_3; the legacy
    # historical chain resolves mog8/sol/mog6.  Select the primary from the same
@@ -410,7 +415,7 @@ class Factory:
      'task_id':row['task_id'],'status':status,'receipt':reference(receipt)})+'\n')
    self.counts[status]+=1;self.event(status,**state,elapsed_seconds=time.time()-start,receipt=reference(receipt))
    if decision!='accept':
-    # Bounded same-root revision: hand the independent review's findings back to
+    # Bounded same-root revision: hand the review's findings back to
     # the Author and re-review the repaired bundle instead of rebuilding a new
     # task.  Two revisions after the first build; a third negative decision is
     # recorded as a reject.
@@ -439,7 +444,7 @@ class Factory:
       '--plan-sha256',reference(review_plan)['sha256'],'--review',str(review),'--output',str(qualified)])
    if code:raise RuntimeError('release_qualification_failed')
    # Collection consumes a separate frozen quota selection. A new accepted
-   # candidate must not be sent to all teachers merely because it qualified.
+   # candidate must not be sent to all generators merely because it qualified.
    self.counts['qualified_candidates']+=1
    self.event('qualified_candidate',**state,elapsed_seconds=time.time()-start,manifest=reference(qualified/'manifest.json'),
      distribution_selected=False,collection_started=False)
@@ -490,7 +495,12 @@ class Factory:
   of being hard-coded to zero, and that every failure reason is recorded.
   """
   from assetforge.tools.gate_automation_18k_distribution import audit
-  from assetforge.tools.run_benchmark_release_collection import collection_rows
+  try:
+      from assetforge.tools.run_benchmark_release_collection import collection_rows
+  except Exception:
+      _missing_dependency(
+          "the release-collection driver",
+          "It is tied to one runtime release; supply it with your own runtime build.")
   binding=bound(self.plan['distribution'])
   contract=json.loads(binding.read_text())
   try:
@@ -574,12 +584,12 @@ class Factory:
   return validate_brief(head+text)
 
  async def repair_after_reject(self,state,cell,root,review_input,review_plan,review,row,rp,rid,attempts=2):
-  """Same-root repair driven by the independent review, then re-review.
+  """Same-root repair driven by the review, then re-review.
 
   Rebuilding a task from scratch is far more expensive than repairing the one
   already judged, so a rejected root gets a bounded number of same-root
   revisions.  No gate is weakened: the repaired bundle must pass native
-  prepare and a fresh independent review.
+  prepare and a fresh review.
   """
   decision=None
   for attempt in range(1,attempts+1):
@@ -623,7 +633,12 @@ class Factory:
    if code:return None
    new_plan=new_review_input/'review_plan.json';new_rp=json.loads(new_plan.read_text());new_row=new_rp['items'][0]
    new_review=self.out/'review'/f"{state['key']}-rev{attempt}";new_review.mkdir(parents=True)
-   from assetforge.tools.run_release_reviews_compact import arguments
+   try:
+       from assetforge.tools.run_release_reviews_compact import arguments
+   except Exception:
+       _missing_dependency(
+           "the compact review driver",
+           "It is tied to one runtime release; supply it with your own runtime build.")
    new_rid,new_argv,new_env=arguments(new_row,new_rp,new_review)
    if os.environ.get('CAPTURE_ONLY')=='1':
     new_env['CAPTURE_ONLY']='1'

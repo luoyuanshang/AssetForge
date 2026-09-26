@@ -12,7 +12,7 @@ def main():
     from assetforge.pipeline.construction_manifest import bound,reference
     from assetforge.pipeline.construction_admission import check_asset_admission
     from assetforge.pipeline.asset_review_decisions import normalize_decisions,versioned_id
-    ref=reference(args.review);require(ref['sha256']==args.review_sha256,'independent review digest changed')
+    ref=reference(args.review);require(ref['sha256']==args.review_sha256,'review digest changed')
     review=json.loads(args.review.read_text());validation_ref=review['inputs']['validation']
     validation=json.loads(bound(validation_ref).read_text());catalog=load_catalog(bound(validation['catalog']),validation['catalog']['sha256'])
     decisions=normalize_decisions(review.get('decision'),catalog)

@@ -168,7 +168,7 @@ def native_create_effect(params, context, alias):
                           spec['summary_key']: business_value})
     else:
         assertion[spec['summary_key']] = business_value
-    # Only the positive creation assertion is part of the oracle path: the application's
+    # Only the positive creation assertion is part of the reference path: the application's
     # `*_not_exists` guard is kept for the negative case (an object that already existed must not
     # satisfy the task), so it is recorded as metadata rather than scored here.
     assertions = [assertion]

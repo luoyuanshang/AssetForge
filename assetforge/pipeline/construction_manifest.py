@@ -100,7 +100,7 @@ def validate_composition(construction, source, bindings):
     require(isinstance(source.get('initial_state'), dict), 'task_source.initial_state must be an object')
     require(isinstance(source.get('assertions'), list), 'task_source.assertions must be an array')
     if construction.get('actions'):
-        require(isinstance(source.get('oracle_actions'), list), 'task_source.oracle_actions must be an array')
+        require(isinstance(source.get('reference_actions'), list), 'task_source.reference_actions must be an array')
     fragment_present(construction['world'], source['initial_state'])
     assertions = source['assertions']; cases = source.get('native_construction_cases') or []
     require(isinstance(bindings, list), 'explicit construction obligations required')
@@ -119,7 +119,7 @@ def validate_composition(construction, source, bindings):
             raise ValueError('asset native assertion recipe missing from task_source.assertions: '
                              + json.dumps(assertion, ensure_ascii=False))
     for action in construction['actions']:
-        if action not in source['oracle_actions']:
+        if action not in source['reference_actions']:
             raise ValueError('asset effect recipe missing from declared correct path: '
                              + json.dumps(action, ensure_ascii=False))
     case_ids = {case['case_id']: case for case in cases}
@@ -287,7 +287,7 @@ def validate_manifest(manifest, *, source, task, execution_profile, native_regre
         # structures that the official corpus cannot calibrate - the official `info` carries
         # no policy_fixtures / join_witness / read probe at all, so a rejection here is a
         # project-local format opinion (757 and 733 rejections respectively) rather than an
-        # official-contract violation.  They are recorded for the independent Reviewer and
+        # official-contract violation.  They are recorded for the Reviewer and
         # for the diagnostics report; they no longer consume Author repair budget.
         causal=evidence.get('causal_services',{})
         role_diagnostics={
@@ -315,7 +315,7 @@ def validate_manifest(manifest, *, source, task, execution_profile, native_regre
             'new native regression contract missing')
     result = native_regression.get('result', {})
     require(result.get('strict_pass') is True and result.get('no_action_strict_pass') is False and
-            result.get('oracle_partial_credit') == 1.0, 'correct/no-action native boundaries incomplete')
+            result.get('reference_partial_credit') == 1.0, 'correct/no-action native boundaries incomplete')
     native_cases = result.get('native_construction_case_results', {}).get('cases', [])
     source_cases = source.get('native_construction_cases', [])
     require({c['case_id'] for c in native_cases} == {c['case_id'] for c in source_cases},

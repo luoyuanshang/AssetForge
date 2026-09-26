@@ -1,7 +1,7 @@
 """Native reset evidence for application coverage and scalar relationship changes.
 
 This proves readable interventions and cross-world outcomes, not the semantic
-validity of the Author's recomputed business outcome. Independent review remains
+validity of the Author's recomputed business outcome. The review stage remains
 responsible for that distinction and for alternate shortcuts in the seed graph.
 """
 import copy
@@ -15,7 +15,7 @@ CONTRACT = 'five-app-native-reset-interventions-three-relationship-pairs-v1'
 GUIDANCE = (
     'Provide 5-12 independent policy fixtures covering all five applications. '
     'Each fixture changes existing scalar fields in exactly one application; '
-    'include base oracle GET probes that expose every changed scalar from reset '
+    'include base reference path GET probes that expose every changed scalar from reset '
     'and its replacement at the same response leaf in the alternate reset. '
     'Set join_witness to null for a non-relationship intervention. For at least '
     'three different application pairs, change exactly one relationship scalar '
@@ -111,7 +111,7 @@ def same_scalar(left,right):
     return (type(left) is type(right) or type(left) in (int,float) and type(right) in (int,float)) and left==right
 
 
-def validate(*,initial_state,fixtures,oracle_actions,allowed_services,official,pointer_parts,canonical,
+def validate(*,initial_state,fixtures,reference_actions,allowed_services,official,pointer_parts,canonical,
              require_single_scalar=False, required_services=None, minimum_relationship_pairs=3,
              require_all_services=True, native_reads_by_effect=False, allow_business_keys=False):
     services=set(required_services if required_services is not None else allowed_services)
@@ -209,12 +209,12 @@ def validate(*,initial_state,fixtures,oracle_actions,allowed_services,official,p
     if len(joins)<minimum_relationship_pairs:
         raise ValueError('counterfactual relationship coverage requires '+('three' if minimum_relationship_pairs==3 else str(minimum_relationship_pairs))+' different application pairs')
 
-    probes=[(i,a) for i,a in enumerate(oracle_actions)
+    probes=[(i,a) for i,a in enumerate(reference_actions)
             if isinstance(a,dict) and str(a.get('method','GET')).upper()=='GET']
     if native_reads_by_effect:
-        from .construction_application_roles import oracle_operation_evidence
-        operations,_=oracle_operation_evidence(initial_state,oracle_actions)
-        probes=[(i,a) for i,a in enumerate(oracle_actions) if not operations[i]['state_changing']]
+        from .construction_application_roles import reference_operation_evidence
+        operations,_=reference_operation_evidence(initial_state,reference_actions)
+        probes=[(i,a) for i,a in enumerate(reference_actions) if not operations[i]['state_changing']]
     def read(seed,action):
         world=official['WorldState'](**copy.deepcopy(seed));world.meta.allowed_services=list(allowed_services)
         before=world.model_dump(mode='python')
@@ -247,7 +247,7 @@ def validate(*,initial_state,fixtures,oracle_actions,allowed_services,official,p
             original,oldsha=bases[i];alternate,newsha=read(changed,action)
             paths=[list(path) for path,value in original.items() if same_scalar(value,visible_old)
                 and path in alternate and same_scalar(alternate[path],visible_new)]
-            if paths:found.append(dict(oracle_index=i,response_paths=paths,
+            if paths:found.append(dict(reference_index=i,response_paths=paths,
                 base_response_sha256=oldsha,alternate_response_sha256=newsha))
         if not found:raise ValueError('no native reset read witness for dependency scalar '+pointer)
         cache[cachekey]=dict(pointer=pointer,native_reads=found);return cache[cachekey]

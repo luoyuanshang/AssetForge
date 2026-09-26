@@ -65,7 +65,7 @@ Work in three steps:
 3. SUBMIT. Call `compile_and_test_task_package` with the task. It validates the task against the
    native runtime and the scorer. Fix what it reports and call it again until it accepts. Do not
    edit the public request or the business rules to make it pass -- fix the world, the assertions
-   or the oracle path. When it accepts, you are done.
+   or the reference path. When it accepts, you are done.
 
 Use fresh business names, people, organizations, values and dates. Do not copy a published task.
 

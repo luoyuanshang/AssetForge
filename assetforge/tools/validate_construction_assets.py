@@ -3,18 +3,41 @@ import argparse,json,sys,time
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
 
+def _missing_dependency(what, hint):
+    """Raise one explanatory error instead of a raw ImportError from inside a function."""
+    raise SystemExit(
+        f"this entry point needs {what}, which is deployment infrastructure and is not part "
+        f"of this repository. {hint}"
+    )
+
+
 def main():
+
+
     (ROOT/'POLICY.md').read_text()
     p=argparse.ArgumentParser();p.add_argument('--catalog',type=Path,required=True)
     p.add_argument('--catalog-sha256',required=True);p.add_argument('--output',type=Path,required=True);args=p.parse_args()
-    from assetforge.pipeline import release_runtime as release
+    try:
+        from assetforge.pipeline import release_runtime as release
+    except Exception:
+        _missing_dependency(
+            "the pinned-runtime constructor module",
+            "Set ASSETFORGE_RUNTIME_ROOT to the directory containing the runtime so its "
+            "release module can be imported, or run the cross-check inside your own runtime "
+            "checkout.")
     from assetforge.pipeline.construction_assets import load_catalog, immutable_write
     from assetforge.pipeline.construction_examples import full_example,execute_example
     from assetforge.pipeline.construction_manifest import reference
     release.require_verified_protocol();catalog=load_catalog(args.catalog,args.catalog_sha256)
     out=args.output.resolve();out.relative_to(ROOT/'assetforge/runs');start=time.monotonic();examples=[]
     if catalog.get('dependency_contract') in ('asset-import-closure-v1', 'asset-construction-closure-v2'):
-        from assetforge.pipeline.construction_native_matrix import run_matrix
+        try:
+            from assetforge.pipeline.construction_native_matrix import run_matrix
+        except Exception:
+            _missing_dependency(
+                "the native cross-check matrix",
+                "It is a deployment artefact; supply your own matrix or skip the native "
+                "cross-check with the catalogue-only mode.")
         result=run_matrix(catalog,reference(args.catalog),out)
         print(json.dumps({'validation':reference(out/'validation.json'),'native_checks_passed':result['native_checks_passed'],
                           'examples':len(result['examples']),'failures':result['failures']},ensure_ascii=False))

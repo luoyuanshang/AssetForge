@@ -6,7 +6,7 @@ from .construction_manifest import bound
 def require_functional_direction(ref, direction):
     final = json.loads(bound(ref).read_text())
     if not final['complete'] or final['error'] is not None or final['actual_provider_calls'] < 1:
-        raise ValueError('functional direction has no complete actual independent review')
+        raise ValueError('functional direction has no complete actual review')
     for key in ('trajectory', 'completion_seal'):
         bound(final[key])
     for key in ('validation', 'prompt', 'implementation'):

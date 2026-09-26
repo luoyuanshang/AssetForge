@@ -26,7 +26,7 @@ Reviewer instructions live in a **separately versioned** Reviewer prompt. The tw
 never be spliced together, share text, or impersonate one another, and a mechanical gate must
 never be written as a Reviewer paragraph and pasted into a Rubric.
 
-## 2. The Reviewer is independent
+## 2. The Reviewer has its own prompt and version
 
 * The Reviewer prompt is versioned independently of the Rubric.
 * The Reviewer inspects tasks that **actually executed**: it reproduces positive and negative
@@ -44,7 +44,7 @@ never be written as a Reviewer paragraph and pasted into a Rubric.
   Both are hash-bound in the release catalog, and a missing or altered file fails closed.
 * An application the runtime marks action-only or check-less may hold background or act as a
   distractor, but must never carry the required effect or the decisive private fact.
-* Asset admission requires native validation and an independent review; an asset that has not
+* Asset admission requires native validation and a review; an asset that has not
   passed both is a candidate and cannot enter an Author wave.
 
 ## 4. Gates are the backstop

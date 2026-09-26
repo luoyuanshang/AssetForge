@@ -1,8 +1,8 @@
 """Compact Author-owned native cases; no synthesized task meaning or scorer changes.
 
-Oracle references avoid duplicating long action prefixes. Each case is independently
+Reference references avoid duplicating long action prefixes. Each case is independently
 reset and scored by the pinned runtime. Semantic category/coverage truth remains an
-independent Reviewer duty, not something an action hash proves.
+Reviewer duty, not something an action hash proves.
 """
 from collections import Counter
 import copy
@@ -51,8 +51,8 @@ def schema(required_categories=(), *, require_worksheet_parent=False):
         'Private executable native cases, not solver instructions. For each material '
         'counterexample or alternative valid path, quote the exact public obligation, '
         'bind the relevant zero-based assertion indices, and supply native calls. '
-        'An action may be {"oracle_index":N} to reuse that base oracle call exactly. '
-        'Start independently from initial or oracle_complete; assertions stay unchanged. '
+        'An action may be {"reference_index":N} to reuse that base reference path call exactly. '
+        'Start independently from initial or reference_complete; assertions stay unchanged. '
         'Do not force a negative source edit when the public request does not protect '
         'the source. Wrong evidence/join must yield a wrong business result, not merely '
         'omit a read. All calls must execute successfully; provider/runtime errors are '
@@ -72,10 +72,10 @@ def schema(required_categories=(), *, require_worksheet_parent=False):
             'public_basis': public_basis_schema('Exact quote of the public obligation tested by this case.'),
             'covered_assertion_indices': {'type': 'array', 'minItems': 1, 'uniqueItems': True,
                                          'items': {'type': 'integer', 'minimum': 0}},
-            'start_state': {'type': 'string', 'enum': ['initial', 'oracle_complete']},
+            'start_state': {'type': 'string', 'enum': ['initial', 'reference_complete']},
             'actions': {'type': 'array', 'minItems': 1, 'maxItems': 64, 'items': {'anyOf': [
-                action, {'type': 'object', 'properties': {'oracle_index': {'type': 'integer', 'minimum': 0}},
-                         'required': ['oracle_index'], 'additionalProperties': False}]}}},
+                action, {'type': 'object', 'properties': {'reference_index': {'type': 'integer', 'minimum': 0}},
+                         'required': ['reference_index'], 'additionalProperties': False}]}}},
             'required': ['case_id', 'category', 'public_basis', 'covered_assertion_indices',
                          'start_state', 'actions']}}
 
@@ -111,7 +111,7 @@ def _forbidden_employee_alias_programs(initial_state, actions, assertions, faile
             continue
         parts = urlsplit(action.get('url', ''))
         match = re.search(r'/v1/employees/([^/]+)$', parts.path)
-        if not match or p._oracle_action_target_service(action) != 'bamboohr':
+        if not match or p._reference_action_target_service(action) != 'bamboohr':
             continue
         target = unquote(match.group(1))
         if not any(assertions[j].get('type') == 'bamboohr_action_not_exists'
@@ -137,7 +137,7 @@ def _forbidden_employee_alias_programs(initial_state, actions, assertions, faile
                     yield changed, target, alias
 
 
-def run_worksheet_parent_cases(*, initial_state, assertions, oracle_world, allowed_services):
+def run_worksheet_parent_cases(*, initial_state, assertions, reference_world, allowed_services):
     """Check only parents of exact native scored row-cell witnesses.
 
     Invoked when the frozen Rubric explicitly requires original parent identity.
@@ -153,15 +153,15 @@ def run_worksheet_parent_cases(*, initial_state, assertions, oracle_world, allow
         worksheet = assertion.get('worksheet_id') or assertion.get('worksheet') or assertion.get('worksheet_name')
         row_id = assertion.get('row_id')
         if worksheet:
-            row = oracle_world.google_sheets.get_row_by_id(spreadsheet, worksheet, row_id)
+            row = reference_world.google_sheets.get_row_by_id(spreadsheet, worksheet, row_id)
             rows = [row] if row is not None else []
         else:
-            rows = [row for row in oracle_world.google_sheets.rows
+            rows = [row for row in reference_world.google_sheets.rows
                     if row.spreadsheet_id == spreadsheet and row.row_id == row_id]
         if len(rows) != 1:
             raise ValueError(f'worksheet parent: missing or ambiguous scored row witness at assertion {index}')
         row = rows[0]
-        parent = oracle_world.google_sheets.get_worksheet_by_id(row.spreadsheet_id, row.worksheet_id)
+        parent = reference_world.google_sheets.get_worksheet_by_id(row.spreadsheet_id, row.worksheet_id)
         if parent is None:
             raise ValueError(f'worksheet parent: scored row at assertion {index} is already orphaned')
         parents.setdefault((row.spreadsheet_id, parent.id), {'title': parent.title, 'indices': []})['indices'].append(index)
@@ -173,7 +173,7 @@ def run_worksheet_parent_cases(*, initial_state, assertions, oracle_world, allow
         replacement = {'method': 'POST', 'url': delete['url'], 'body': {'requests': [
             {'addSheet': {'properties': {'title': spec['title']}}}]}}
         for label, actions in [('delete_parent', [delete]), ('same_title_replacement', [delete, replacement])]:
-            world = copy.deepcopy(oracle_world)
+            world = copy.deepcopy(reference_world)
             world.meta.allowed_services = list(allowed_services)
             receipts, _ = p._execute_official_action_sequence(
                 official=official, world=world, actions=actions, label='worksheet parent ' + label)
@@ -194,7 +194,7 @@ def run_worksheet_parent_cases(*, initial_state, assertions, oracle_world, allow
     return results
 
 
-def run_cases(*, initial_state, assertions, oracle_actions, oracle_world, cases,
+def run_cases(*, initial_state, assertions, reference_actions, reference_world, cases,
               allowed_services, instruction, required_categories=()):
     from . import official_task_package as p
     if not isinstance(cases, list) or not 1 <= len(cases) <= 64:
@@ -221,28 +221,28 @@ def run_cases(*, initial_state, assertions, oracle_actions, oracle_world, cases,
                 not 0 <= i < len(assertions) for i in indices) or len(set(indices)) != len(indices)):
             raise ValueError(f'{label} invalid covered_assertion_indices')
         start = case['start_state']
-        if start not in ('initial', 'oracle_complete'):
+        if start not in ('initial', 'reference_complete'):
             raise ValueError(f'{label} invalid reset boundary')
         raw = case['actions']
         if not isinstance(raw, list) or not 1 <= len(raw) <= 64:
-            raise ValueError(f'{label} actions must contain 1-64 calls or oracle references')
+            raise ValueError(f'{label} actions must contain 1-64 calls or reference path references')
         actions = []
         for row in raw:
-            if isinstance(row, dict) and set(row) == {'oracle_index'}:
-                n = row['oracle_index']
-                if type(n) is not int or not 0 <= n < len(oracle_actions):
-                    raise ValueError(f'{label} oracle_index out of range')
-                actions.append(copy.deepcopy(oracle_actions[n]))
+            if isinstance(row, dict) and set(row) == {'reference_index'}:
+                n = row['reference_index']
+                if type(n) is not int or not 0 <= n < len(reference_actions):
+                    raise ValueError(f'{label} reference_index out of range')
+                actions.append(copy.deepcopy(reference_actions[n]))
             elif (isinstance(row, dict) and {'method', 'url'} <= set(row) <= {'method', 'url', 'params', 'body'}):
                 actions.append(copy.deepcopy(row))
             else:
-                raise ValueError(f'{label} invalid native action or oracle reference')
+                raise ValueError(f'{label} invalid native action or reference path reference')
         program = p._sha({'start_state': start, 'actions': actions})
         if program in seen_programs:
             raise ValueError(f'{label} duplicates an existing concrete native case')
-        if category == 'equivalent_valid_path' and start == 'initial' and actions == oracle_actions:
-            raise ValueError(f'{label} repeats the base oracle rather than an alternative path')
-        world = copy.deepcopy(oracle_world) if start == 'oracle_complete' else WorldState(**normalize_runtime_value(copy.deepcopy(initial_state)))
+        if category == 'equivalent_valid_path' and start == 'initial' and actions == reference_actions:
+            raise ValueError(f'{label} repeats the base reference path rather than an alternative path')
+        world = copy.deepcopy(reference_world) if start == 'reference_complete' else WorldState(**normalize_runtime_value(copy.deepcopy(initial_state)))
         world.meta.allowed_services = list(allowed_services)
         receipts, mutations = p._execute_official_action_sequence(
             official=official, world=world, actions=actions, label=label)
@@ -255,7 +255,7 @@ def run_cases(*, initial_state, assertions, oracle_actions, oracle_world, cases,
                              f'failed scored assertion indices={failed}; preserve unrelated obligations')
         if category == 'forbidden_action':
             for variant, source_identity, alias in _forbidden_employee_alias_programs(initial_state, actions, assertions, failed):
-                alias_world = copy.deepcopy(oracle_world) if start == 'oracle_complete' else WorldState(**normalize_runtime_value(copy.deepcopy(initial_state)))
+                alias_world = copy.deepcopy(reference_world) if start == 'reference_complete' else WorldState(**normalize_runtime_value(copy.deepcopy(initial_state)))
                 alias_world.meta.allowed_services = list(allowed_services)
                 alias_receipts, _ = p._execute_official_action_sequence(
                     official=official, world=alias_world, actions=variant,

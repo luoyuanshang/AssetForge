@@ -420,7 +420,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "taskset": {"path": args.taskset.relative_to(ROOT).as_posix(), "sha256": _file_sha256(args.taskset)},
         "rubric": {"path": args.rubric.relative_to(ROOT).as_posix(), "sha256": _file_sha256(args.rubric)},
         "qa_review_contract": "qa-only-official-runtime-v3",
-        "student_trajectories_included": False,
+        "downstream_material_included": False,
         "public_task_examples_inlined": not args.omit_public_task_examples,
         "lexical_audit_source": (
             {

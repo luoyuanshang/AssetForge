@@ -12,7 +12,7 @@
    "domain": "support",
    "rubric": {
     "path": "examples/rubric_support.md",
-    "sha256": "a191133ec09ffa92970db077fb77f8109a14150f37a53c0e32d9b84ffb32fe6b"
+    "sha256": "a52a10acf9fb824469a3e49ca972e186b3cb175cc3674e8038086795bd543043"
    },
    "application_count": 3,
    "require_admitted_asset": true

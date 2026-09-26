@@ -7,7 +7,7 @@ ROLE_KEYS=('necessary_effect_applications','necessary_evidence_applications','ba
 CONTRACT='construction-application-roles-v1'
 
 
-def derive_roles(source, profile=None, oracle_rows=None, construction=None):
+def derive_roles(source, profile=None, reference_rows=None, construction=None):
     """Derive the application roles mechanically instead of asking the Author.
 
     Policy (POLICY.md, section 3): the role split is a fact
@@ -20,24 +20,24 @@ def derive_roles(source, profile=None, oracle_rows=None, construction=None):
     Everything needed already exists:
       * ``initial``  = top-level seeded services        (``_seeded_simulated_application_names``)
       * ``scored``   = services the assertions cover    (``assertion_applications``)
-      * write / read / untouched = one oracle replay    (``oracle_operation_evidence``)
+      * write / read / untouched = one reference path replay    (``reference_operation_evidence``)
     """
 
     known = namespace()
     initial = set(source['initial_state']) - {'meta'}
     scored = set(assertion_applications(source['assertions'], known))
-    if oracle_rows is None:
-        oracle_rows, _world = oracle_operation_evidence(
-            source['initial_state'], source.get('oracle_actions') or [], source['assertions'])
-    effect = {app for row in oracle_rows for app in row.get('changed_applications') or []}
-    touched = {str(row.get('service')) for row in oracle_rows if row.get('service')}
+    if reference_rows is None:
+        reference_rows, _world = reference_operation_evidence(
+            source['initial_state'], source.get('reference_actions') or [], source['assertions'])
+    effect = {app for row in reference_rows for app in row.get('changed_applications') or []}
+    touched = {str(row.get('service')) for row in reference_rows if row.get('service')}
     # "Necessary" must mean the application actually decides something, not merely that the
-    # oracle path touched it.  Measured 2026-09-16 on the `composed()` fixture: treating every
+    # reference path touched it.  Measured 2026-09-16 on the `composed()` fixture: treating every
     # touched seeded application as necessary evidence produced three necessary applications
     # (['ads_app', 'mailbox_app', 'social_app']) where the cell contract has two, because a pure
     # background source (`mailbox_app`) is read by the path without deciding the score.  The
     # mechanical rule that matches the contract is: an application is necessary when the
-    # oracle changes its state (effect) or an assertion scores it (evidence); anything else
+    # reference path changes its state (effect) or an assertion scores it (evidence); anything else
     # the path merely reads stays background.
     # The asset layer already states which entities exist only as non-target background
     # (`instance_role == 'non_target_background'`); that is the mechanical signal that
@@ -176,7 +176,7 @@ def validate_roles(roles, construction, source, profile):
             'namespace':known['source'],'causal_necessity_confirmed':False}
 
 
-def oracle_operation_evidence(initial_state, oracle_actions, assertions=()):
+def reference_operation_evidence(initial_state, reference_actions, assertions=()):
     """Replay actions and observe effects; POST search is not a persistent write."""
     from . import official_task_package as native
     official=native._official_imports()
@@ -184,13 +184,13 @@ def oracle_operation_evidence(initial_state, oracle_actions, assertions=()):
     world.meta.allowed_services=native._compute_allowed_services(initial_state=initial_state,
         assertions=list(assertions),tool_names=[],service_fields=list(namespace()['apps']))
     rows=[]
-    for index,action in enumerate(oracle_actions):
-        service=native._oracle_action_target_service(action)
+    for index,action in enumerate(reference_actions):
+        service=native._reference_action_target_service(action)
         before=world.model_dump(mode='json');before.pop('meta',None)
         receipts,_=native._execute_official_action_sequence(official=official,world=world,actions=[action],label='role_operation')
         after=world.model_dump(mode='json');after.pop('meta',None)
         changed=sorted(k for k in set(before)|set(after) if before.get(k)!=after.get(k))
-        rows.append({'oracle_index':index,'service':service,'state_changing':bool(changed),
+        rows.append({'reference_index':index,'service':service,'state_changing':bool(changed),
                      'changed_applications':changed,'successful_native_calls':receipts,
                      'before_sha256':digest(before),'after_sha256':digest(after)})
     return rows,world

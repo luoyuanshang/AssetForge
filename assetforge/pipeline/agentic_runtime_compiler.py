@@ -73,12 +73,12 @@ def extract_task_request(candidate_markdown: str) -> str:
 
     def task_boundary(title: str) -> bool:
         return (
-            ("student" in title and ("request" in title or "task" in title))
+            ("solver" in title and ("request" in title or "task" in title))
             or ("task" in title and ("request" in title or "instruction" in title))
             or ("request" in title and any(word in title for word in ("public", "business", "executor")))
-            or "student request" in title
+            or "task request" in title
             or "user request" in title
-            or "for students" in title
+            or "for solvers" in title
             or "task request" in title
             or "public statement" in title
         )
@@ -120,11 +120,11 @@ def extract_task_request(candidate_markdown: str) -> str:
         headings[task_index].end() : headings[construction_index].start()
     ].strip()
     if len(body) < 120:
-        raise ValueError("student-facing request is too short")
+        raise ValueError("task request is too short")
     return body
 
 
-def extract_student_request(candidate_markdown: str) -> str:
+def extract_task_request(candidate_markdown: str) -> str:
     """Historical compatibility alias; new artifacts use ``task request``."""
 
     return extract_task_request(candidate_markdown)
@@ -143,8 +143,8 @@ def _nonempty_text(value: Any, *, field: str) -> str:
     return value.strip()
 
 
-def _student_api_description(value: Any, *, field: str) -> str:
-    """Require ordinary, self-contained documentation on the student surface."""
+def _task_api_description(value: Any, *, field: str) -> str:
+    """Require ordinary, self-contained documentation on the published surface."""
 
     text = _nonempty_text(value, field=field)
     lowered = text.casefold()
@@ -346,7 +346,7 @@ def _source_rows(
         app = _nonempty_text(app_value.get("name"), field="application.name")
         if app in allowed_apps:
             raise ValueError(f"duplicate application: {app}")
-        app_description = _student_api_description(
+        app_description = _task_api_description(
             app_value.get("description"),
             field=f"{app}.description",
         )
@@ -388,7 +388,7 @@ def _source_rows(
             )
             if collection in initial_state[app]:
                 raise ValueError(f"duplicate collection: {app}/{collection}")
-            description = _student_api_description(
+            description = _task_api_description(
                 collection_value.get("description"),
                 field=f"{app}/{collection}.description",
             )
@@ -1680,7 +1680,7 @@ def _validate_evidence(
                 raise ValueError("evidence record_id is absent from initial state")
             value["record_id"] = record_id
             if "read" in spec["operations"]:
-                value["oracle_operation"] = "read"
+                value["reference_operation"] = "read"
             else:
                 target = next(
                     record
@@ -1702,8 +1702,8 @@ def _validate_evidence(
                         query[parameter] = copy.deepcopy(
                             target[target_field]
                         )
-                value["oracle_operation"] = "search"
-                value["oracle_query"] = query
+                value["reference_operation"] = "search"
+                value["reference_query"] = query
         else:
             if not isinstance(query, dict):
                 raise ValueError("evidence query must be an object")
@@ -1716,7 +1716,7 @@ def _validate_evidence(
                     "evidence query must use declared business search fields"
                 )
             value["query"] = copy.deepcopy(query)
-            value["oracle_operation"] = "search"
+            value["reference_operation"] = "search"
             raw_partitions = row.get("acceptable_query_partitions")
             if raw_partitions is not None:
                 if (
@@ -1789,8 +1789,8 @@ def _validate_evidence(
                 )
                 and str(record.get("id") or "")
             )
-            # The query text is an oracle construction aid, not the only
-            # semantically valid way for a student to inspect the same scope.
+            # The query text is a reference construction aid, not the only
+            # semantically valid way for a solver to inspect the same scope.
             # The scorer may therefore accept one complete broader search
             # whose returned entity set covers this canonical initial scope.
             # Empty canonical scopes remain exact-query-only so that an
@@ -2437,7 +2437,7 @@ def _validate_forbidden(
         # ``id`` is the private row locator used by the runtime.  It is
         # checked by collection closure/state contracts through record_id,
         # but it is never a business field and must not enter field-level
-        # reviewer or student projections.
+        # reviewer or solver projections.
         business_fields = {
             str(field): copy.deepcopy(expected)
             for field, expected in fields.items()
@@ -2615,9 +2615,9 @@ def _validate_emitted_artifacts(
 ) -> list[dict[str, Any]]:
     """Validate system-written artifacts against one explicit producer effect.
 
-    These records are not additional student actions.  They are atomic
+    These records are not additional solver actions.  They are atomic
     consequences of a documented update/create/send and may live in a
-    student-readable but write-inaccessible collection.
+    solver-readable but write-inaccessible collection.
     """
 
     if rows is None:
@@ -2976,21 +2976,21 @@ def compile_runtime_source(
         raise ValueError("runtime source is not bound to the candidate Markdown")
     authored_task_instruction = source.get("task_instruction")
     if authored_task_instruction is None:
-        authored_task_instruction = source.get("student_instruction")
+        authored_task_instruction = source.get("task_instruction")
     if authored_task_instruction is None:
         # Backward-compatible read path for historical packages.  New
-        # complete-task authors bind the student instruction explicitly so a
+        # complete-task authors bind the task instruction explicitly so a
         # harmless change in Markdown heading wording cannot reject an
         # otherwise complete task.
-        student_request = extract_task_request(candidate_markdown)
+        task_request = extract_task_request(candidate_markdown)
     else:
-        student_request = _nonempty_text(
+        task_request = _nonempty_text(
             authored_task_instruction,
             field="task_instruction",
         )
-        if len(student_request) < 120:
+        if len(task_request) < 120:
             raise ValueError("task_instruction is too short")
-        if student_request not in candidate_markdown:
+        if task_request not in candidate_markdown:
             raise ValueError(
                 "task_instruction must appear verbatim in candidate Markdown"
             )
@@ -3573,10 +3573,10 @@ def compile_runtime_source(
                 if "record_id" in row
                 else {"query": row["query"]}
             ),
-            "oracle_operation": row["oracle_operation"],
+            "reference_operation": row["reference_operation"],
             **(
-                {"oracle_query": row["oracle_query"]}
-                if "oracle_query" in row
+                {"reference_query": row["reference_query"]}
+                if "reference_query" in row
                 else {}
             ),
             **(
@@ -4092,7 +4092,7 @@ def compile_runtime_source(
         "difficulty": "unrated_pilot",
         "split": "development",
         "evaluation_overlap": False,
-        "instruction": student_request,
+        "instruction": task_request,
         "allowed_apps": allowed_apps,
         "app_capabilities": app_capabilities,
         "initial_state": initial_state,

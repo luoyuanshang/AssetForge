@@ -30,11 +30,11 @@ def objects(value):
 
 
 class NativeJoinBridgeIndex:
-    def __init__(self, initial_state, oracle_actions):
+    def __init__(self, initial_state, reference_actions):
         from . import official_task_package as p
         self.p = p
         self.state = initial_state
-        self.actions = oracle_actions
+        self.actions = reference_actions
         self.cache = {}
         self.probes = []
 
@@ -47,7 +47,7 @@ class NativeJoinBridgeIndex:
         for index, action in enumerate(self.actions):
             if str(action.get('method', '')).upper() != 'GET':
                 continue
-            if p._oracle_action_target_service(action) != service:
+            if p._reference_action_target_service(action) != service:
                 continue
             world = official['WorldState'](**copy.deepcopy(self.state))
             world.meta.allowed_services = p._seeded_simulated_application_names(self.state)
@@ -57,11 +57,11 @@ class NativeJoinBridgeIndex:
                 params=packed(action.get('params')), body=packed(action.get('body')))
             response = json.loads(raw)
             if isinstance(response, dict) and response.get('error'):
-                raise ValueError(f'native join reset GET failed at oracle index {index}')
+                raise ValueError(f'native join reset GET failed at reference index {index}')
             if world.model_dump(mode='python') != before:
                 raise ValueError('native join reset GET mutated state')
             result.extend(objects(response))
-            self.probes.append(dict(service=service, oracle_index=index))
+            self.probes.append(dict(service=service, reference_index=index))
         self.cache[service] = result
         return result
 
@@ -76,7 +76,7 @@ class NativeJoinBridgeIndex:
             diagnostic = dict(identity_field=identity_field, expected_identity=identity,
                 required_fields=sorted(expected), identity_found=bool(matching),
                 observed_identity_fields=sorted({key for record in matching for key in record}),
-                successful_reset_get_indices=[row['oracle_index'] for row in self.probes
+                successful_reset_get_indices=[row['reference_index'] for row in self.probes
                                                if row['service'] == service])
             raise ValueError(f'native join record projection unavailable for {service}; '
                 + json.dumps(diagnostic, sort_keys=True, ensure_ascii=False))

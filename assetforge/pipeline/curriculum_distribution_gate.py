@@ -37,7 +37,7 @@ def bound(ref,json_value=True):
 
 def completed_review(ref,source_sha,protocol):
     r=bound(ref)
-    if r.get('status')!='completed' or r.get('decision')!='accept':raise ValueError('independent review did not accept')
+    if r.get('status')!='completed' or r.get('decision')!='accept':raise ValueError('review did not accept')
     sb=r['packet']['source_binding'];migration=sb['release_migration']
     if migration['source_sha256']!=source_sha or migration['protocol_sha256']!=protocol:
         raise ValueError('review source/protocol mismatch')
@@ -116,7 +116,7 @@ def load_record(item,contract,comparison_set_sha256):
     sealref=bundle['seal'];bound(sealref)
     values,check=load_bundle((ROOT/sealref.get('path',sealref.get('relative_path'))).parent,'release')
     if check['manifest_sha256']!=bundle['validation']['manifest_sha256']:
-        raise ValueError('independent reviewed composition differs')
+        raise ValueError('reviewed composition differs')
     if int(profile_gate.get('minimum_non_target_background_records',0))<contract['non_target_records']['minimum_per_task']:
         raise ValueError('required native non-target record gate missing')
     fixtures=native.get('policy_fixture_results',[])

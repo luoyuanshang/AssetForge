@@ -57,7 +57,7 @@ def load_verified_versions(*,root=ROOT,index_path=None):
         p=(root/ref['path']).resolve();p.relative_to(base.resolve())
         if sha(p)!=ref['sha256']:raise ValueError('accepted repair version source hash drift')
         return p
-    versions={};base=root/'assetforge/runs/automation_qa18k_native_diversity_20260831_r1'
+    versions={};base=root/os.environ.get('ASSETFORGE_QA_RUN_ROOT','assetforge/runs/qa')
     for row in index['versions']:
         tid=row['task_id']
         if tid in versions:raise ValueError('duplicate accepted repair version')
