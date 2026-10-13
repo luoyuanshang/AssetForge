@@ -13,7 +13,7 @@ Effect selection per application, fail-closed:
   * `append`  — the application's own append route flips a has-note/tag/message assertion (probed);
   * `seed`    — only for applications whose pinned route table has no mutating route (declared).
 
-Applications without any registered assertion (`mailbox_app`) are materialised too, but as
+Applications without any registered assertion (`hiver`) are materialised too, but as
 `background_only`: they can be seeded into a task world and are declared unscoreable.
 """
 from __future__ import annotations

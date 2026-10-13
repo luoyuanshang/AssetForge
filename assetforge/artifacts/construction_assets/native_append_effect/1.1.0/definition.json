@@ -45,7 +45,7 @@
  ],
  "id": "native_append_effect",
  "implementation": "assetforge/pipeline/construction_append_effect_asset_v2.py",
- "independent_review_required": true,
+ "model_review_required": true,
  "lifecycle": "candidate",
  "matrix_adapters": [
   "freshdesk",

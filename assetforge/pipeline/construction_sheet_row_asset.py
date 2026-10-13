@@ -1,15 +1,4 @@
-"""`sheet_row_state` 1.0.0 candidate: make Google Sheets a first-class construction asset.
-
-Design doc §16.2 orders the asset library by official scored-application share, and Google Sheets is
-the second most scored application in pinned the frozen release (≈30% of the reference tasks).  Until now no
-admitted asset could write Sheets state, so any task whose scored obligation lived in Sheets could
-not be produced by the asset pipeline at all.
-
-The builder creates one spreadsheet, one worksheet and one explicitly identified row, writes the
-Author's cells, and emits field-level assertions (`google_sheets_row_cell_equals`, falling back to
-`google_sheets_cell_equals`) for every written or protected cell.  Anything the pinned registry
-cannot score fails closed at construction.
-"""
+"""Deterministic worksheet records, field-level effects and protected sibling cells."""
 from __future__ import annotations
 
 import copy
@@ -72,7 +61,9 @@ def sheet_row_state(params, context, alias):
     row_cells = {key: copy.deepcopy(protected_values[key]) for key in protected}
     row_cells.update({key: UNSET_PLACEHOLDER for key in cells})
     row_cells['row_key'] = row_key
-    require('row_key' in headers, 'row_key must be a declared worksheet header')
+    require('row_key' in headers,
+            'headers must include the literal column name row_key; the row_key parameter is a record value, not a column name',
+            pointer='/parameters/headers', expected={'contains': 'row_key'}, actual=headers)
     spreadsheet = {'id': sid, 'title': params['spreadsheet_title'], 'headers': copy.deepcopy(headers)}
     worksheet = {'id': wid, 'spreadsheet_id': sid, 'title': params['worksheet_title'],
                  'headers': copy.deepcopy(headers), 'overwrite': False}

@@ -1,0 +1,7019 @@
+{
+  "schema_version": "assetforge-application-fields-v1",
+  "applications": {
+    "airtable": {
+      "application": "airtable",
+      "entities": {},
+      "record_requirements": {},
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_airtable@1.0.0"
+        },
+        {
+          "asset": "audit_archive_state@1.0.0"
+        },
+        {
+          "asset": "native_create_effect@1.0.0"
+        }
+      ]
+    },
+    "asana": {
+      "application": "asana",
+      "entities": {},
+      "record_requirements": {},
+      "coverage_status": "weak-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_asana@1.0.0 (weak)"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0 (weak)"
+        }
+      ]
+    },
+    "bamboohr": {
+      "application": "bamboohr",
+      "entities": {},
+      "record_requirements": {},
+      "coverage_status": "weak-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_bamboohr@1.0.0 (weak)"
+        },
+        {
+          "asset": "customer_link@1.0.0 (weak)"
+        },
+        {
+          "asset": "customer_link@1.0.1 (weak)"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0 (weak)"
+        }
+      ]
+    },
+    "basecamp3": {
+      "application": "basecamp3",
+      "entities": {},
+      "record_requirements": {},
+      "coverage_status": "weak-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_basecamp3@1.0.0 (weak)"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0 (weak)"
+        }
+      ]
+    },
+    "buffer": {
+      "application": "buffer",
+      "entities": {
+        "channels": {
+          "fields": [
+            "id",
+            "name",
+            "organization_id",
+            "paused",
+            "paused_at",
+            "service"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "ideas": {
+          "fields": [
+            "archived",
+            "created_at",
+            "created_by",
+            "id",
+            "organization_id",
+            "status",
+            "tags",
+            "text",
+            "updated_at"
+          ],
+          "required": [
+            "organization_id"
+          ]
+        },
+        "posts": {
+          "fields": [
+            "channel",
+            "channel_id",
+            "comments",
+            "created_at",
+            "day",
+            "due_at",
+            "engagement_rate",
+            "hour",
+            "id",
+            "impressions",
+            "likes",
+            "method",
+            "needs_approval",
+            "organization_id",
+            "post_type",
+            "published_at",
+            "shared_now",
+            "shares",
+            "status",
+            "tags",
+            "text",
+            "updated_at"
+          ],
+          "required": [
+            "channel_id",
+            "text"
+          ]
+        }
+      },
+      "record_requirements": {
+        "channels": {
+          "fields": [
+            "id",
+            "name",
+            "organization_id",
+            "paused",
+            "paused_at",
+            "service"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "ideas": {
+          "fields": [
+            "archived",
+            "created_at",
+            "created_by",
+            "id",
+            "organization_id",
+            "status",
+            "tags",
+            "text",
+            "updated_at"
+          ],
+          "required": {
+            "organization_id": "string"
+          }
+        },
+        "posts": {
+          "fields": [
+            "channel",
+            "channel_id",
+            "comments",
+            "created_at",
+            "day",
+            "due_at",
+            "engagement_rate",
+            "hour",
+            "id",
+            "impressions",
+            "likes",
+            "method",
+            "needs_approval",
+            "organization_id",
+            "post_type",
+            "published_at",
+            "shared_now",
+            "shares",
+            "status",
+            "tags",
+            "text",
+            "updated_at"
+          ],
+          "required": {
+            "channel_id": "string",
+            "text": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_buffer@1.0.0"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0"
+        }
+      ]
+    },
+    "calendly": {
+      "application": "calendly",
+      "entities": {
+        "event_types": {
+          "fields": [
+            "color",
+            "description",
+            "duration",
+            "id",
+            "is_active",
+            "kind",
+            "location",
+            "location_kind",
+            "name",
+            "owner_email",
+            "owner_id",
+            "scheduling_url",
+            "slug",
+            "uri"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "invitees": {
+          "fields": [
+            "cancel_reason",
+            "cancel_url",
+            "canceled_at",
+            "created_at",
+            "email",
+            "event_id",
+            "first_name",
+            "guests",
+            "id",
+            "is_no_show",
+            "last_name",
+            "name",
+            "no_show_marked_at",
+            "questions_and_answers",
+            "reschedule_url",
+            "status",
+            "text_reminder_number",
+            "timezone",
+            "updated_at",
+            "uri",
+            "utm_campaign",
+            "utm_medium",
+            "utm_source"
+          ],
+          "required": [
+            "event_id",
+            "name",
+            "email"
+          ]
+        },
+        "scheduled_events": {
+          "fields": [
+            "booking_url",
+            "cancel_reason",
+            "canceled_at",
+            "created_at",
+            "description",
+            "end_time",
+            "event_guests",
+            "event_type_id",
+            "host_ids",
+            "id",
+            "invitees_counter",
+            "location",
+            "location_additional_info",
+            "location_kind",
+            "name",
+            "start_time",
+            "status",
+            "timezone",
+            "updated_at",
+            "uri",
+            "uuid"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "users": {
+          "fields": [
+            "avatar_url",
+            "email",
+            "id",
+            "is_active",
+            "name",
+            "organization_id",
+            "organization_role",
+            "scheduling_url",
+            "slug",
+            "timezone",
+            "uri"
+          ],
+          "required": [
+            "name",
+            "email"
+          ]
+        }
+      },
+      "record_requirements": {
+        "event_types": {
+          "fields": [
+            "color",
+            "description",
+            "duration",
+            "id",
+            "is_active",
+            "kind",
+            "location",
+            "location_kind",
+            "name",
+            "owner_email",
+            "owner_id",
+            "scheduling_url",
+            "slug",
+            "uri"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "invitees": {
+          "fields": [
+            "cancel_reason",
+            "cancel_url",
+            "canceled_at",
+            "created_at",
+            "email",
+            "event_id",
+            "first_name",
+            "guests",
+            "id",
+            "is_no_show",
+            "last_name",
+            "name",
+            "no_show_marked_at",
+            "questions_and_answers",
+            "reschedule_url",
+            "status",
+            "text_reminder_number",
+            "timezone",
+            "updated_at",
+            "uri",
+            "utm_campaign",
+            "utm_medium",
+            "utm_source"
+          ],
+          "required": {
+            "email": "string",
+            "event_id": "string",
+            "name": "string"
+          }
+        },
+        "scheduled_events": {
+          "fields": [
+            "booking_url",
+            "cancel_reason",
+            "canceled_at",
+            "created_at",
+            "description",
+            "end_time",
+            "event_guests",
+            "event_type_id",
+            "host_ids",
+            "id",
+            "invitees_counter",
+            "location",
+            "location_additional_info",
+            "location_kind",
+            "name",
+            "start_time",
+            "status",
+            "timezone",
+            "updated_at",
+            "uri",
+            "uuid"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "users": {
+          "fields": [
+            "avatar_url",
+            "email",
+            "id",
+            "is_active",
+            "name",
+            "organization_id",
+            "organization_role",
+            "scheduling_url",
+            "slug",
+            "timezone",
+            "uri"
+          ],
+          "required": {
+            "email": "string",
+            "name": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_calendly@1.0.0"
+        },
+        {
+          "asset": "native_create_effect@1.0.0"
+        }
+      ]
+    },
+    "canva": {
+      "application": "canva",
+      "entities": {
+        "assets": {
+          "fields": [
+            "created_at",
+            "file_size",
+            "file_type",
+            "folder_id",
+            "id",
+            "name",
+            "updated_at"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "designs": {
+          "fields": [
+            "created_at",
+            "design_type",
+            "doctype_name",
+            "edit_url",
+            "folder_id",
+            "id",
+            "notes",
+            "owner",
+            "tags",
+            "thumbnail_url",
+            "title",
+            "updated_at",
+            "view_url"
+          ],
+          "required": [
+            "title"
+          ]
+        },
+        "folders": {
+          "fields": [
+            "id",
+            "name",
+            "parent_id"
+          ],
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        "jobs": {
+          "fields": [
+            "asset_id",
+            "created_at",
+            "design_id",
+            "format_type",
+            "id",
+            "job_type",
+            "result_url",
+            "status",
+            "updated_at"
+          ],
+          "required": [
+            "job_type"
+          ]
+        }
+      },
+      "record_requirements": {
+        "assets": {
+          "fields": [
+            "created_at",
+            "file_size",
+            "file_type",
+            "folder_id",
+            "id",
+            "name",
+            "updated_at"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "designs": {
+          "fields": [
+            "created_at",
+            "design_type",
+            "doctype_name",
+            "edit_url",
+            "folder_id",
+            "id",
+            "notes",
+            "owner",
+            "tags",
+            "thumbnail_url",
+            "title",
+            "updated_at",
+            "view_url"
+          ],
+          "required": {
+            "title": "string"
+          }
+        },
+        "folders": {
+          "fields": [
+            "id",
+            "name",
+            "parent_id"
+          ],
+          "required": {
+            "id": "string",
+            "name": "string"
+          }
+        },
+        "jobs": {
+          "fields": [
+            "asset_id",
+            "created_at",
+            "design_id",
+            "format_type",
+            "id",
+            "job_type",
+            "result_url",
+            "status",
+            "updated_at"
+          ],
+          "required": {
+            "job_type": "literal:export|import|upload|autofill"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_canva@1.0.0"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0"
+        }
+      ]
+    },
+    "chatgpt": {
+      "application": "chatgpt",
+      "entities": {
+        "assistants": {
+          "fields": [
+            "created_at",
+            "description",
+            "file_ids",
+            "id",
+            "instructions",
+            "is_deleted",
+            "metadata",
+            "model",
+            "name",
+            "object",
+            "tools",
+            "vector_store_id"
+          ],
+          "required": []
+        },
+        "completions": {
+          "fields": [
+            "created_at",
+            "finish_reason",
+            "id",
+            "instructions",
+            "metadata",
+            "model",
+            "object",
+            "prompt",
+            "response_format",
+            "response_text",
+            "tool_calls_count",
+            "tools_used",
+            "usage",
+            "user_message",
+            "was_cancelled"
+          ],
+          "required": []
+        },
+        "conversations": {
+          "fields": [
+            "assistant_id",
+            "created_at",
+            "id",
+            "is_deleted",
+            "memory_key",
+            "metadata",
+            "object"
+          ],
+          "required": []
+        },
+        "files": {
+          "fields": [
+            "bytes",
+            "content_type",
+            "created_at",
+            "filename",
+            "id",
+            "is_deleted",
+            "object",
+            "purpose",
+            "status",
+            "status_details",
+            "url"
+          ],
+          "required": [
+            "filename"
+          ]
+        },
+        "generated_images": {
+          "fields": [
+            "b64_json",
+            "created_at",
+            "id",
+            "model",
+            "prompt",
+            "quality",
+            "revised_prompt",
+            "size",
+            "style",
+            "url",
+            "user"
+          ],
+          "required": [
+            "prompt"
+          ]
+        },
+        "messages": {
+          "fields": [
+            "assistant_id",
+            "content",
+            "created_at",
+            "file_ids",
+            "id",
+            "is_deleted",
+            "metadata",
+            "object",
+            "role",
+            "run_id",
+            "thread_id"
+          ],
+          "required": [
+            "thread_id",
+            "content"
+          ]
+        },
+        "transcriptions": {
+          "fields": [
+            "created_at",
+            "duration",
+            "file_name",
+            "file_url",
+            "id",
+            "language",
+            "response_format",
+            "segments",
+            "text",
+            "words"
+          ],
+          "required": []
+        },
+        "vector_stores": {
+          "fields": [
+            "created_at",
+            "expires_after_days",
+            "expires_at",
+            "file_counts",
+            "file_ids",
+            "id",
+            "is_deleted",
+            "last_active_at",
+            "metadata",
+            "name",
+            "object",
+            "status",
+            "usage_bytes"
+          ],
+          "required": []
+        }
+      },
+      "record_requirements": {
+        "assistants": {
+          "fields": [
+            "created_at",
+            "description",
+            "file_ids",
+            "id",
+            "instructions",
+            "is_deleted",
+            "metadata",
+            "model",
+            "name",
+            "object",
+            "tools",
+            "vector_store_id"
+          ],
+          "required": {}
+        },
+        "completions": {
+          "fields": [
+            "created_at",
+            "finish_reason",
+            "id",
+            "instructions",
+            "metadata",
+            "model",
+            "object",
+            "prompt",
+            "response_format",
+            "response_text",
+            "tool_calls_count",
+            "tools_used",
+            "usage",
+            "user_message",
+            "was_cancelled"
+          ],
+          "required": {}
+        },
+        "conversations": {
+          "fields": [
+            "assistant_id",
+            "created_at",
+            "id",
+            "is_deleted",
+            "memory_key",
+            "metadata",
+            "object"
+          ],
+          "required": {}
+        },
+        "files": {
+          "fields": [
+            "bytes",
+            "content_type",
+            "created_at",
+            "filename",
+            "id",
+            "is_deleted",
+            "object",
+            "purpose",
+            "status",
+            "status_details",
+            "url"
+          ],
+          "required": {
+            "filename": "string"
+          }
+        },
+        "generated_images": {
+          "fields": [
+            "b64_json",
+            "created_at",
+            "id",
+            "model",
+            "prompt",
+            "quality",
+            "revised_prompt",
+            "size",
+            "style",
+            "url",
+            "user"
+          ],
+          "required": {
+            "prompt": "string"
+          }
+        },
+        "messages": {
+          "fields": [
+            "assistant_id",
+            "content",
+            "created_at",
+            "file_ids",
+            "id",
+            "is_deleted",
+            "metadata",
+            "object",
+            "role",
+            "run_id",
+            "thread_id"
+          ],
+          "required": {
+            "content": "string",
+            "thread_id": "string"
+          }
+        },
+        "transcriptions": {
+          "fields": [
+            "created_at",
+            "duration",
+            "file_name",
+            "file_url",
+            "id",
+            "language",
+            "response_format",
+            "segments",
+            "text",
+            "words"
+          ],
+          "required": {}
+        },
+        "vector_stores": {
+          "fields": [
+            "created_at",
+            "expires_after_days",
+            "expires_at",
+            "file_counts",
+            "file_ids",
+            "id",
+            "is_deleted",
+            "last_active_at",
+            "metadata",
+            "name",
+            "object",
+            "status",
+            "usage_bytes"
+          ],
+          "required": {}
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_chatgpt@1.0.0"
+        },
+        {
+          "asset": "native_create_effect@1.0.0"
+        }
+      ]
+    },
+    "confluence": {
+      "application": "confluence",
+      "entities": {},
+      "record_requirements": {},
+      "coverage_status": "weak-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_confluence@1.0.0 (weak)"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0 (weak)"
+        }
+      ]
+    },
+    "docusign": {
+      "application": "docusign",
+      "entities": {
+        "envelopes": {
+          "fields": [
+            "allow_comments",
+            "allow_markup",
+            "allow_view_history",
+            "cc_recipients",
+            "certificate_uri",
+            "completed_date_time",
+            "created_date_time",
+            "custom_fields",
+            "declined_date_time",
+            "delivered_date_time",
+            "description",
+            "documents",
+            "email_blurb",
+            "email_subject",
+            "envelope_id",
+            "id",
+            "is_signature_provider_envelope",
+            "last_modified_date_time",
+            "sender",
+            "sent_date_time",
+            "signer_can_sign_on_mobile",
+            "signers",
+            "status",
+            "status_changed_date_time",
+            "template_id",
+            "templates_uri",
+            "uri",
+            "voided_date_time",
+            "voided_reason"
+          ],
+          "required": []
+        },
+        "templates": {
+          "fields": [
+            "created_date_time",
+            "description",
+            "documents",
+            "email_blurb",
+            "email_subject",
+            "fields",
+            "folder_id",
+            "folder_name",
+            "folder_uri",
+            "id",
+            "is_active",
+            "last_modified_date_time",
+            "last_used",
+            "name",
+            "owner",
+            "page_count",
+            "recipients",
+            "shared",
+            "template_id",
+            "uri"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "workspaces": {
+          "fields": [
+            "created_date_time",
+            "description",
+            "documents",
+            "envelope_ids",
+            "id",
+            "last_modified_date_time",
+            "members",
+            "name",
+            "owner_user_id",
+            "owner_user_name",
+            "status",
+            "uri",
+            "workspace_id"
+          ],
+          "required": [
+            "name"
+          ]
+        }
+      },
+      "record_requirements": {
+        "envelopes": {
+          "fields": [
+            "allow_comments",
+            "allow_markup",
+            "allow_view_history",
+            "cc_recipients",
+            "certificate_uri",
+            "completed_date_time",
+            "created_date_time",
+            "custom_fields",
+            "declined_date_time",
+            "delivered_date_time",
+            "description",
+            "documents",
+            "email_blurb",
+            "email_subject",
+            "envelope_id",
+            "id",
+            "is_signature_provider_envelope",
+            "last_modified_date_time",
+            "sender",
+            "sent_date_time",
+            "signer_can_sign_on_mobile",
+            "signers",
+            "status",
+            "status_changed_date_time",
+            "template_id",
+            "templates_uri",
+            "uri",
+            "voided_date_time",
+            "voided_reason"
+          ],
+          "required": {}
+        },
+        "templates": {
+          "fields": [
+            "created_date_time",
+            "description",
+            "documents",
+            "email_blurb",
+            "email_subject",
+            "fields",
+            "folder_id",
+            "folder_name",
+            "folder_uri",
+            "id",
+            "is_active",
+            "last_modified_date_time",
+            "last_used",
+            "name",
+            "owner",
+            "page_count",
+            "recipients",
+            "shared",
+            "template_id",
+            "uri"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "workspaces": {
+          "fields": [
+            "created_date_time",
+            "description",
+            "documents",
+            "envelope_ids",
+            "id",
+            "last_modified_date_time",
+            "members",
+            "name",
+            "owner_user_id",
+            "owner_user_name",
+            "status",
+            "uri",
+            "workspace_id"
+          ],
+          "required": {
+            "name": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_docusign@1.0.0"
+        },
+        {
+          "asset": "native_create_effect@1.0.0"
+        }
+      ]
+    },
+    "facebook_conversions": {
+      "application": "facebook_conversions",
+      "entities": {
+        "events": {
+          "fields": [
+            "action_source",
+            "created_at",
+            "currency",
+            "dataset_id",
+            "email",
+            "event_name",
+            "event_time",
+            "events_received",
+            "fbtrace_id",
+            "first_name",
+            "id",
+            "last_name",
+            "lead_event_source",
+            "lifecycle_stage_name",
+            "phone",
+            "pixel_id",
+            "status",
+            "value"
+          ],
+          "required": [
+            "event_name"
+          ]
+        }
+      },
+      "record_requirements": {
+        "events": {
+          "fields": [
+            "action_source",
+            "created_at",
+            "currency",
+            "dataset_id",
+            "email",
+            "event_name",
+            "event_time",
+            "events_received",
+            "fbtrace_id",
+            "first_name",
+            "id",
+            "last_name",
+            "lead_event_source",
+            "lifecycle_stage_name",
+            "phone",
+            "pixel_id",
+            "status",
+            "value"
+          ],
+          "required": {
+            "event_name": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_facebook_conversions@1.0.0"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0"
+        }
+      ]
+    },
+    "facebook_lead_ads": {
+      "application": "facebook_lead_ads",
+      "entities": {
+        "ads": {
+          "fields": [
+            "action_type",
+            "ad_name",
+            "adset_id",
+            "adset_name",
+            "campaign_id",
+            "campaign_name",
+            "created_time",
+            "creative_name",
+            "form_id",
+            "form_name",
+            "id",
+            "link",
+            "message",
+            "page_id",
+            "platform",
+            "status"
+          ],
+          "required": [
+            "ad_name",
+            "adset_id",
+            "creative_name",
+            "message",
+            "link"
+          ]
+        },
+        "leads": {
+          "fields": [
+            "ad_id",
+            "created_time",
+            "email",
+            "full_name",
+            "id",
+            "phone"
+          ],
+          "required": [
+            "ad_id",
+            "email",
+            "full_name"
+          ]
+        },
+        "reports": {
+          "fields": [
+            "average_cpc",
+            "breakdowns",
+            "date_preset",
+            "date_start",
+            "date_stop",
+            "fields",
+            "generated_at",
+            "id",
+            "level",
+            "total_clicks",
+            "total_impressions",
+            "total_reach",
+            "total_spend"
+          ],
+          "required": [
+            "date_preset",
+            "date_start",
+            "date_stop"
+          ]
+        }
+      },
+      "record_requirements": {
+        "ads": {
+          "fields": [
+            "action_type",
+            "ad_name",
+            "adset_id",
+            "adset_name",
+            "campaign_id",
+            "campaign_name",
+            "created_time",
+            "creative_name",
+            "form_id",
+            "form_name",
+            "id",
+            "link",
+            "message",
+            "page_id",
+            "platform",
+            "status"
+          ],
+          "required": {
+            "ad_name": "string",
+            "adset_id": "string",
+            "creative_name": "string",
+            "link": "string",
+            "message": "string"
+          }
+        },
+        "leads": {
+          "fields": [
+            "ad_id",
+            "created_time",
+            "email",
+            "full_name",
+            "id",
+            "phone"
+          ],
+          "required": {
+            "ad_id": "string",
+            "email": "string",
+            "full_name": "string"
+          }
+        },
+        "reports": {
+          "fields": [
+            "average_cpc",
+            "breakdowns",
+            "date_preset",
+            "date_start",
+            "date_stop",
+            "fields",
+            "generated_at",
+            "id",
+            "level",
+            "total_clicks",
+            "total_impressions",
+            "total_reach",
+            "total_spend"
+          ],
+          "required": {
+            "date_preset": "string",
+            "date_start": "string",
+            "date_stop": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_facebook_lead_ads@1.0.0"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0"
+        }
+      ]
+    },
+    "facebook_pages": {
+      "application": "facebook_pages",
+      "entities": {
+        "insights": {
+          "fields": [
+            "data",
+            "generated_at",
+            "id",
+            "metrics",
+            "page_id",
+            "post_id"
+          ],
+          "required": [
+            "page_id",
+            "post_id",
+            "metrics"
+          ]
+        },
+        "pages": {
+          "fields": [
+            "id",
+            "name",
+            "profile_picture_url"
+          ],
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        "photos": {
+          "fields": [
+            "created_time",
+            "height",
+            "id",
+            "link",
+            "message",
+            "page_id",
+            "post_id",
+            "source_url",
+            "width"
+          ],
+          "required": [
+            "page_id"
+          ]
+        },
+        "posts": {
+          "fields": [
+            "created_time",
+            "id",
+            "link_url",
+            "message",
+            "page_id",
+            "permalink_url",
+            "status_type"
+          ],
+          "required": [
+            "page_id",
+            "message"
+          ]
+        },
+        "videos": {
+          "fields": [
+            "created_time",
+            "description",
+            "id",
+            "page_id",
+            "permalink_url",
+            "source_url",
+            "title"
+          ],
+          "required": [
+            "page_id"
+          ]
+        }
+      },
+      "record_requirements": {
+        "insights": {
+          "fields": [
+            "data",
+            "generated_at",
+            "id",
+            "metrics",
+            "page_id",
+            "post_id"
+          ],
+          "required": {
+            "metrics": "array",
+            "page_id": "string",
+            "post_id": "string"
+          }
+        },
+        "pages": {
+          "fields": [
+            "id",
+            "name",
+            "profile_picture_url"
+          ],
+          "required": {
+            "id": "string",
+            "name": "string"
+          }
+        },
+        "photos": {
+          "fields": [
+            "created_time",
+            "height",
+            "id",
+            "link",
+            "message",
+            "page_id",
+            "post_id",
+            "source_url",
+            "width"
+          ],
+          "required": {
+            "page_id": "string"
+          }
+        },
+        "posts": {
+          "fields": [
+            "created_time",
+            "id",
+            "link_url",
+            "message",
+            "page_id",
+            "permalink_url",
+            "status_type"
+          ],
+          "required": {
+            "message": "string",
+            "page_id": "string"
+          }
+        },
+        "videos": {
+          "fields": [
+            "created_time",
+            "description",
+            "id",
+            "page_id",
+            "permalink_url",
+            "source_url",
+            "title"
+          ],
+          "required": {
+            "page_id": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_facebook_pages@1.0.0"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0"
+        }
+      ]
+    },
+    "freshdesk": {
+      "application": "freshdesk",
+      "entities": {
+        "companies": {
+          "fields": [
+            "created_at",
+            "description",
+            "domain",
+            "domains",
+            "id",
+            "name",
+            "note",
+            "updated_at"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "contacts": {
+          "fields": [
+            "company_id",
+            "created_at",
+            "description",
+            "email",
+            "id",
+            "job_title",
+            "mobile",
+            "name",
+            "phone",
+            "tags",
+            "updated_at"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "notes": {
+          "fields": [
+            "body",
+            "created_at",
+            "id",
+            "private"
+          ],
+          "required": [
+            "body"
+          ]
+        },
+        "tickets": {
+          "fields": [
+            "company_id",
+            "created_at",
+            "description",
+            "group_id",
+            "id",
+            "notes",
+            "priority",
+            "requester_id",
+            "responder_id",
+            "source",
+            "status",
+            "subject",
+            "tags",
+            "ticket_type",
+            "updated_at"
+          ],
+          "required": [
+            "subject"
+          ]
+        }
+      },
+      "record_requirements": {
+        "companies": {
+          "fields": [
+            "created_at",
+            "description",
+            "domain",
+            "domains",
+            "id",
+            "name",
+            "note",
+            "updated_at"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "contacts": {
+          "fields": [
+            "company_id",
+            "created_at",
+            "description",
+            "email",
+            "id",
+            "job_title",
+            "mobile",
+            "name",
+            "phone",
+            "tags",
+            "updated_at"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "notes": {
+          "fields": [
+            "body",
+            "created_at",
+            "id",
+            "private"
+          ],
+          "required": {
+            "body": "string"
+          }
+        },
+        "tickets": {
+          "fields": [
+            "company_id",
+            "created_at",
+            "description",
+            "group_id",
+            "id",
+            "notes",
+            "priority",
+            "requester_id",
+            "responder_id",
+            "source",
+            "status",
+            "subject",
+            "tags",
+            "ticket_type",
+            "updated_at"
+          ],
+          "required": {
+            "subject": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_freshdesk@1.0.0"
+        },
+        {
+          "asset": "approval_decision_state@1.0.0"
+        },
+        {
+          "asset": "audit_archive_state@1.0.0"
+        },
+        {
+          "asset": "customer_link@1.2.0"
+        },
+        {
+          "asset": "native_append_effect@1.0.0"
+        },
+        {
+          "asset": "queue_handoff_state@1.0.0"
+        }
+      ]
+    },
+    "gmail": {
+      "application": "gmail",
+      "entities": {
+        "attachments": {
+          "fields": [
+            "data",
+            "filename",
+            "id",
+            "message_id",
+            "mime_type",
+            "size"
+          ],
+          "required": [
+            "message_id",
+            "filename"
+          ]
+        },
+        "drafts": {
+          "fields": [
+            "id",
+            "message_id"
+          ],
+          "required": [
+            "message_id"
+          ]
+        },
+        "labels": {
+          "fields": [
+            "background_color",
+            "id",
+            "label_list_visibility",
+            "label_type",
+            "message_list_visibility",
+            "messages_total",
+            "messages_unread",
+            "name",
+            "text_color"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "messages": {
+          "fields": [
+            "attachment_ids",
+            "bcc",
+            "body_html",
+            "body_plain",
+            "cc",
+            "date",
+            "from_",
+            "from_name",
+            "has_attachments",
+            "id",
+            "in_reply_to",
+            "internal_date",
+            "is_read",
+            "is_starred",
+            "label_ids",
+            "reply_to",
+            "size_estimate",
+            "snippet",
+            "subject",
+            "thread_id",
+            "to"
+          ],
+          "required": []
+        }
+      },
+      "record_requirements": {
+        "attachments": {
+          "fields": [
+            "data",
+            "filename",
+            "id",
+            "message_id",
+            "mime_type",
+            "size"
+          ],
+          "required": {
+            "filename": "string",
+            "message_id": "string"
+          }
+        },
+        "drafts": {
+          "fields": [
+            "id",
+            "message_id"
+          ],
+          "required": {
+            "message_id": "string"
+          }
+        },
+        "labels": {
+          "fields": [
+            "background_color",
+            "id",
+            "label_list_visibility",
+            "label_type",
+            "message_list_visibility",
+            "messages_total",
+            "messages_unread",
+            "name",
+            "text_color"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "messages": {
+          "fields": [
+            "attachment_ids",
+            "bcc",
+            "body_html",
+            "body_plain",
+            "cc",
+            "date",
+            "from_",
+            "from_name",
+            "has_attachments",
+            "id",
+            "in_reply_to",
+            "internal_date",
+            "is_read",
+            "is_starred",
+            "label_ids",
+            "reply_to",
+            "size_estimate",
+            "snippet",
+            "subject",
+            "thread_id",
+            "to"
+          ],
+          "required": {}
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_gmail@1.0.0"
+        },
+        {
+          "asset": "customer_link@1.2.0"
+        },
+        {
+          "asset": "readable_policy_exception@1.1.0"
+        }
+      ]
+    },
+    "google_ads": {
+      "application": "google_ads",
+      "entities": {
+        "campaigns": {
+          "fields": [
+            "account_id",
+            "advertising_channel_sub_type",
+            "advertising_channel_type",
+            "budget_amount",
+            "budget_id",
+            "budget_name",
+            "clicks",
+            "created_at",
+            "ctr",
+            "current_cpc",
+            "daily_budget",
+            "days_remaining",
+            "description",
+            "end_date",
+            "headline",
+            "id",
+            "impressions",
+            "last_week_cpc",
+            "leads_count",
+            "monthly_budget",
+            "name",
+            "notes",
+            "spend",
+            "spent_this_month",
+            "start_date",
+            "status"
+          ],
+          "required": [
+            "name",
+            "account_id"
+          ]
+        },
+        "conversions": {
+          "fields": [
+            "account_id",
+            "conversion_currency_code",
+            "conversion_name",
+            "conversion_time",
+            "conversion_value",
+            "created_at",
+            "email",
+            "gclid",
+            "id",
+            "identifier_source",
+            "phone",
+            "status"
+          ],
+          "required": [
+            "account_id",
+            "conversion_name"
+          ]
+        },
+        "customer_lists": {
+          "fields": [
+            "account_id",
+            "account_user_list_status",
+            "created_at",
+            "data_source_type",
+            "description",
+            "id",
+            "is_eligible_for_display",
+            "is_eligible_for_search",
+            "list_type",
+            "members",
+            "membership_life_span",
+            "name",
+            "status",
+            "upload_key_type"
+          ],
+          "required": [
+            "name",
+            "account_id"
+          ]
+        },
+        "reports": {
+          "fields": [
+            "account_id",
+            "created_at",
+            "date_range",
+            "id",
+            "name",
+            "report_type",
+            "status"
+          ],
+          "required": [
+            "account_id",
+            "name"
+          ]
+        }
+      },
+      "record_requirements": {
+        "campaigns": {
+          "fields": [
+            "account_id",
+            "advertising_channel_sub_type",
+            "advertising_channel_type",
+            "budget_amount",
+            "budget_id",
+            "budget_name",
+            "clicks",
+            "created_at",
+            "ctr",
+            "current_cpc",
+            "daily_budget",
+            "days_remaining",
+            "description",
+            "end_date",
+            "headline",
+            "id",
+            "impressions",
+            "last_week_cpc",
+            "leads_count",
+            "monthly_budget",
+            "name",
+            "notes",
+            "spend",
+            "spent_this_month",
+            "start_date",
+            "status"
+          ],
+          "required": {
+            "account_id": "string",
+            "name": "string"
+          }
+        },
+        "conversions": {
+          "fields": [
+            "account_id",
+            "conversion_currency_code",
+            "conversion_name",
+            "conversion_time",
+            "conversion_value",
+            "created_at",
+            "email",
+            "gclid",
+            "id",
+            "identifier_source",
+            "phone",
+            "status"
+          ],
+          "required": {
+            "account_id": "string",
+            "conversion_name": "string"
+          }
+        },
+        "customer_lists": {
+          "fields": [
+            "account_id",
+            "account_user_list_status",
+            "created_at",
+            "data_source_type",
+            "description",
+            "id",
+            "is_eligible_for_display",
+            "is_eligible_for_search",
+            "list_type",
+            "members",
+            "membership_life_span",
+            "name",
+            "status",
+            "upload_key_type"
+          ],
+          "required": {
+            "account_id": "string",
+            "name": "string"
+          }
+        },
+        "reports": {
+          "fields": [
+            "account_id",
+            "created_at",
+            "date_range",
+            "id",
+            "name",
+            "report_type",
+            "status"
+          ],
+          "required": {
+            "account_id": "string",
+            "name": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_google_ads@1.0.0"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0"
+        }
+      ]
+    },
+    "google_calendar": {
+      "application": "google_calendar",
+      "entities": {
+        "calendars": {
+          "fields": [
+            "access_role",
+            "deleted",
+            "description",
+            "hidden",
+            "id",
+            "primary",
+            "summary",
+            "time_zone"
+          ],
+          "required": [
+            "summary"
+          ]
+        },
+        "events": {
+          "fields": [
+            "all_day",
+            "attendees",
+            "calendarid",
+            "colorId",
+            "conferencing",
+            "created",
+            "description",
+            "end__dateTime",
+            "eventType",
+            "guestsCanModify",
+            "id",
+            "location",
+            "organizer_email",
+            "recurrence_count",
+            "recurrence_frequency",
+            "recurrence_until",
+            "recurring",
+            "reminders__useDefault",
+            "reminders_methods",
+            "reminders_minutes",
+            "start__dateTime",
+            "status",
+            "summary",
+            "transparency",
+            "visibility"
+          ],
+          "required": []
+        }
+      },
+      "record_requirements": {
+        "calendars": {
+          "fields": [
+            "access_role",
+            "deleted",
+            "description",
+            "hidden",
+            "id",
+            "primary",
+            "summary",
+            "time_zone"
+          ],
+          "required": {
+            "summary": "string"
+          }
+        },
+        "events": {
+          "fields": [
+            "all_day",
+            "attendees",
+            "calendarid",
+            "colorId",
+            "conferencing",
+            "created",
+            "description",
+            "end__dateTime",
+            "eventType",
+            "guestsCanModify",
+            "id",
+            "location",
+            "organizer_email",
+            "recurrence_count",
+            "recurrence_frequency",
+            "recurrence_until",
+            "recurring",
+            "reminders__useDefault",
+            "reminders_methods",
+            "reminders_minutes",
+            "start__dateTime",
+            "status",
+            "summary",
+            "transparency",
+            "visibility"
+          ],
+          "required": {}
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_google_calendar@1.0.0"
+        },
+        {
+          "asset": "native_create_effect@1.0.0"
+        }
+      ]
+    },
+    "google_drive": {
+      "application": "google_drive",
+      "entities": {},
+      "record_requirements": {},
+      "coverage_status": "weak-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_google_drive@1.0.0 (weak)"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0 (weak)"
+        }
+      ]
+    },
+    "google_sheets": {
+      "application": "google_sheets",
+      "entities": {
+        "rows": {
+          "fields": [
+            "background_color",
+            "cells",
+            "id",
+            "row_id",
+            "spreadsheet_id",
+            "text_color",
+            "text_format_bold",
+            "text_format_italic",
+            "text_format_strikethrough",
+            "timezone",
+            "worksheet_id"
+          ],
+          "required": [
+            "spreadsheet_id",
+            "worksheet_id",
+            "row_id"
+          ]
+        },
+        "spreadsheets": {
+          "fields": [
+            "drive",
+            "headers",
+            "id",
+            "spreadsheet_to_copy",
+            "title"
+          ],
+          "required": [
+            "title"
+          ]
+        },
+        "worksheets": {
+          "fields": [
+            "copy_to",
+            "headers",
+            "id",
+            "overwrite",
+            "spreadsheet_id",
+            "title"
+          ],
+          "required": [
+            "spreadsheet_id",
+            "title"
+          ]
+        }
+      },
+      "record_requirements": {
+        "rows": {
+          "fields": [
+            "background_color",
+            "cells",
+            "id",
+            "row_id",
+            "spreadsheet_id",
+            "text_color",
+            "text_format_bold",
+            "text_format_italic",
+            "text_format_strikethrough",
+            "timezone",
+            "worksheet_id"
+          ],
+          "required": {
+            "row_id": "string",
+            "spreadsheet_id": "string",
+            "worksheet_id": "string"
+          }
+        },
+        "spreadsheets": {
+          "fields": [
+            "drive",
+            "headers",
+            "id",
+            "spreadsheet_to_copy",
+            "title"
+          ],
+          "required": {
+            "title": "string"
+          }
+        },
+        "worksheets": {
+          "fields": [
+            "copy_to",
+            "headers",
+            "id",
+            "overwrite",
+            "spreadsheet_id",
+            "title"
+          ],
+          "required": {
+            "spreadsheet_id": "string",
+            "title": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_google_sheets@1.0.0"
+        },
+        {
+          "asset": "reconciliation_adjustment@1.0.0"
+        },
+        {
+          "asset": "sheet_row_state@1.0.0"
+        }
+      ]
+    },
+    "gorgias": {
+      "application": "gorgias",
+      "entities": {
+        "customers": {
+          "fields": [
+            "email",
+            "id",
+            "name"
+          ],
+          "required": []
+        },
+        "tickets": {
+          "fields": [
+            "assignee_user_id",
+            "channel",
+            "created_at",
+            "customer",
+            "customer_email",
+            "id",
+            "messages",
+            "status",
+            "subject",
+            "tags",
+            "updated_at"
+          ],
+          "required": []
+        }
+      },
+      "record_requirements": {
+        "customers": {
+          "fields": [
+            "email",
+            "id",
+            "name"
+          ],
+          "required": {}
+        },
+        "tickets": {
+          "fields": [
+            "assignee_user_id",
+            "channel",
+            "created_at",
+            "customer",
+            "customer_email",
+            "id",
+            "messages",
+            "status",
+            "subject",
+            "tags",
+            "updated_at"
+          ],
+          "required": {}
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_gorgias@1.0.0"
+        },
+        {
+          "asset": "approval_decision_state@1.0.0"
+        },
+        {
+          "asset": "native_append_effect@1.0.0"
+        },
+        {
+          "asset": "native_create_effect@1.0.0"
+        },
+        {
+          "asset": "queue_handoff_state@1.0.0"
+        }
+      ]
+    },
+    "helpcrunch": {
+      "application": "helpcrunch",
+      "entities": {
+        "customers": {
+          "fields": [
+            "company",
+            "created_at",
+            "custom_data",
+            "email",
+            "events",
+            "id",
+            "name",
+            "phone",
+            "tags",
+            "user_id"
+          ],
+          "required": []
+        }
+      },
+      "record_requirements": {
+        "customers": {
+          "fields": [
+            "company",
+            "created_at",
+            "custom_data",
+            "email",
+            "events",
+            "id",
+            "name",
+            "phone",
+            "tags",
+            "user_id"
+          ],
+          "required": {}
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_helpcrunch@1.0.0"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0"
+        }
+      ]
+    },
+    "helpscout": {
+      "application": "helpscout",
+      "entities": {
+        "conversations": {
+          "fields": [
+            "assigned_to",
+            "created_at",
+            "customer_email",
+            "customer_id",
+            "id",
+            "mailbox_id",
+            "status",
+            "subject",
+            "tags",
+            "threads",
+            "updated_at"
+          ],
+          "required": [
+            "subject"
+          ]
+        },
+        "customers": {
+          "fields": [
+            "background",
+            "created_at",
+            "email",
+            "first_name",
+            "id",
+            "job_title",
+            "last_name",
+            "location",
+            "notes",
+            "organization",
+            "phone",
+            "updated_at"
+          ],
+          "required": []
+        },
+        "mailboxes": {
+          "fields": [
+            "created_at",
+            "email",
+            "id",
+            "name"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "users": {
+          "fields": [
+            "created_at",
+            "email",
+            "first_name",
+            "id",
+            "last_name",
+            "role"
+          ],
+          "required": []
+        }
+      },
+      "record_requirements": {
+        "conversations": {
+          "fields": [
+            "assigned_to",
+            "created_at",
+            "customer_email",
+            "customer_id",
+            "id",
+            "mailbox_id",
+            "status",
+            "subject",
+            "tags",
+            "threads",
+            "updated_at"
+          ],
+          "required": {
+            "subject": "string"
+          }
+        },
+        "customers": {
+          "fields": [
+            "background",
+            "created_at",
+            "email",
+            "first_name",
+            "id",
+            "job_title",
+            "last_name",
+            "location",
+            "notes",
+            "organization",
+            "phone",
+            "updated_at"
+          ],
+          "required": {}
+        },
+        "mailboxes": {
+          "fields": [
+            "created_at",
+            "email",
+            "id",
+            "name"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "users": {
+          "fields": [
+            "created_at",
+            "email",
+            "first_name",
+            "id",
+            "last_name",
+            "role"
+          ],
+          "required": {}
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_helpscout@1.0.0"
+        },
+        {
+          "asset": "approval_decision_state@1.0.0"
+        },
+        {
+          "asset": "audit_archive_state@1.0.0"
+        },
+        {
+          "asset": "customer_link@1.2.0"
+        },
+        {
+          "asset": "native_append_effect@1.0.0"
+        },
+        {
+          "asset": "queue_handoff_state@1.0.0"
+        }
+      ]
+    },
+    "hiver": {
+      "application": "hiver",
+      "entities": {
+        "conversations": {
+          "fields": [
+            "assignee_id",
+            "created_at",
+            "customer_email",
+            "customer_name",
+            "first_response_at",
+            "from_team",
+            "id",
+            "last_agent_response",
+            "shared_mailbox_id",
+            "status",
+            "subject",
+            "tags",
+            "to_team",
+            "updated_at"
+          ],
+          "required": []
+        },
+        "shared_mailboxes": {
+          "fields": [
+            "created_at",
+            "email",
+            "id",
+            "name"
+          ],
+          "required": [
+            "name",
+            "email"
+          ]
+        },
+        "users": {
+          "fields": [
+            "created_at",
+            "email",
+            "id",
+            "name",
+            "role"
+          ],
+          "required": [
+            "name",
+            "email"
+          ]
+        }
+      },
+      "record_requirements": {
+        "conversations": {
+          "fields": [
+            "assignee_id",
+            "created_at",
+            "customer_email",
+            "customer_name",
+            "first_response_at",
+            "from_team",
+            "id",
+            "last_agent_response",
+            "shared_mailbox_id",
+            "status",
+            "subject",
+            "tags",
+            "to_team",
+            "updated_at"
+          ],
+          "required": {}
+        },
+        "shared_mailboxes": {
+          "fields": [
+            "created_at",
+            "email",
+            "id",
+            "name"
+          ],
+          "required": {
+            "email": "string",
+            "name": "string"
+          }
+        },
+        "users": {
+          "fields": [
+            "created_at",
+            "email",
+            "id",
+            "name",
+            "role"
+          ],
+          "required": {
+            "email": "string",
+            "name": "string"
+          }
+        }
+      },
+      "coverage_status": "background-only",
+      "our_asset_bindings": [
+        {
+          "asset": "app_hiver@1.0.0 (background)"
+        }
+      ]
+    },
+    "hubspot": {
+      "application": "hubspot",
+      "entities": {
+        "companies": {
+          "fields": [
+            "annual_revenue",
+            "city",
+            "country",
+            "created_at",
+            "domain",
+            "employee_count",
+            "id",
+            "industry",
+            "lifecyclestage",
+            "name",
+            "phone",
+            "properties",
+            "state",
+            "updated_at"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "contacts": {
+          "fields": [
+            "company",
+            "company_size",
+            "created_at",
+            "csm_email",
+            "demo_requested",
+            "demo_scheduled",
+            "email",
+            "firstname",
+            "id",
+            "industry",
+            "jobtitle",
+            "last_email_days_ago",
+            "last_login_days_ago",
+            "lastname",
+            "lead_score",
+            "lifecyclestage",
+            "lifetime_value",
+            "linkedin_url",
+            "notes",
+            "nps_score",
+            "open_ticket",
+            "payment_retry_count",
+            "payment_status",
+            "phone",
+            "properties",
+            "support_tickets_30d",
+            "updated_at",
+            "utm_campaign",
+            "utm_medium",
+            "utm_source"
+          ],
+          "required": []
+        },
+        "deals": {
+          "fields": [
+            "amount",
+            "associated_company_ids",
+            "associated_contact_ids",
+            "closedate",
+            "created_at",
+            "days_in_stage",
+            "dealname",
+            "dealstage",
+            "dealtype",
+            "description",
+            "hubspot_owner_id",
+            "id",
+            "pipeline",
+            "properties",
+            "updated_at"
+          ],
+          "required": [
+            "dealname",
+            "dealstage"
+          ]
+        },
+        "engagements": {
+          "fields": [
+            "associated_company_ids",
+            "associated_contact_ids",
+            "associated_deal_ids",
+            "body",
+            "created_at",
+            "engagement_type",
+            "id",
+            "timestamp"
+          ],
+          "required": [
+            "engagement_type"
+          ]
+        },
+        "tickets": {
+          "fields": [
+            "associated_contact_ids",
+            "company_name",
+            "company_phone",
+            "complexity",
+            "content",
+            "created_at",
+            "customer_email",
+            "hs_pipeline",
+            "hs_pipeline_stage",
+            "hs_ticket_priority",
+            "hubspot_owner_id",
+            "id",
+            "notes",
+            "properties",
+            "subject",
+            "updated_at"
+          ],
+          "required": [
+            "subject"
+          ]
+        }
+      },
+      "record_requirements": {
+        "companies": {
+          "fields": [
+            "annual_revenue",
+            "city",
+            "country",
+            "created_at",
+            "domain",
+            "employee_count",
+            "id",
+            "industry",
+            "lifecyclestage",
+            "name",
+            "phone",
+            "properties",
+            "state",
+            "updated_at"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "contacts": {
+          "fields": [
+            "company",
+            "company_size",
+            "created_at",
+            "csm_email",
+            "demo_requested",
+            "demo_scheduled",
+            "email",
+            "firstname",
+            "id",
+            "industry",
+            "jobtitle",
+            "last_email_days_ago",
+            "last_login_days_ago",
+            "lastname",
+            "lead_score",
+            "lifecyclestage",
+            "lifetime_value",
+            "linkedin_url",
+            "notes",
+            "nps_score",
+            "open_ticket",
+            "payment_retry_count",
+            "payment_status",
+            "phone",
+            "properties",
+            "support_tickets_30d",
+            "updated_at",
+            "utm_campaign",
+            "utm_medium",
+            "utm_source"
+          ],
+          "required": {}
+        },
+        "deals": {
+          "fields": [
+            "amount",
+            "associated_company_ids",
+            "associated_contact_ids",
+            "closedate",
+            "created_at",
+            "days_in_stage",
+            "dealname",
+            "dealstage",
+            "dealtype",
+            "description",
+            "hubspot_owner_id",
+            "id",
+            "pipeline",
+            "properties",
+            "updated_at"
+          ],
+          "required": {
+            "dealname": "string",
+            "dealstage": "string"
+          }
+        },
+        "engagements": {
+          "fields": [
+            "associated_company_ids",
+            "associated_contact_ids",
+            "associated_deal_ids",
+            "body",
+            "created_at",
+            "engagement_type",
+            "id",
+            "timestamp"
+          ],
+          "required": {
+            "engagement_type": "literal:NOTE|EMAIL|CALL|MEETING|TASK"
+          }
+        },
+        "tickets": {
+          "fields": [
+            "associated_contact_ids",
+            "company_name",
+            "company_phone",
+            "complexity",
+            "content",
+            "created_at",
+            "customer_email",
+            "hs_pipeline",
+            "hs_pipeline_stage",
+            "hs_ticket_priority",
+            "hubspot_owner_id",
+            "id",
+            "notes",
+            "properties",
+            "subject",
+            "updated_at"
+          ],
+          "required": {
+            "subject": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_hubspot@1.0.0"
+        },
+        {
+          "asset": "bounded_contact_batch@1.0.0"
+        },
+        {
+          "asset": "bounded_contact_batch@1.0.1"
+        },
+        {
+          "asset": "customer_link@1.0.0"
+        },
+        {
+          "asset": "customer_link@1.0.1"
+        },
+        {
+          "asset": "customer_link@1.2.0"
+        }
+      ]
+    },
+    "instagram": {
+      "application": "instagram",
+      "entities": {
+        "media": {
+          "fields": [
+            "account_id",
+            "caption",
+            "carousel_media_count",
+            "created_at",
+            "id",
+            "is_carousel",
+            "location",
+            "media_type",
+            "media_url",
+            "permalink",
+            "published_at",
+            "shortcode",
+            "status",
+            "tagged_users"
+          ],
+          "required": [
+            "account_id"
+          ]
+        }
+      },
+      "record_requirements": {
+        "media": {
+          "fields": [
+            "account_id",
+            "caption",
+            "carousel_media_count",
+            "created_at",
+            "id",
+            "is_carousel",
+            "location",
+            "media_type",
+            "media_url",
+            "permalink",
+            "published_at",
+            "shortcode",
+            "status",
+            "tagged_users"
+          ],
+          "required": {
+            "account_id": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_instagram@1.0.0"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0"
+        }
+      ]
+    },
+    "intercom": {
+      "application": "intercom",
+      "entities": {
+        "companies": {
+          "fields": [
+            "company_id",
+            "created_at",
+            "custom_attributes",
+            "id",
+            "industry",
+            "monthly_spend",
+            "name",
+            "plan",
+            "size",
+            "tags",
+            "updated_at",
+            "website"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "contacts": {
+          "fields": [
+            "company_ids",
+            "contact_type",
+            "created_at",
+            "custom_attributes",
+            "email",
+            "external_id",
+            "id",
+            "name",
+            "phone",
+            "tags",
+            "updated_at"
+          ],
+          "required": []
+        },
+        "conversations": {
+          "fields": [
+            "assignee_id",
+            "contact_ids",
+            "conversation_parts",
+            "created_at",
+            "id",
+            "state",
+            "tags",
+            "team_assignee_id",
+            "title",
+            "updated_at"
+          ],
+          "required": []
+        },
+        "notes": {
+          "fields": [
+            "admin_id",
+            "body",
+            "contact_id",
+            "created_at",
+            "id"
+          ],
+          "required": [
+            "body"
+          ]
+        },
+        "tickets": {
+          "fields": [
+            "assignee_id",
+            "contact_ids",
+            "created_at",
+            "description",
+            "id",
+            "state",
+            "team_assignee_id",
+            "ticket_type_id",
+            "title",
+            "updated_at"
+          ],
+          "required": [
+            "title"
+          ]
+        }
+      },
+      "record_requirements": {
+        "companies": {
+          "fields": [
+            "company_id",
+            "created_at",
+            "custom_attributes",
+            "id",
+            "industry",
+            "monthly_spend",
+            "name",
+            "plan",
+            "size",
+            "tags",
+            "updated_at",
+            "website"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "contacts": {
+          "fields": [
+            "company_ids",
+            "contact_type",
+            "created_at",
+            "custom_attributes",
+            "email",
+            "external_id",
+            "id",
+            "name",
+            "phone",
+            "tags",
+            "updated_at"
+          ],
+          "required": {}
+        },
+        "conversations": {
+          "fields": [
+            "assignee_id",
+            "contact_ids",
+            "conversation_parts",
+            "created_at",
+            "id",
+            "state",
+            "tags",
+            "team_assignee_id",
+            "title",
+            "updated_at"
+          ],
+          "required": {}
+        },
+        "notes": {
+          "fields": [
+            "admin_id",
+            "body",
+            "contact_id",
+            "created_at",
+            "id"
+          ],
+          "required": {
+            "body": "string"
+          }
+        },
+        "tickets": {
+          "fields": [
+            "assignee_id",
+            "contact_ids",
+            "created_at",
+            "description",
+            "id",
+            "state",
+            "team_assignee_id",
+            "ticket_type_id",
+            "title",
+            "updated_at"
+          ],
+          "required": {
+            "title": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_intercom@1.0.0"
+        },
+        {
+          "asset": "customer_link@1.2.0"
+        },
+        {
+          "asset": "native_append_effect@1.0.0"
+        }
+      ]
+    },
+    "jira": {
+      "application": "jira",
+      "entities": {},
+      "record_requirements": {},
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_jira@1.0.0"
+        },
+        {
+          "asset": "native_create_effect@1.0.0"
+        }
+      ]
+    },
+    "linkedin": {
+      "application": "linkedin",
+      "entities": {
+        "companies": {
+          "fields": [
+            "admin_ids",
+            "company_size",
+            "company_type",
+            "cover_image_url",
+            "description",
+            "employee_count",
+            "follower_count",
+            "founded_year",
+            "headquarters",
+            "id",
+            "industry",
+            "is_verified",
+            "logo_url",
+            "name",
+            "previous_employee_count",
+            "specialties",
+            "website"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "connections": {
+          "fields": [
+            "company",
+            "connected_at",
+            "connected_profile_id",
+            "degree",
+            "email",
+            "first_name",
+            "headline",
+            "id",
+            "last_name",
+            "owner_id",
+            "profile_picture_url",
+            "shared_connections_count"
+          ],
+          "required": []
+        },
+        "groups": {
+          "fields": [
+            "admin_ids",
+            "description",
+            "id",
+            "is_member",
+            "logo_url",
+            "member_count",
+            "name",
+            "rules",
+            "url",
+            "visibility"
+          ],
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        "invitations": {
+          "fields": [
+            "id",
+            "invitation_type",
+            "message",
+            "recipient_profile_id",
+            "recipient_profile_url",
+            "responded_at",
+            "sender_profile_id",
+            "sent_at",
+            "status",
+            "tracking_token"
+          ],
+          "required": [
+            "id",
+            "sender_profile_id",
+            "recipient_profile_url",
+            "sent_at"
+          ]
+        },
+        "jobs": {
+          "fields": [
+            "applicant_count",
+            "apply_url",
+            "company_id",
+            "company_name",
+            "description",
+            "employment_type",
+            "experience_years",
+            "expires_at",
+            "id",
+            "industry",
+            "is_active",
+            "job_functions",
+            "location",
+            "posted_at",
+            "poster_id",
+            "poster_name",
+            "salary_range",
+            "seniority_level",
+            "skills_required",
+            "title",
+            "workplace_type"
+          ],
+          "required": [
+            "title"
+          ]
+        },
+        "messages": {
+          "fields": [
+            "id",
+            "recipient_profile_id",
+            "sender_profile_id",
+            "sent_at",
+            "subject",
+            "text"
+          ],
+          "required": [
+            "sender_profile_id",
+            "recipient_profile_id",
+            "text"
+          ]
+        },
+        "mutual_connections": {
+          "fields": [
+            "mutual_profile_id",
+            "target_profile_id"
+          ],
+          "required": [
+            "target_profile_id",
+            "mutual_profile_id"
+          ]
+        },
+        "posts": {
+          "fields": [
+            "author_id",
+            "author_type",
+            "comments",
+            "comments_count",
+            "content",
+            "created_at",
+            "group_id",
+            "id",
+            "is_deleted",
+            "is_reshare_disabled_by_author",
+            "lifecycle_state",
+            "likes",
+            "likes_count",
+            "published_at",
+            "shares_count",
+            "text",
+            "updated_at",
+            "url",
+            "views_count",
+            "visibility"
+          ],
+          "required": []
+        },
+        "profiles": {
+          "fields": [
+            "company_size",
+            "connections_count",
+            "current_company",
+            "current_company_id",
+            "current_title",
+            "description",
+            "education",
+            "email",
+            "experiences",
+            "first_name",
+            "headline",
+            "id",
+            "industry",
+            "job_change_date",
+            "last_name",
+            "location",
+            "phone",
+            "previous_title",
+            "profile_picture_url",
+            "public_profile_url",
+            "skills",
+            "summary",
+            "title_changed"
+          ],
+          "required": [
+            "first_name",
+            "last_name"
+          ]
+        }
+      },
+      "record_requirements": {
+        "companies": {
+          "fields": [
+            "admin_ids",
+            "company_size",
+            "company_type",
+            "cover_image_url",
+            "description",
+            "employee_count",
+            "follower_count",
+            "founded_year",
+            "headquarters",
+            "id",
+            "industry",
+            "is_verified",
+            "logo_url",
+            "name",
+            "previous_employee_count",
+            "specialties",
+            "website"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "connections": {
+          "fields": [
+            "company",
+            "connected_at",
+            "connected_profile_id",
+            "degree",
+            "email",
+            "first_name",
+            "headline",
+            "id",
+            "last_name",
+            "owner_id",
+            "profile_picture_url",
+            "shared_connections_count"
+          ],
+          "required": {}
+        },
+        "groups": {
+          "fields": [
+            "admin_ids",
+            "description",
+            "id",
+            "is_member",
+            "logo_url",
+            "member_count",
+            "name",
+            "rules",
+            "url",
+            "visibility"
+          ],
+          "required": {
+            "id": "string",
+            "name": "string"
+          }
+        },
+        "invitations": {
+          "fields": [
+            "id",
+            "invitation_type",
+            "message",
+            "recipient_profile_id",
+            "recipient_profile_url",
+            "responded_at",
+            "sender_profile_id",
+            "sent_at",
+            "status",
+            "tracking_token"
+          ],
+          "required": {
+            "id": "string",
+            "recipient_profile_url": "string",
+            "sender_profile_id": "string",
+            "sent_at": "string"
+          }
+        },
+        "jobs": {
+          "fields": [
+            "applicant_count",
+            "apply_url",
+            "company_id",
+            "company_name",
+            "description",
+            "employment_type",
+            "experience_years",
+            "expires_at",
+            "id",
+            "industry",
+            "is_active",
+            "job_functions",
+            "location",
+            "posted_at",
+            "poster_id",
+            "poster_name",
+            "salary_range",
+            "seniority_level",
+            "skills_required",
+            "title",
+            "workplace_type"
+          ],
+          "required": {
+            "title": "string"
+          }
+        },
+        "messages": {
+          "fields": [
+            "id",
+            "recipient_profile_id",
+            "sender_profile_id",
+            "sent_at",
+            "subject",
+            "text"
+          ],
+          "required": {
+            "recipient_profile_id": "string",
+            "sender_profile_id": "string",
+            "text": "string"
+          }
+        },
+        "mutual_connections": {
+          "fields": [
+            "mutual_profile_id",
+            "target_profile_id"
+          ],
+          "required": {
+            "mutual_profile_id": "string",
+            "target_profile_id": "string"
+          }
+        },
+        "posts": {
+          "fields": [
+            "author_id",
+            "author_type",
+            "comments",
+            "comments_count",
+            "content",
+            "created_at",
+            "group_id",
+            "id",
+            "is_deleted",
+            "is_reshare_disabled_by_author",
+            "lifecycle_state",
+            "likes",
+            "likes_count",
+            "published_at",
+            "shares_count",
+            "text",
+            "updated_at",
+            "url",
+            "views_count",
+            "visibility"
+          ],
+          "required": {}
+        },
+        "profiles": {
+          "fields": [
+            "company_size",
+            "connections_count",
+            "current_company",
+            "current_company_id",
+            "current_title",
+            "description",
+            "education",
+            "email",
+            "experiences",
+            "first_name",
+            "headline",
+            "id",
+            "industry",
+            "job_change_date",
+            "last_name",
+            "location",
+            "phone",
+            "previous_title",
+            "profile_picture_url",
+            "public_profile_url",
+            "skills",
+            "summary",
+            "title_changed"
+          ],
+          "required": {
+            "first_name": "string",
+            "last_name": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_linkedin@1.0.0"
+        },
+        {
+          "asset": "native_create_effect@1.0.0"
+        }
+      ]
+    },
+    "linkedin_ads": {
+      "application": "linkedin_ads",
+      "entities": {
+        "audiences": {
+          "fields": [
+            "account_id",
+            "audience_type",
+            "created_at",
+            "id",
+            "members",
+            "name",
+            "status",
+            "updated_at"
+          ],
+          "required": [
+            "account_id",
+            "name"
+          ]
+        },
+        "conversions": {
+          "fields": [
+            "account_id",
+            "conversion_name",
+            "conversion_type",
+            "created_at",
+            "currency_code",
+            "email",
+            "event_time",
+            "first_name",
+            "id",
+            "last_name",
+            "status",
+            "value"
+          ],
+          "required": [
+            "account_id",
+            "conversion_name"
+          ]
+        },
+        "reports": {
+          "fields": [
+            "account_id",
+            "created_at",
+            "id",
+            "name",
+            "report_type",
+            "status"
+          ],
+          "required": [
+            "account_id",
+            "name"
+          ]
+        }
+      },
+      "record_requirements": {
+        "audiences": {
+          "fields": [
+            "account_id",
+            "audience_type",
+            "created_at",
+            "id",
+            "members",
+            "name",
+            "status",
+            "updated_at"
+          ],
+          "required": {
+            "account_id": "string",
+            "name": "string"
+          }
+        },
+        "conversions": {
+          "fields": [
+            "account_id",
+            "conversion_name",
+            "conversion_type",
+            "created_at",
+            "currency_code",
+            "email",
+            "event_time",
+            "first_name",
+            "id",
+            "last_name",
+            "status",
+            "value"
+          ],
+          "required": {
+            "account_id": "string",
+            "conversion_name": "string"
+          }
+        },
+        "reports": {
+          "fields": [
+            "account_id",
+            "created_at",
+            "id",
+            "name",
+            "report_type",
+            "status"
+          ],
+          "required": {
+            "account_id": "string",
+            "name": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_linkedin_ads@1.0.0"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0"
+        }
+      ]
+    },
+    "linkedin_conversions": {
+      "application": "linkedin_conversions",
+      "entities": {
+        "events": {
+          "fields": [
+            "account",
+            "amount",
+            "company",
+            "conversion",
+            "conversion_happened_at",
+            "conversion_type",
+            "country",
+            "created_at",
+            "currency_code",
+            "email",
+            "event_id",
+            "event_time",
+            "first_name",
+            "id",
+            "last_name",
+            "lead_id",
+            "linkedin_first_party_ads_tracking_uuid",
+            "status",
+            "title"
+          ],
+          "required": [
+            "account",
+            "conversion"
+          ]
+        }
+      },
+      "record_requirements": {
+        "events": {
+          "fields": [
+            "account",
+            "amount",
+            "company",
+            "conversion",
+            "conversion_happened_at",
+            "conversion_type",
+            "country",
+            "created_at",
+            "currency_code",
+            "email",
+            "event_id",
+            "event_time",
+            "first_name",
+            "id",
+            "last_name",
+            "lead_id",
+            "linkedin_first_party_ads_tracking_uuid",
+            "status",
+            "title"
+          ],
+          "required": {
+            "account": "string",
+            "conversion": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_linkedin_conversions@1.0.0"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0"
+        }
+      ]
+    },
+    "mailchimp": {
+      "application": "mailchimp",
+      "entities": {
+        "audiences": {
+          "fields": [
+            "contact_address1",
+            "contact_city",
+            "contact_company",
+            "contact_country",
+            "contact_state",
+            "contact_zip",
+            "created_at",
+            "id",
+            "member_count",
+            "name",
+            "permission_reminder",
+            "web_id"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "campaigns": {
+          "fields": [
+            "campaign_type",
+            "content_html",
+            "content_text",
+            "created_at",
+            "emails_sent",
+            "from_name",
+            "id",
+            "list_id",
+            "reply_to",
+            "send_time",
+            "status",
+            "subject_line",
+            "title",
+            "web_id"
+          ],
+          "required": [
+            "list_id",
+            "subject_line",
+            "from_name",
+            "reply_to"
+          ]
+        },
+        "subscribers": {
+          "fields": [
+            "created_at",
+            "email",
+            "email_type",
+            "id",
+            "last_open_days_ago",
+            "list_id",
+            "merge_fields",
+            "notes",
+            "open_rate",
+            "source",
+            "status",
+            "tags",
+            "updated_at",
+            "vip"
+          ],
+          "required": [
+            "id",
+            "email",
+            "list_id"
+          ]
+        },
+        "tags": {
+          "fields": [
+            "id",
+            "list_id",
+            "member_count",
+            "name"
+          ],
+          "required": [
+            "name",
+            "list_id"
+          ]
+        }
+      },
+      "record_requirements": {
+        "audiences": {
+          "fields": [
+            "contact_address1",
+            "contact_city",
+            "contact_company",
+            "contact_country",
+            "contact_state",
+            "contact_zip",
+            "created_at",
+            "id",
+            "member_count",
+            "name",
+            "permission_reminder",
+            "web_id"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "campaigns": {
+          "fields": [
+            "campaign_type",
+            "content_html",
+            "content_text",
+            "created_at",
+            "emails_sent",
+            "from_name",
+            "id",
+            "list_id",
+            "reply_to",
+            "send_time",
+            "status",
+            "subject_line",
+            "title",
+            "web_id"
+          ],
+          "required": {
+            "from_name": "string",
+            "list_id": "string",
+            "reply_to": "string",
+            "subject_line": "string"
+          }
+        },
+        "subscribers": {
+          "fields": [
+            "created_at",
+            "email",
+            "email_type",
+            "id",
+            "last_open_days_ago",
+            "list_id",
+            "merge_fields",
+            "notes",
+            "open_rate",
+            "source",
+            "status",
+            "tags",
+            "updated_at",
+            "vip"
+          ],
+          "required": {
+            "email": "string",
+            "id": "string",
+            "list_id": "string"
+          }
+        },
+        "tags": {
+          "fields": [
+            "id",
+            "list_id",
+            "member_count",
+            "name"
+          ],
+          "required": {
+            "list_id": "string",
+            "name": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_mailchimp@1.0.0"
+        },
+        {
+          "asset": "customer_link@1.2.0"
+        }
+      ]
+    },
+    "monday": {
+      "application": "monday",
+      "entities": {},
+      "record_requirements": {},
+      "coverage_status": "weak-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_monday@1.0.0 (weak)"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0 (weak)"
+        }
+      ]
+    },
+    "notion": {
+      "application": "notion",
+      "entities": {},
+      "record_requirements": {},
+      "coverage_status": "weak-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_notion@1.0.0 (weak)"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0 (weak)"
+        }
+      ]
+    },
+    "pipefy": {
+      "application": "pipefy",
+      "entities": {
+        "cards": {
+          "fields": [
+            "amount",
+            "assignee_id",
+            "fields",
+            "id",
+            "labels",
+            "opportunity_id",
+            "phase",
+            "phase_changed",
+            "pipe_id",
+            "title"
+          ],
+          "required": [
+            "id",
+            "title"
+          ]
+        }
+      },
+      "record_requirements": {
+        "cards": {
+          "fields": [
+            "amount",
+            "assignee_id",
+            "fields",
+            "id",
+            "labels",
+            "opportunity_id",
+            "phase",
+            "phase_changed",
+            "pipe_id",
+            "title"
+          ],
+          "required": {
+            "id": "string",
+            "title": "string"
+          }
+        }
+      },
+      "coverage_status": "weak-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_pipefy@1.0.0 (weak)"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0 (weak)"
+        }
+      ]
+    },
+    "quickbooks": {
+      "application": "quickbooks",
+      "entities": {
+        "accounts": {
+          "fields": [
+            "account_type",
+            "active",
+            "balance",
+            "currency_code",
+            "id",
+            "name"
+          ],
+          "required": []
+        },
+        "bills": {
+          "fields": [
+            "ap_account_id",
+            "ap_account_name",
+            "balance",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "doc_number",
+            "due_date",
+            "id",
+            "last_updated_time",
+            "line_amount",
+            "line_description",
+            "memo",
+            "total_amt",
+            "txn_date",
+            "vendor_id",
+            "vendor_name"
+          ],
+          "required": []
+        },
+        "customers": {
+          "fields": [
+            "active",
+            "alternate_phone",
+            "balance",
+            "bill_with_parent",
+            "billing_address",
+            "company_name",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "customer_type",
+            "display_name",
+            "email",
+            "family_name",
+            "fax",
+            "given_name",
+            "id",
+            "job",
+            "last_updated_time",
+            "middle_name",
+            "mobile",
+            "notes",
+            "phone",
+            "preferred_delivery_method",
+            "preferred_payment_method",
+            "print_on_check_name",
+            "resale_number",
+            "shipping_address",
+            "suffix",
+            "tax_code",
+            "tax_registration_number",
+            "taxable",
+            "terms",
+            "title",
+            "website"
+          ],
+          "required": []
+        },
+        "employees": {
+          "fields": [
+            "active",
+            "created_time",
+            "display_name",
+            "email",
+            "family_name",
+            "given_name",
+            "id",
+            "last_updated_time",
+            "phone"
+          ],
+          "required": []
+        },
+        "estimates": {
+          "fields": [
+            "bill_email",
+            "billing_address",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "customer_id",
+            "customer_name",
+            "doc_number",
+            "email_status",
+            "expiration_date",
+            "id",
+            "last_updated_time",
+            "line_items",
+            "message",
+            "print_status",
+            "sent",
+            "shipping_address",
+            "tax_total",
+            "total_amt",
+            "txn_date",
+            "txn_status"
+          ],
+          "required": []
+        },
+        "invoices": {
+          "fields": [
+            "allow_ipn_payment",
+            "allow_online_ach_payment",
+            "allow_online_cc_payment",
+            "balance",
+            "bill_email",
+            "billing_address",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "customer_id",
+            "customer_name",
+            "deposit",
+            "doc_number",
+            "due_date",
+            "email_status",
+            "id",
+            "last_updated_time",
+            "line_items",
+            "message",
+            "note",
+            "print_status",
+            "sent",
+            "shipping_address",
+            "tax_total",
+            "total_amt",
+            "txn_date",
+            "voided"
+          ],
+          "required": []
+        },
+        "items": {
+          "fields": [
+            "active",
+            "created_time",
+            "description",
+            "expense_account_id",
+            "expense_account_name",
+            "id",
+            "income_account_id",
+            "income_account_name",
+            "last_updated_time",
+            "name",
+            "purchase_cost",
+            "purchase_description",
+            "qty_on_hand",
+            "sku",
+            "taxable",
+            "track_qty_on_hand",
+            "type",
+            "unit_price"
+          ],
+          "required": []
+        },
+        "payments": {
+          "fields": [
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "customer_id",
+            "customer_name",
+            "deposit_account_id",
+            "id",
+            "invoice_id",
+            "last_updated_time",
+            "note",
+            "payment_method",
+            "payment_number",
+            "total_amt",
+            "txn_date",
+            "unapplied_amt"
+          ],
+          "required": []
+        },
+        "sales_receipts": {
+          "fields": [
+            "balance",
+            "bill_email",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "customer_id",
+            "customer_name",
+            "deposit_account",
+            "doc_number",
+            "email_status",
+            "id",
+            "last_updated_time",
+            "line_items",
+            "message",
+            "payment_method",
+            "print_status",
+            "sent",
+            "total_amt",
+            "txn_date"
+          ],
+          "required": []
+        },
+        "vendors": {
+          "fields": [
+            "active",
+            "balance",
+            "billing_address",
+            "company_name",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "display_name",
+            "email",
+            "id",
+            "last_updated_time",
+            "phone",
+            "print_on_check_name",
+            "vendor_1099",
+            "website"
+          ],
+          "required": []
+        }
+      },
+      "record_requirements": {
+        "accounts": {
+          "fields": [
+            "account_type",
+            "active",
+            "balance",
+            "currency_code",
+            "id",
+            "name"
+          ],
+          "required": {}
+        },
+        "bills": {
+          "fields": [
+            "ap_account_id",
+            "ap_account_name",
+            "balance",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "doc_number",
+            "due_date",
+            "id",
+            "last_updated_time",
+            "line_amount",
+            "line_description",
+            "memo",
+            "total_amt",
+            "txn_date",
+            "vendor_id",
+            "vendor_name"
+          ],
+          "required": {}
+        },
+        "customers": {
+          "fields": [
+            "active",
+            "alternate_phone",
+            "balance",
+            "bill_with_parent",
+            "billing_address",
+            "company_name",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "customer_type",
+            "display_name",
+            "email",
+            "family_name",
+            "fax",
+            "given_name",
+            "id",
+            "job",
+            "last_updated_time",
+            "middle_name",
+            "mobile",
+            "notes",
+            "phone",
+            "preferred_delivery_method",
+            "preferred_payment_method",
+            "print_on_check_name",
+            "resale_number",
+            "shipping_address",
+            "suffix",
+            "tax_code",
+            "tax_registration_number",
+            "taxable",
+            "terms",
+            "title",
+            "website"
+          ],
+          "required": {}
+        },
+        "employees": {
+          "fields": [
+            "active",
+            "created_time",
+            "display_name",
+            "email",
+            "family_name",
+            "given_name",
+            "id",
+            "last_updated_time",
+            "phone"
+          ],
+          "required": {}
+        },
+        "estimates": {
+          "fields": [
+            "bill_email",
+            "billing_address",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "customer_id",
+            "customer_name",
+            "doc_number",
+            "email_status",
+            "expiration_date",
+            "id",
+            "last_updated_time",
+            "line_items",
+            "message",
+            "print_status",
+            "sent",
+            "shipping_address",
+            "tax_total",
+            "total_amt",
+            "txn_date",
+            "txn_status"
+          ],
+          "required": {}
+        },
+        "invoices": {
+          "fields": [
+            "allow_ipn_payment",
+            "allow_online_ach_payment",
+            "allow_online_cc_payment",
+            "balance",
+            "bill_email",
+            "billing_address",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "customer_id",
+            "customer_name",
+            "deposit",
+            "doc_number",
+            "due_date",
+            "email_status",
+            "id",
+            "last_updated_time",
+            "line_items",
+            "message",
+            "note",
+            "print_status",
+            "sent",
+            "shipping_address",
+            "tax_total",
+            "total_amt",
+            "txn_date",
+            "voided"
+          ],
+          "required": {}
+        },
+        "items": {
+          "fields": [
+            "active",
+            "created_time",
+            "description",
+            "expense_account_id",
+            "expense_account_name",
+            "id",
+            "income_account_id",
+            "income_account_name",
+            "last_updated_time",
+            "name",
+            "purchase_cost",
+            "purchase_description",
+            "qty_on_hand",
+            "sku",
+            "taxable",
+            "track_qty_on_hand",
+            "type",
+            "unit_price"
+          ],
+          "required": {}
+        },
+        "payments": {
+          "fields": [
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "customer_id",
+            "customer_name",
+            "deposit_account_id",
+            "id",
+            "invoice_id",
+            "last_updated_time",
+            "note",
+            "payment_method",
+            "payment_number",
+            "total_amt",
+            "txn_date",
+            "unapplied_amt"
+          ],
+          "required": {}
+        },
+        "sales_receipts": {
+          "fields": [
+            "balance",
+            "bill_email",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "customer_id",
+            "customer_name",
+            "deposit_account",
+            "doc_number",
+            "email_status",
+            "id",
+            "last_updated_time",
+            "line_items",
+            "message",
+            "payment_method",
+            "print_status",
+            "sent",
+            "total_amt",
+            "txn_date"
+          ],
+          "required": {}
+        },
+        "vendors": {
+          "fields": [
+            "active",
+            "balance",
+            "billing_address",
+            "company_name",
+            "created_time",
+            "currency_code",
+            "currency_name",
+            "display_name",
+            "email",
+            "id",
+            "last_updated_time",
+            "phone",
+            "print_on_check_name",
+            "vendor_1099",
+            "website"
+          ],
+          "required": {}
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_quickbooks@1.0.0"
+        },
+        {
+          "asset": "native_field_state@1.0.0"
+        },
+        {
+          "asset": "reconciliation_adjustment@1.0.0"
+        }
+      ]
+    },
+    "reamaze": {
+      "application": "reamaze",
+      "entities": {
+        "contacts": {
+          "fields": [
+            "created_at",
+            "email",
+            "external_id",
+            "id",
+            "name",
+            "notes",
+            "phone",
+            "updated_at"
+          ],
+          "required": []
+        },
+        "conversations": {
+          "fields": [
+            "assignee_email",
+            "brand",
+            "category",
+            "contact_email",
+            "contact_name",
+            "created_at",
+            "id",
+            "messages",
+            "status",
+            "subject",
+            "tags",
+            "updated_at"
+          ],
+          "required": []
+        }
+      },
+      "record_requirements": {
+        "contacts": {
+          "fields": [
+            "created_at",
+            "email",
+            "external_id",
+            "id",
+            "name",
+            "notes",
+            "phone",
+            "updated_at"
+          ],
+          "required": {}
+        },
+        "conversations": {
+          "fields": [
+            "assignee_email",
+            "brand",
+            "category",
+            "contact_email",
+            "contact_name",
+            "created_at",
+            "id",
+            "messages",
+            "status",
+            "subject",
+            "tags",
+            "updated_at"
+          ],
+          "required": {}
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_reamaze@1.0.0"
+        },
+        {
+          "asset": "approval_decision_state@1.0.0"
+        },
+        {
+          "asset": "native_append_effect@1.0.0"
+        },
+        {
+          "asset": "native_create_effect@1.0.0"
+        },
+        {
+          "asset": "queue_handoff_state@1.0.0"
+        }
+      ]
+    },
+    "recruitee": {
+      "application": "recruitee",
+      "entities": {},
+      "record_requirements": {},
+      "coverage_status": "weak-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_recruitee@1.0.0 (weak)"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0 (weak)"
+        }
+      ]
+    },
+    "salesforce": {
+      "application": "salesforce",
+      "entities": {
+        "accounts": {
+          "fields": [
+            "account_name",
+            "account_type",
+            "annual_revenue",
+            "auto_renew",
+            "billing_city",
+            "billing_country",
+            "billing_postal_code",
+            "billing_state",
+            "billing_street",
+            "contract_end",
+            "contract_renewal_date",
+            "country",
+            "created_date",
+            "currency",
+            "description",
+            "do_not_contact",
+            "domain",
+            "email",
+            "fax",
+            "health_score",
+            "health_status",
+            "id",
+            "industry",
+            "last_activity",
+            "last_modified_date",
+            "number_of_employees",
+            "owner_id",
+            "parent_id",
+            "payment_terms",
+            "phone",
+            "priority",
+            "rating",
+            "region",
+            "shipping_city",
+            "shipping_country",
+            "shipping_postal_code",
+            "shipping_state",
+            "shipping_street",
+            "tier",
+            "website"
+          ],
+          "required": [
+            "account_name"
+          ]
+        },
+        "attachments": {
+          "fields": [
+            "ContentType",
+            "Description",
+            "File",
+            "IsPrivate",
+            "Name",
+            "Parent",
+            "created_date",
+            "id",
+            "last_modified_date",
+            "owner_id"
+          ],
+          "required": [
+            "File",
+            "Parent"
+          ]
+        },
+        "campaign_members": {
+          "fields": [
+            "CampaignId",
+            "ContactId",
+            "LeadId",
+            "Status",
+            "created_date",
+            "id",
+            "last_modified_date",
+            "owner_id"
+          ],
+          "required": [
+            "CampaignId"
+          ]
+        },
+        "campaigns": {
+          "fields": [
+            "budgeted_cost",
+            "campaign_name",
+            "campaign_type",
+            "created_date",
+            "description",
+            "end_date",
+            "expected_revenue",
+            "id",
+            "is_active",
+            "last_modified_date",
+            "owner_id",
+            "parent_id",
+            "start_date",
+            "status"
+          ],
+          "required": [
+            "campaign_name"
+          ]
+        },
+        "case_comments": {
+          "fields": [
+            "CommentBody",
+            "IsPublished",
+            "created_date",
+            "id",
+            "last_modified_date",
+            "owner_id",
+            "parent_id"
+          ],
+          "required": [
+            "parent_id",
+            "CommentBody"
+          ]
+        },
+        "cases": {
+          "fields": [
+            "account_id",
+            "contact_id",
+            "created_date",
+            "description",
+            "id",
+            "is_closed",
+            "is_escalated",
+            "last_modified_date",
+            "origin",
+            "owner_id",
+            "parent_id",
+            "priority",
+            "reason",
+            "status",
+            "subject",
+            "supplied_name",
+            "type"
+          ],
+          "required": []
+        },
+        "contacts": {
+          "fields": [
+            "account_id",
+            "account_name",
+            "assistant_email",
+            "assistant_name",
+            "created_date",
+            "delegate_email",
+            "department",
+            "description",
+            "email",
+            "email_opt_out",
+            "engagement_score",
+            "fax",
+            "first_name",
+            "id",
+            "industry",
+            "is_primary",
+            "last_activity_date",
+            "last_modified_date",
+            "last_name",
+            "lead_score",
+            "lead_source",
+            "mailing_city",
+            "mailing_country",
+            "mailing_postal_code",
+            "mailing_state",
+            "mailing_street",
+            "mobile_phone",
+            "nda_status",
+            "notes",
+            "owner_id",
+            "phone",
+            "role",
+            "seniority_level",
+            "status",
+            "timezone",
+            "title",
+            "webinar_registered",
+            "years_at_company"
+          ],
+          "required": [
+            "last_name"
+          ]
+        },
+        "documents": {
+          "fields": [
+            "ContentType",
+            "Description",
+            "File",
+            "FolderId",
+            "IsPublic",
+            "Keywords",
+            "Name",
+            "created_date",
+            "id",
+            "last_modified_date",
+            "owner_id"
+          ],
+          "required": [
+            "FolderId",
+            "File"
+          ]
+        },
+        "emails": {
+          "fields": [
+            "bcc_address",
+            "cc_address",
+            "created_date",
+            "html_body",
+            "id",
+            "last_modified_date",
+            "owner_id",
+            "related_to_id",
+            "sender_type",
+            "subject",
+            "text_body",
+            "to_address"
+          ],
+          "required": [
+            "to_address",
+            "subject"
+          ]
+        },
+        "events": {
+          "fields": [
+            "created_date",
+            "description",
+            "end_datetime",
+            "id",
+            "is_all_day_event",
+            "last_modified_date",
+            "location",
+            "owner_id",
+            "start_datetime",
+            "subject",
+            "what_id",
+            "who_id"
+          ],
+          "required": [
+            "subject",
+            "start_datetime",
+            "end_datetime"
+          ]
+        },
+        "folders": {
+          "fields": [
+            "AccessType",
+            "DeveloperName",
+            "Name",
+            "Type",
+            "created_date",
+            "id",
+            "last_modified_date",
+            "owner_id"
+          ],
+          "required": [
+            "Name"
+          ]
+        },
+        "leads": {
+          "fields": [
+            "annual_revenue",
+            "city",
+            "company",
+            "converted_account_id",
+            "converted_contact_id",
+            "converted_opportunity_id",
+            "country",
+            "created_date",
+            "days_since_activity",
+            "description",
+            "email",
+            "email_opens",
+            "estimated_value",
+            "first_name",
+            "first_touch_date",
+            "has_opened_email",
+            "id",
+            "industry",
+            "is_converted",
+            "last_activity_date",
+            "last_modified_date",
+            "last_name",
+            "lead_score",
+            "lead_source",
+            "linkedin_url",
+            "mobile_phone",
+            "number_of_employees",
+            "owner_id",
+            "phone",
+            "postal_code",
+            "rating",
+            "state",
+            "status",
+            "street",
+            "title"
+          ],
+          "required": [
+            "last_name"
+          ]
+        },
+        "notes": {
+          "fields": [
+            "body",
+            "created_date",
+            "custom_type",
+            "id",
+            "is_private",
+            "last_modified_date",
+            "owner_id",
+            "parent_id",
+            "title"
+          ],
+          "required": [
+            "parent_id"
+          ]
+        },
+        "opportunities": {
+          "fields": [
+            "account_id",
+            "amount",
+            "campaign_id",
+            "close_date",
+            "competitor",
+            "contact_id",
+            "contract_end_date",
+            "created_date",
+            "currency",
+            "description",
+            "id",
+            "is_closed",
+            "is_won",
+            "last_modified_date",
+            "last_stage_change_date",
+            "lead_source",
+            "name",
+            "next_step",
+            "owner_id",
+            "probability",
+            "product_type",
+            "quote_number",
+            "quote_special_terms",
+            "quote_status",
+            "quote_term_months",
+            "risk_level",
+            "stage_name",
+            "trial_end_date",
+            "type"
+          ],
+          "required": []
+        },
+        "tasks": {
+          "fields": [
+            "assigned_to_id",
+            "contact_id",
+            "created_date",
+            "description",
+            "due_date",
+            "id",
+            "is_closed",
+            "last_modified_date",
+            "owner_id",
+            "priority",
+            "related_to_id",
+            "status",
+            "subject"
+          ],
+          "required": [
+            "subject"
+          ]
+        },
+        "users": {
+          "fields": [
+            "created_date",
+            "department",
+            "email",
+            "first_name",
+            "id",
+            "is_active",
+            "last_modified_date",
+            "last_name",
+            "manager_id",
+            "name",
+            "notes",
+            "owner_id",
+            "phone",
+            "profile_id",
+            "role_id",
+            "title",
+            "username"
+          ],
+          "required": [
+            "name",
+            "email"
+          ]
+        }
+      },
+      "record_requirements": {
+        "accounts": {
+          "fields": [
+            "account_name",
+            "account_type",
+            "annual_revenue",
+            "auto_renew",
+            "billing_city",
+            "billing_country",
+            "billing_postal_code",
+            "billing_state",
+            "billing_street",
+            "contract_end",
+            "contract_renewal_date",
+            "country",
+            "created_date",
+            "currency",
+            "description",
+            "do_not_contact",
+            "domain",
+            "email",
+            "fax",
+            "health_score",
+            "health_status",
+            "id",
+            "industry",
+            "last_activity",
+            "last_modified_date",
+            "number_of_employees",
+            "owner_id",
+            "parent_id",
+            "payment_terms",
+            "phone",
+            "priority",
+            "rating",
+            "region",
+            "shipping_city",
+            "shipping_country",
+            "shipping_postal_code",
+            "shipping_state",
+            "shipping_street",
+            "tier",
+            "website"
+          ],
+          "required": {
+            "account_name": "string"
+          }
+        },
+        "attachments": {
+          "fields": [
+            "ContentType",
+            "Description",
+            "File",
+            "IsPrivate",
+            "Name",
+            "Parent",
+            "created_date",
+            "id",
+            "last_modified_date",
+            "owner_id"
+          ],
+          "required": {
+            "File": "string",
+            "Parent": "string"
+          }
+        },
+        "campaign_members": {
+          "fields": [
+            "CampaignId",
+            "ContactId",
+            "LeadId",
+            "Status",
+            "created_date",
+            "id",
+            "last_modified_date",
+            "owner_id"
+          ],
+          "required": {
+            "CampaignId": "string"
+          }
+        },
+        "campaigns": {
+          "fields": [
+            "budgeted_cost",
+            "campaign_name",
+            "campaign_type",
+            "created_date",
+            "description",
+            "end_date",
+            "expected_revenue",
+            "id",
+            "is_active",
+            "last_modified_date",
+            "owner_id",
+            "parent_id",
+            "start_date",
+            "status"
+          ],
+          "required": {
+            "campaign_name": "string"
+          }
+        },
+        "case_comments": {
+          "fields": [
+            "CommentBody",
+            "IsPublished",
+            "created_date",
+            "id",
+            "last_modified_date",
+            "owner_id",
+            "parent_id"
+          ],
+          "required": {
+            "CommentBody": "string",
+            "parent_id": "string"
+          }
+        },
+        "cases": {
+          "fields": [
+            "account_id",
+            "contact_id",
+            "created_date",
+            "description",
+            "id",
+            "is_closed",
+            "is_escalated",
+            "last_modified_date",
+            "origin",
+            "owner_id",
+            "parent_id",
+            "priority",
+            "reason",
+            "status",
+            "subject",
+            "supplied_name",
+            "type"
+          ],
+          "required": {}
+        },
+        "contacts": {
+          "fields": [
+            "account_id",
+            "account_name",
+            "assistant_email",
+            "assistant_name",
+            "created_date",
+            "delegate_email",
+            "department",
+            "description",
+            "email",
+            "email_opt_out",
+            "engagement_score",
+            "fax",
+            "first_name",
+            "id",
+            "industry",
+            "is_primary",
+            "last_activity_date",
+            "last_modified_date",
+            "last_name",
+            "lead_score",
+            "lead_source",
+            "mailing_city",
+            "mailing_country",
+            "mailing_postal_code",
+            "mailing_state",
+            "mailing_street",
+            "mobile_phone",
+            "nda_status",
+            "notes",
+            "owner_id",
+            "phone",
+            "role",
+            "seniority_level",
+            "status",
+            "timezone",
+            "title",
+            "webinar_registered",
+            "years_at_company"
+          ],
+          "required": {
+            "last_name": "string"
+          }
+        },
+        "documents": {
+          "fields": [
+            "ContentType",
+            "Description",
+            "File",
+            "FolderId",
+            "IsPublic",
+            "Keywords",
+            "Name",
+            "created_date",
+            "id",
+            "last_modified_date",
+            "owner_id"
+          ],
+          "required": {
+            "File": "string",
+            "FolderId": "string"
+          }
+        },
+        "emails": {
+          "fields": [
+            "bcc_address",
+            "cc_address",
+            "created_date",
+            "html_body",
+            "id",
+            "last_modified_date",
+            "owner_id",
+            "related_to_id",
+            "sender_type",
+            "subject",
+            "text_body",
+            "to_address"
+          ],
+          "required": {
+            "subject": "string",
+            "to_address": "string"
+          }
+        },
+        "events": {
+          "fields": [
+            "created_date",
+            "description",
+            "end_datetime",
+            "id",
+            "is_all_day_event",
+            "last_modified_date",
+            "location",
+            "owner_id",
+            "start_datetime",
+            "subject",
+            "what_id",
+            "who_id"
+          ],
+          "required": {
+            "end_datetime": "string",
+            "start_datetime": "string",
+            "subject": "string"
+          }
+        },
+        "folders": {
+          "fields": [
+            "AccessType",
+            "DeveloperName",
+            "Name",
+            "Type",
+            "created_date",
+            "id",
+            "last_modified_date",
+            "owner_id"
+          ],
+          "required": {
+            "Name": "string"
+          }
+        },
+        "leads": {
+          "fields": [
+            "annual_revenue",
+            "city",
+            "company",
+            "converted_account_id",
+            "converted_contact_id",
+            "converted_opportunity_id",
+            "country",
+            "created_date",
+            "days_since_activity",
+            "description",
+            "email",
+            "email_opens",
+            "estimated_value",
+            "first_name",
+            "first_touch_date",
+            "has_opened_email",
+            "id",
+            "industry",
+            "is_converted",
+            "last_activity_date",
+            "last_modified_date",
+            "last_name",
+            "lead_score",
+            "lead_source",
+            "linkedin_url",
+            "mobile_phone",
+            "number_of_employees",
+            "owner_id",
+            "phone",
+            "postal_code",
+            "rating",
+            "state",
+            "status",
+            "street",
+            "title"
+          ],
+          "required": {
+            "last_name": "string"
+          }
+        },
+        "notes": {
+          "fields": [
+            "body",
+            "created_date",
+            "custom_type",
+            "id",
+            "is_private",
+            "last_modified_date",
+            "owner_id",
+            "parent_id",
+            "title"
+          ],
+          "required": {
+            "parent_id": "string"
+          }
+        },
+        "opportunities": {
+          "fields": [
+            "account_id",
+            "amount",
+            "campaign_id",
+            "close_date",
+            "competitor",
+            "contact_id",
+            "contract_end_date",
+            "created_date",
+            "currency",
+            "description",
+            "id",
+            "is_closed",
+            "is_won",
+            "last_modified_date",
+            "last_stage_change_date",
+            "lead_source",
+            "name",
+            "next_step",
+            "owner_id",
+            "probability",
+            "product_type",
+            "quote_number",
+            "quote_special_terms",
+            "quote_status",
+            "quote_term_months",
+            "risk_level",
+            "stage_name",
+            "trial_end_date",
+            "type"
+          ],
+          "required": {}
+        },
+        "tasks": {
+          "fields": [
+            "assigned_to_id",
+            "contact_id",
+            "created_date",
+            "description",
+            "due_date",
+            "id",
+            "is_closed",
+            "last_modified_date",
+            "owner_id",
+            "priority",
+            "related_to_id",
+            "status",
+            "subject"
+          ],
+          "required": {
+            "subject": "string"
+          }
+        },
+        "users": {
+          "fields": [
+            "created_date",
+            "department",
+            "email",
+            "first_name",
+            "id",
+            "is_active",
+            "last_modified_date",
+            "last_name",
+            "manager_id",
+            "name",
+            "notes",
+            "owner_id",
+            "phone",
+            "profile_id",
+            "role_id",
+            "title",
+            "username"
+          ],
+          "required": {
+            "email": "string",
+            "name": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_salesforce@1.0.0"
+        },
+        {
+          "asset": "customer_link@1.0.0"
+        },
+        {
+          "asset": "customer_link@1.0.1"
+        },
+        {
+          "asset": "customer_link@1.2.0"
+        }
+      ]
+    },
+    "slack": {
+      "application": "slack",
+      "entities": {
+        "channels": {
+          "fields": [
+            "channel_type",
+            "created",
+            "creator_id",
+            "id",
+            "is_archived",
+            "is_channel",
+            "is_general",
+            "is_private",
+            "member_ids",
+            "name",
+            "purpose",
+            "topic"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "messages": {
+          "fields": [
+            "attachments",
+            "bot_icon",
+            "bot_name",
+            "channel_id",
+            "created_at",
+            "edited_at",
+            "id",
+            "is_bot",
+            "is_deleted",
+            "post_at",
+            "reactions",
+            "reply_count",
+            "scheduled_message_id",
+            "text",
+            "thread_ts",
+            "ts",
+            "user_id"
+          ],
+          "required": [
+            "channel_id",
+            "user_id",
+            "text"
+          ]
+        },
+        "users": {
+          "fields": [
+            "email",
+            "first_name",
+            "id",
+            "is_admin",
+            "is_bot",
+            "is_deleted",
+            "is_owner",
+            "last_name",
+            "name",
+            "phone",
+            "status_emoji",
+            "status_text",
+            "title",
+            "tz",
+            "tz_label",
+            "username"
+          ],
+          "required": [
+            "name"
+          ]
+        }
+      },
+      "record_requirements": {
+        "channels": {
+          "fields": [
+            "channel_type",
+            "created",
+            "creator_id",
+            "id",
+            "is_archived",
+            "is_channel",
+            "is_general",
+            "is_private",
+            "member_ids",
+            "name",
+            "purpose",
+            "topic"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "messages": {
+          "fields": [
+            "attachments",
+            "bot_icon",
+            "bot_name",
+            "channel_id",
+            "created_at",
+            "edited_at",
+            "id",
+            "is_bot",
+            "is_deleted",
+            "post_at",
+            "reactions",
+            "reply_count",
+            "scheduled_message_id",
+            "text",
+            "thread_ts",
+            "ts",
+            "user_id"
+          ],
+          "required": {
+            "channel_id": "string",
+            "text": "string",
+            "user_id": "string"
+          }
+        },
+        "users": {
+          "fields": [
+            "email",
+            "first_name",
+            "id",
+            "is_admin",
+            "is_bot",
+            "is_deleted",
+            "is_owner",
+            "last_name",
+            "name",
+            "phone",
+            "status_emoji",
+            "status_text",
+            "title",
+            "tz",
+            "tz_label",
+            "username"
+          ],
+          "required": {
+            "name": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_slack@1.0.0"
+        },
+        {
+          "asset": "bounded_contact_batch@1.0.0"
+        },
+        {
+          "asset": "bounded_contact_batch@1.0.1"
+        },
+        {
+          "asset": "customer_link@1.0.0"
+        },
+        {
+          "asset": "customer_link@1.0.1"
+        },
+        {
+          "asset": "customer_link@1.2.0"
+        },
+        {
+          "asset": "readable_policy_exception@1.0.0"
+        },
+        {
+          "asset": "readable_policy_exception@1.1.0"
+        }
+      ]
+    },
+    "trello": {
+      "application": "trello",
+      "entities": {},
+      "record_requirements": {},
+      "coverage_status": "weak-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_trello@1.0.0 (weak)"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0 (weak)"
+        }
+      ]
+    },
+    "twilio": {
+      "application": "twilio",
+      "entities": {
+        "calls": {
+          "fields": [
+            "account_sid",
+            "date_created",
+            "date_updated",
+            "direction",
+            "duration",
+            "end_time",
+            "from_number",
+            "message",
+            "price",
+            "price_unit",
+            "sid",
+            "start_time",
+            "status",
+            "to_number"
+          ],
+          "required": [
+            "from_number",
+            "to_number"
+          ]
+        },
+        "sms_messages": {
+          "fields": [
+            "account_sid",
+            "body",
+            "date_created",
+            "date_updated",
+            "direction",
+            "from_number",
+            "num_segments",
+            "price",
+            "price_unit",
+            "sid",
+            "status",
+            "to_number"
+          ],
+          "required": [
+            "from_number",
+            "to_number",
+            "body"
+          ]
+        },
+        "whatsapp_messages": {
+          "fields": [
+            "account_sid",
+            "body",
+            "date_created",
+            "date_updated",
+            "direction",
+            "from_number",
+            "num_segments",
+            "sid",
+            "status",
+            "to_number"
+          ],
+          "required": [
+            "from_number",
+            "to_number",
+            "body"
+          ]
+        }
+      },
+      "record_requirements": {
+        "calls": {
+          "fields": [
+            "account_sid",
+            "date_created",
+            "date_updated",
+            "direction",
+            "duration",
+            "end_time",
+            "from_number",
+            "message",
+            "price",
+            "price_unit",
+            "sid",
+            "start_time",
+            "status",
+            "to_number"
+          ],
+          "required": {
+            "from_number": "string",
+            "to_number": "string"
+          }
+        },
+        "sms_messages": {
+          "fields": [
+            "account_sid",
+            "body",
+            "date_created",
+            "date_updated",
+            "direction",
+            "from_number",
+            "num_segments",
+            "price",
+            "price_unit",
+            "sid",
+            "status",
+            "to_number"
+          ],
+          "required": {
+            "body": "string",
+            "from_number": "string",
+            "to_number": "string"
+          }
+        },
+        "whatsapp_messages": {
+          "fields": [
+            "account_sid",
+            "body",
+            "date_created",
+            "date_updated",
+            "direction",
+            "from_number",
+            "num_segments",
+            "sid",
+            "status",
+            "to_number"
+          ],
+          "required": {
+            "body": "string",
+            "from_number": "string",
+            "to_number": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_twilio@1.0.0"
+        },
+        {
+          "asset": "native_create_effect@1.0.0"
+        }
+      ]
+    },
+    "twitter": {
+      "application": "twitter",
+      "entities": {
+        "direct_messages": {
+          "fields": [
+            "conversation_id",
+            "created_at",
+            "id",
+            "read",
+            "recipient_id",
+            "sender_id",
+            "text"
+          ],
+          "required": [
+            "sender_id",
+            "recipient_id",
+            "text"
+          ]
+        },
+        "follows": {
+          "fields": [
+            "created_at",
+            "follower_id",
+            "follower_username",
+            "following_id",
+            "following_username",
+            "id"
+          ],
+          "required": [
+            "follower_id",
+            "following_id",
+            "follower_username",
+            "following_username"
+          ]
+        },
+        "likes": {
+          "fields": [
+            "created_at",
+            "id",
+            "tweet_id",
+            "user_id"
+          ],
+          "required": [
+            "user_id",
+            "tweet_id"
+          ]
+        },
+        "retweets": {
+          "fields": [
+            "created_at",
+            "id",
+            "original_tweet_id",
+            "user_id"
+          ],
+          "required": [
+            "user_id",
+            "original_tweet_id"
+          ]
+        },
+        "tweets": {
+          "fields": [
+            "author_id",
+            "bookmark_count",
+            "conversation_id",
+            "created_at",
+            "id",
+            "impression_count",
+            "in_reply_to_tweet_id",
+            "is_retweet",
+            "lang",
+            "like_count",
+            "possibly_sensitive",
+            "quote_count",
+            "reply_count",
+            "retweet_count",
+            "source",
+            "text"
+          ],
+          "required": [
+            "author_id",
+            "text"
+          ]
+        },
+        "users": {
+          "fields": [
+            "created_at",
+            "description",
+            "email",
+            "followers_count",
+            "following_count",
+            "id",
+            "name",
+            "suspended",
+            "tweet_count",
+            "username",
+            "verified"
+          ],
+          "required": [
+            "username"
+          ]
+        }
+      },
+      "record_requirements": {
+        "direct_messages": {
+          "fields": [
+            "conversation_id",
+            "created_at",
+            "id",
+            "read",
+            "recipient_id",
+            "sender_id",
+            "text"
+          ],
+          "required": {
+            "recipient_id": "string",
+            "sender_id": "string",
+            "text": "string"
+          }
+        },
+        "follows": {
+          "fields": [
+            "created_at",
+            "follower_id",
+            "follower_username",
+            "following_id",
+            "following_username",
+            "id"
+          ],
+          "required": {
+            "follower_id": "string",
+            "follower_username": "string",
+            "following_id": "string",
+            "following_username": "string"
+          }
+        },
+        "likes": {
+          "fields": [
+            "created_at",
+            "id",
+            "tweet_id",
+            "user_id"
+          ],
+          "required": {
+            "tweet_id": "string",
+            "user_id": "string"
+          }
+        },
+        "retweets": {
+          "fields": [
+            "created_at",
+            "id",
+            "original_tweet_id",
+            "user_id"
+          ],
+          "required": {
+            "original_tweet_id": "string",
+            "user_id": "string"
+          }
+        },
+        "tweets": {
+          "fields": [
+            "author_id",
+            "bookmark_count",
+            "conversation_id",
+            "created_at",
+            "id",
+            "impression_count",
+            "in_reply_to_tweet_id",
+            "is_retweet",
+            "lang",
+            "like_count",
+            "possibly_sensitive",
+            "quote_count",
+            "reply_count",
+            "retweet_count",
+            "source",
+            "text"
+          ],
+          "required": {
+            "author_id": "string",
+            "text": "string"
+          }
+        },
+        "users": {
+          "fields": [
+            "created_at",
+            "description",
+            "email",
+            "followers_count",
+            "following_count",
+            "id",
+            "name",
+            "suspended",
+            "tweet_count",
+            "username",
+            "verified"
+          ],
+          "required": {
+            "username": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_twitter@1.0.0"
+        },
+        {
+          "asset": "native_discovered_effect@1.0.0"
+        }
+      ]
+    },
+    "wave": {
+      "application": "wave",
+      "entities": {
+        "customers": {
+          "fields": [
+            "account_number",
+            "active",
+            "address1",
+            "address2",
+            "city",
+            "country",
+            "currency_code",
+            "date_created",
+            "date_modified",
+            "email",
+            "fax_number",
+            "first_name",
+            "id",
+            "last_name",
+            "mobile_number",
+            "name",
+            "phone_number",
+            "postal_code",
+            "province",
+            "toll_free_number",
+            "website"
+          ],
+          "required": []
+        },
+        "invoices": {
+          "fields": [
+            "business_id",
+            "currency_code",
+            "customer_id",
+            "date_created",
+            "date_modified",
+            "due_date",
+            "footer",
+            "id",
+            "invoice_amount_due",
+            "invoice_amount_paid",
+            "invoice_date",
+            "invoice_number",
+            "invoice_tax_total",
+            "invoice_total",
+            "items",
+            "memo",
+            "po_so_number",
+            "status",
+            "subhead"
+          ],
+          "required": []
+        },
+        "products": {
+          "fields": [
+            "business_id",
+            "created_at",
+            "description",
+            "expense_account",
+            "id",
+            "income_account",
+            "is_archived",
+            "is_bought",
+            "is_sold",
+            "modified_at",
+            "name",
+            "unit_price"
+          ],
+          "required": []
+        },
+        "sales": {
+          "fields": [
+            "business_id",
+            "created_at",
+            "deposit_account",
+            "description",
+            "external_id",
+            "id",
+            "income_category_account",
+            "modified_at",
+            "notes",
+            "number_format",
+            "processing_fee",
+            "sale_amount",
+            "sale_date",
+            "total_amount"
+          ],
+          "required": []
+        }
+      },
+      "record_requirements": {
+        "customers": {
+          "fields": [
+            "account_number",
+            "active",
+            "address1",
+            "address2",
+            "city",
+            "country",
+            "currency_code",
+            "date_created",
+            "date_modified",
+            "email",
+            "fax_number",
+            "first_name",
+            "id",
+            "last_name",
+            "mobile_number",
+            "name",
+            "phone_number",
+            "postal_code",
+            "province",
+            "toll_free_number",
+            "website"
+          ],
+          "required": {}
+        },
+        "invoices": {
+          "fields": [
+            "business_id",
+            "currency_code",
+            "customer_id",
+            "date_created",
+            "date_modified",
+            "due_date",
+            "footer",
+            "id",
+            "invoice_amount_due",
+            "invoice_amount_paid",
+            "invoice_date",
+            "invoice_number",
+            "invoice_tax_total",
+            "invoice_total",
+            "items",
+            "memo",
+            "po_so_number",
+            "status",
+            "subhead"
+          ],
+          "required": {}
+        },
+        "products": {
+          "fields": [
+            "business_id",
+            "created_at",
+            "description",
+            "expense_account",
+            "id",
+            "income_account",
+            "is_archived",
+            "is_bought",
+            "is_sold",
+            "modified_at",
+            "name",
+            "unit_price"
+          ],
+          "required": {}
+        },
+        "sales": {
+          "fields": [
+            "business_id",
+            "created_at",
+            "deposit_account",
+            "description",
+            "external_id",
+            "id",
+            "income_category_account",
+            "modified_at",
+            "notes",
+            "number_format",
+            "processing_fee",
+            "sale_amount",
+            "sale_date",
+            "total_amount"
+          ],
+          "required": {}
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_wave@1.0.0 (weak)"
+        }
+      ]
+    },
+    "xero": {
+      "application": "xero",
+      "entities": {
+        "accounts": {
+          "fields": [
+            "account_id",
+            "code",
+            "currency_code",
+            "description",
+            "name",
+            "status",
+            "tax_type",
+            "type",
+            "updated_date"
+          ],
+          "required": []
+        },
+        "bank_transactions": {
+          "fields": [
+            "bank_account_id",
+            "bank_account_name",
+            "bank_transaction_id",
+            "contact_id",
+            "contact_name",
+            "currency_code",
+            "date",
+            "is_reconciled",
+            "line_amount",
+            "line_description",
+            "reference",
+            "status",
+            "total",
+            "type",
+            "updated_date"
+          ],
+          "required": []
+        },
+        "bank_transfers": {
+          "fields": [
+            "amount",
+            "bank_transfer_id",
+            "date",
+            "from_bank_account_code",
+            "from_bank_account_id",
+            "status",
+            "to_bank_account_code",
+            "to_bank_account_id",
+            "updated_date"
+          ],
+          "required": []
+        },
+        "bills": {
+          "fields": [
+            "amount_due",
+            "contact_id",
+            "contact_name",
+            "currency_code",
+            "date",
+            "due_date",
+            "invoice_id",
+            "invoice_number",
+            "line_account_code",
+            "line_amount_types",
+            "line_description",
+            "line_quantity",
+            "line_unit_amount",
+            "status",
+            "sub_total",
+            "total",
+            "total_tax",
+            "type",
+            "updated_date"
+          ],
+          "required": []
+        },
+        "contacts": {
+          "fields": [
+            "account_number",
+            "address_city",
+            "address_country",
+            "address_line1",
+            "address_postal_code",
+            "address_region",
+            "company_number",
+            "contact_id",
+            "contact_number",
+            "contact_status",
+            "email_address",
+            "first_name",
+            "is_customer",
+            "is_supplier",
+            "last_name",
+            "name",
+            "phone",
+            "tax_number",
+            "updated_date"
+          ],
+          "required": []
+        },
+        "credit_notes": {
+          "fields": [
+            "contact_id",
+            "contact_name",
+            "credit_note_id",
+            "credit_note_number",
+            "currency_code",
+            "date",
+            "remaining_credit",
+            "status",
+            "total",
+            "type",
+            "updated_date"
+          ],
+          "required": []
+        },
+        "employees": {
+          "fields": [
+            "date_of_birth",
+            "email",
+            "employee_id",
+            "first_name",
+            "gender",
+            "job_title",
+            "last_name",
+            "middle_names",
+            "mobile",
+            "phone",
+            "status",
+            "title",
+            "updated_date"
+          ],
+          "required": []
+        },
+        "invoices": {
+          "fields": [
+            "amount_due",
+            "amount_paid",
+            "contact_id",
+            "contact_name",
+            "currency_code",
+            "date",
+            "due_date",
+            "invoice_id",
+            "invoice_number",
+            "line_account_code",
+            "line_amount_types",
+            "line_description",
+            "line_item_code",
+            "line_quantity",
+            "line_tax_type",
+            "line_unit_amount",
+            "reference",
+            "sent_to_contact",
+            "status",
+            "sub_total",
+            "total",
+            "total_tax",
+            "type",
+            "updated_date",
+            "url"
+          ],
+          "required": []
+        },
+        "items": {
+          "fields": [
+            "code",
+            "description",
+            "is_purchased",
+            "is_sold",
+            "is_tracked_as_inventory",
+            "item_id",
+            "name",
+            "purchase_account_code",
+            "purchase_description",
+            "purchase_unit_price",
+            "quantity_on_hand",
+            "sales_account_code",
+            "sales_unit_price",
+            "total_cost_pool",
+            "updated_date"
+          ],
+          "required": []
+        },
+        "payments": {
+          "fields": [
+            "account_id",
+            "account_name",
+            "amount",
+            "currency_code",
+            "date",
+            "invoice_id",
+            "invoice_number",
+            "is_reconciled",
+            "payment_id",
+            "payment_type",
+            "reference",
+            "status",
+            "updated_date"
+          ],
+          "required": []
+        },
+        "purchase_orders": {
+          "fields": [
+            "contact_id",
+            "contact_name",
+            "currency_code",
+            "date",
+            "delivery_date",
+            "purchase_order_id",
+            "purchase_order_number",
+            "reference",
+            "status",
+            "total",
+            "updated_date"
+          ],
+          "required": []
+        },
+        "quotes": {
+          "fields": [
+            "contact_id",
+            "contact_name",
+            "currency_code",
+            "date",
+            "expiry_date",
+            "quote_id",
+            "quote_number",
+            "reference",
+            "status",
+            "summary",
+            "terms",
+            "title",
+            "total",
+            "updated_date"
+          ],
+          "required": []
+        }
+      },
+      "record_requirements": {
+        "accounts": {
+          "fields": [
+            "account_id",
+            "code",
+            "currency_code",
+            "description",
+            "name",
+            "status",
+            "tax_type",
+            "type",
+            "updated_date"
+          ],
+          "required": {}
+        },
+        "bank_transactions": {
+          "fields": [
+            "bank_account_id",
+            "bank_account_name",
+            "bank_transaction_id",
+            "contact_id",
+            "contact_name",
+            "currency_code",
+            "date",
+            "is_reconciled",
+            "line_amount",
+            "line_description",
+            "reference",
+            "status",
+            "total",
+            "type",
+            "updated_date"
+          ],
+          "required": {}
+        },
+        "bank_transfers": {
+          "fields": [
+            "amount",
+            "bank_transfer_id",
+            "date",
+            "from_bank_account_code",
+            "from_bank_account_id",
+            "status",
+            "to_bank_account_code",
+            "to_bank_account_id",
+            "updated_date"
+          ],
+          "required": {}
+        },
+        "bills": {
+          "fields": [
+            "amount_due",
+            "contact_id",
+            "contact_name",
+            "currency_code",
+            "date",
+            "due_date",
+            "invoice_id",
+            "invoice_number",
+            "line_account_code",
+            "line_amount_types",
+            "line_description",
+            "line_quantity",
+            "line_unit_amount",
+            "status",
+            "sub_total",
+            "total",
+            "total_tax",
+            "type",
+            "updated_date"
+          ],
+          "required": {}
+        },
+        "contacts": {
+          "fields": [
+            "account_number",
+            "address_city",
+            "address_country",
+            "address_line1",
+            "address_postal_code",
+            "address_region",
+            "company_number",
+            "contact_id",
+            "contact_number",
+            "contact_status",
+            "email_address",
+            "first_name",
+            "is_customer",
+            "is_supplier",
+            "last_name",
+            "name",
+            "phone",
+            "tax_number",
+            "updated_date"
+          ],
+          "required": {}
+        },
+        "credit_notes": {
+          "fields": [
+            "contact_id",
+            "contact_name",
+            "credit_note_id",
+            "credit_note_number",
+            "currency_code",
+            "date",
+            "remaining_credit",
+            "status",
+            "total",
+            "type",
+            "updated_date"
+          ],
+          "required": {}
+        },
+        "employees": {
+          "fields": [
+            "date_of_birth",
+            "email",
+            "employee_id",
+            "first_name",
+            "gender",
+            "job_title",
+            "last_name",
+            "middle_names",
+            "mobile",
+            "phone",
+            "status",
+            "title",
+            "updated_date"
+          ],
+          "required": {}
+        },
+        "invoices": {
+          "fields": [
+            "amount_due",
+            "amount_paid",
+            "contact_id",
+            "contact_name",
+            "currency_code",
+            "date",
+            "due_date",
+            "invoice_id",
+            "invoice_number",
+            "line_account_code",
+            "line_amount_types",
+            "line_description",
+            "line_item_code",
+            "line_quantity",
+            "line_tax_type",
+            "line_unit_amount",
+            "reference",
+            "sent_to_contact",
+            "status",
+            "sub_total",
+            "total",
+            "total_tax",
+            "type",
+            "updated_date",
+            "url"
+          ],
+          "required": {}
+        },
+        "items": {
+          "fields": [
+            "code",
+            "description",
+            "is_purchased",
+            "is_sold",
+            "is_tracked_as_inventory",
+            "item_id",
+            "name",
+            "purchase_account_code",
+            "purchase_description",
+            "purchase_unit_price",
+            "quantity_on_hand",
+            "sales_account_code",
+            "sales_unit_price",
+            "total_cost_pool",
+            "updated_date"
+          ],
+          "required": {}
+        },
+        "payments": {
+          "fields": [
+            "account_id",
+            "account_name",
+            "amount",
+            "currency_code",
+            "date",
+            "invoice_id",
+            "invoice_number",
+            "is_reconciled",
+            "payment_id",
+            "payment_type",
+            "reference",
+            "status",
+            "updated_date"
+          ],
+          "required": {}
+        },
+        "purchase_orders": {
+          "fields": [
+            "contact_id",
+            "contact_name",
+            "currency_code",
+            "date",
+            "delivery_date",
+            "purchase_order_id",
+            "purchase_order_number",
+            "reference",
+            "status",
+            "total",
+            "updated_date"
+          ],
+          "required": {}
+        },
+        "quotes": {
+          "fields": [
+            "contact_id",
+            "contact_name",
+            "currency_code",
+            "date",
+            "expiry_date",
+            "quote_id",
+            "quote_number",
+            "reference",
+            "status",
+            "summary",
+            "terms",
+            "title",
+            "total",
+            "updated_date"
+          ],
+          "required": {}
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_xero@1.0.0"
+        },
+        {
+          "asset": "customer_link@1.2.0"
+        },
+        {
+          "asset": "native_field_state@1.0.0"
+        },
+        {
+          "asset": "reconciliation_adjustment@1.0.0"
+        }
+      ]
+    },
+    "zendesk": {
+      "application": "zendesk",
+      "entities": {
+        "groups": {
+          "fields": [
+            "created_at",
+            "description",
+            "id",
+            "name",
+            "updated_at"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "organizations": {
+          "fields": [
+            "created_at",
+            "details",
+            "domain_names",
+            "external_id",
+            "group_id",
+            "id",
+            "name",
+            "notes",
+            "shared_comments",
+            "shared_tickets",
+            "tags",
+            "updated_at"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "tickets": {
+          "fields": [
+            "assignee_id",
+            "channel",
+            "comments",
+            "created_at",
+            "description",
+            "external_id",
+            "group_id",
+            "id",
+            "organization_id",
+            "priority",
+            "requester_id",
+            "status",
+            "subject",
+            "tags",
+            "ticket_type",
+            "updated_at"
+          ],
+          "required": [
+            "subject"
+          ]
+        },
+        "users": {
+          "fields": [
+            "created_at",
+            "details",
+            "email",
+            "external_id",
+            "id",
+            "name",
+            "notes",
+            "organization_id",
+            "phone",
+            "role",
+            "tags",
+            "updated_at",
+            "verified"
+          ],
+          "required": [
+            "name"
+          ]
+        }
+      },
+      "record_requirements": {
+        "groups": {
+          "fields": [
+            "created_at",
+            "description",
+            "id",
+            "name",
+            "updated_at"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "organizations": {
+          "fields": [
+            "created_at",
+            "details",
+            "domain_names",
+            "external_id",
+            "group_id",
+            "id",
+            "name",
+            "notes",
+            "shared_comments",
+            "shared_tickets",
+            "tags",
+            "updated_at"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "tickets": {
+          "fields": [
+            "assignee_id",
+            "channel",
+            "comments",
+            "created_at",
+            "description",
+            "external_id",
+            "group_id",
+            "id",
+            "organization_id",
+            "priority",
+            "requester_id",
+            "status",
+            "subject",
+            "tags",
+            "ticket_type",
+            "updated_at"
+          ],
+          "required": {
+            "subject": "string"
+          }
+        },
+        "users": {
+          "fields": [
+            "created_at",
+            "details",
+            "email",
+            "external_id",
+            "id",
+            "name",
+            "notes",
+            "organization_id",
+            "phone",
+            "role",
+            "tags",
+            "updated_at",
+            "verified"
+          ],
+          "required": {
+            "name": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_zendesk@1.0.0"
+        },
+        {
+          "asset": "audit_archive_state@1.0.0"
+        },
+        {
+          "asset": "customer_link@1.2.0"
+        },
+        {
+          "asset": "native_append_effect@1.0.0"
+        },
+        {
+          "asset": "queue_handoff_state@1.0.0"
+        }
+      ]
+    },
+    "zoho_desk": {
+      "application": "zoho_desk",
+      "entities": {
+        "accounts": {
+          "fields": [
+            "account_name",
+            "created_at",
+            "description",
+            "domain",
+            "id",
+            "industry",
+            "phone",
+            "seats",
+            "updated_at",
+            "website"
+          ],
+          "required": [
+            "account_name"
+          ]
+        },
+        "contacts": {
+          "fields": [
+            "account_id",
+            "created_at",
+            "description",
+            "email",
+            "first_name",
+            "id",
+            "last_name",
+            "mobile",
+            "phone",
+            "updated_at"
+          ],
+          "required": []
+        },
+        "departments": {
+          "fields": [
+            "created_at",
+            "description",
+            "id",
+            "name"
+          ],
+          "required": [
+            "name"
+          ]
+        },
+        "tickets": {
+          "fields": [
+            "account_id",
+            "assignee_id",
+            "category",
+            "channel",
+            "classification",
+            "comments",
+            "contact_id",
+            "created_at",
+            "department_id",
+            "description",
+            "id",
+            "priority",
+            "status",
+            "subject",
+            "tags",
+            "team_id",
+            "updated_at"
+          ],
+          "required": [
+            "subject"
+          ]
+        }
+      },
+      "record_requirements": {
+        "accounts": {
+          "fields": [
+            "account_name",
+            "created_at",
+            "description",
+            "domain",
+            "id",
+            "industry",
+            "phone",
+            "seats",
+            "updated_at",
+            "website"
+          ],
+          "required": {
+            "account_name": "string"
+          }
+        },
+        "contacts": {
+          "fields": [
+            "account_id",
+            "created_at",
+            "description",
+            "email",
+            "first_name",
+            "id",
+            "last_name",
+            "mobile",
+            "phone",
+            "updated_at"
+          ],
+          "required": {}
+        },
+        "departments": {
+          "fields": [
+            "created_at",
+            "description",
+            "id",
+            "name"
+          ],
+          "required": {
+            "name": "string"
+          }
+        },
+        "tickets": {
+          "fields": [
+            "account_id",
+            "assignee_id",
+            "category",
+            "channel",
+            "classification",
+            "comments",
+            "contact_id",
+            "created_at",
+            "department_id",
+            "description",
+            "id",
+            "priority",
+            "status",
+            "subject",
+            "tags",
+            "team_id",
+            "updated_at"
+          ],
+          "required": {
+            "subject": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_zoho_desk@1.0.0"
+        },
+        {
+          "asset": "approval_decision_state@1.0.0"
+        },
+        {
+          "asset": "native_append_effect@1.0.0"
+        },
+        {
+          "asset": "native_create_effect@1.0.0"
+        }
+      ]
+    },
+    "zoom": {
+      "application": "zoom",
+      "entities": {
+        "meetings": {
+          "fields": [
+            "agenda",
+            "approval_type",
+            "duration",
+            "host_email",
+            "host_id",
+            "id",
+            "join_url",
+            "passcode",
+            "password",
+            "recording_url",
+            "registration_required",
+            "scheduled_duration",
+            "settings_waiting_room",
+            "start_time",
+            "status",
+            "summary",
+            "timezone",
+            "topic",
+            "type",
+            "uuid"
+          ],
+          "required": [
+            "topic"
+          ]
+        },
+        "participants": {
+          "fields": [
+            "duration",
+            "join_time",
+            "leave_time",
+            "meeting_id",
+            "user_email",
+            "user_id",
+            "user_name"
+          ],
+          "required": [
+            "meeting_id",
+            "user_email"
+          ]
+        },
+        "recordings": {
+          "fields": [
+            "download_url",
+            "file_type",
+            "id",
+            "meeting_id",
+            "recording_start",
+            "recording_type",
+            "recording_url",
+            "share_url",
+            "status",
+            "topic"
+          ],
+          "required": [
+            "id"
+          ]
+        },
+        "registrants": {
+          "fields": [
+            "attendance_duration",
+            "attended",
+            "auto_approved",
+            "company",
+            "email",
+            "first_name",
+            "id",
+            "join_url",
+            "language",
+            "last_name",
+            "materials_downloaded",
+            "meeting_id",
+            "notes",
+            "polls_responded",
+            "questions_asked",
+            "registered_at",
+            "status",
+            "timezone"
+          ],
+          "required": [
+            "meeting_id",
+            "email"
+          ]
+        },
+        "webinars": {
+          "fields": [
+            "agenda",
+            "approval_type",
+            "duration",
+            "host_email",
+            "host_id",
+            "id",
+            "join_url",
+            "passcode",
+            "password",
+            "recording_url",
+            "registration_required",
+            "scheduled_duration",
+            "settings_waiting_room",
+            "start_time",
+            "status",
+            "summary",
+            "timezone",
+            "topic",
+            "type",
+            "uuid"
+          ],
+          "required": [
+            "topic"
+          ]
+        }
+      },
+      "record_requirements": {
+        "meetings": {
+          "fields": [
+            "agenda",
+            "approval_type",
+            "duration",
+            "host_email",
+            "host_id",
+            "id",
+            "join_url",
+            "passcode",
+            "password",
+            "recording_url",
+            "registration_required",
+            "scheduled_duration",
+            "settings_waiting_room",
+            "start_time",
+            "status",
+            "summary",
+            "timezone",
+            "topic",
+            "type",
+            "uuid"
+          ],
+          "required": {
+            "topic": "string"
+          }
+        },
+        "participants": {
+          "fields": [
+            "duration",
+            "join_time",
+            "leave_time",
+            "meeting_id",
+            "user_email",
+            "user_id",
+            "user_name"
+          ],
+          "required": {
+            "meeting_id": "string",
+            "user_email": "string"
+          }
+        },
+        "recordings": {
+          "fields": [
+            "download_url",
+            "file_type",
+            "id",
+            "meeting_id",
+            "recording_start",
+            "recording_type",
+            "recording_url",
+            "share_url",
+            "status",
+            "topic"
+          ],
+          "required": {
+            "id": "string"
+          }
+        },
+        "registrants": {
+          "fields": [
+            "attendance_duration",
+            "attended",
+            "auto_approved",
+            "company",
+            "email",
+            "first_name",
+            "id",
+            "join_url",
+            "language",
+            "last_name",
+            "materials_downloaded",
+            "meeting_id",
+            "notes",
+            "polls_responded",
+            "questions_asked",
+            "registered_at",
+            "status",
+            "timezone"
+          ],
+          "required": {
+            "email": "string",
+            "meeting_id": "string"
+          }
+        },
+        "webinars": {
+          "fields": [
+            "agenda",
+            "approval_type",
+            "duration",
+            "host_email",
+            "host_id",
+            "id",
+            "join_url",
+            "passcode",
+            "password",
+            "recording_url",
+            "registration_required",
+            "scheduled_duration",
+            "settings_waiting_room",
+            "start_time",
+            "status",
+            "summary",
+            "timezone",
+            "topic",
+            "type",
+            "uuid"
+          ],
+          "required": {
+            "topic": "string"
+          }
+        }
+      },
+      "coverage_status": "strong-covered",
+      "our_asset_bindings": [
+        {
+          "asset": "app_zoom@1.0.0"
+        },
+        {
+          "asset": "native_field_state@1.0.0"
+        }
+      ]
+    }
+  }
+}

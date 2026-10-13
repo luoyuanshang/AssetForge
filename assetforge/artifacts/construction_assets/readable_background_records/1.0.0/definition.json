@@ -30,7 +30,7 @@
  ],
  "id": "readable_background_records",
  "implementation": "assetforge/pipeline/construction_background_asset.py",
- "independent_review_required": true,
+ "model_review_required": true,
  "lifecycle": "candidate",
  "matrix_adapters": [
   "hiver.conversations",

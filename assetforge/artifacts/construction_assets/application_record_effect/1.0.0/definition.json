@@ -31,7 +31,7 @@
  ],
  "id": "application_record_effect",
  "implementation": "assetforge/pipeline/construction_record_effect_asset.py",
- "independent_review_required": true,
+ "model_review_required": true,
  "lifecycle": "candidate",
  "matrix_adapters": [
   "gmail",

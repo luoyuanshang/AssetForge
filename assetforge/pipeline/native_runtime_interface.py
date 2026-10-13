@@ -80,6 +80,7 @@ def _ensure_importable() -> None:
 
 def _import(module: str):
     _ensure_importable()
+    module = runtime_package() + "." + module
     try:
         return __import__(module, fromlist=["_"])
     except ImportError as exc:
@@ -93,6 +94,16 @@ def world_state_type():
 
 def assertion_handlers() -> set[str]:
     """Names of the assertions the runtime registers as available."""
+    if not is_available():
+        import json
+        root = Path(__file__).resolve().parents[2]
+        catalog = json.loads((root / "assetforge/artifacts/construction_catalog.json").read_text())
+        names = set()
+        for entry in catalog["assets"]:
+            definition = json.loads((root / entry["definition"]["path"]).read_text())
+            names.update(definition.get("assertion_types", []))
+            names.update(definition.get("application_scoring_evidence", {}).values())
+        return names
     registry = _import("rubric.registry").AssertionRegistry
     return set(registry._handlers)
 

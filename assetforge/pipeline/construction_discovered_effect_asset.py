@@ -74,15 +74,15 @@ ADAPTERS = {
         "body": {'call_to_action': {'body': '{business_value}', 'email': 'native-business-value@example.org', 'id': 'native-1', 'name': '{business_value}', 'value': '{business_value}'}, 'feed_targeting': {'body': '{business_value}', 'email': 'native-business-value@example.org', 'id': 'native-1', 'name': '{business_value}', 'value': '{business_value}'}, 'link': '{business_value}', 'message': '{business_value}', 'place': '{business_value}', 'published': True, 'scheduled_publish_time': 1, 'tags': '{business_value}', 'targeting': {'body': '{business_value}', 'email': 'native-business-value@example.org', 'id': 'native-1', 'name': '{business_value}', 'value': '{business_value}'}},
         "assertion": {'body_contains': '{business_value}', 'commentary_contains': '{business_value}', 'message_contains': '{business_value}', 'name_contains': '{business_value}', 'prompt_contains': '{business_value}', 'response_contains': '{business_value}', 'subject_contains': '{business_value}', 'summary_contains': '{business_value}', 'text_contains': '{business_value}', 'title_contains': '{business_value}', 'type': 'facebook_page_post_exists', 'value_contains': '{business_value}'},
     },
-    'ads_app': {
-        'seed': {'ads_app': {'campaigns': [{'id': 'native-1', 'name': 'native business value',
+    'google_ads': {
+        'seed': {'google_ads': {'campaigns': [{'id': 'native-1', 'name': 'native business value',
                                                'account_id': 'native-1', 'status': 'PAUSED'}]}},
         "weak": False,
         "method": 'POST',
         "url": 'https://googleads.googleapis.com/v19/customers/native-1/campaigns:mutate',
         "body": {'operations': [{'update': {'id': 'native-1', 'status': 'ENABLED'}}],
                  'campaign_id': 'native-1'},
-        "assertion": {'type': 'ads_app_campaign_status', 'campaign_name': '{business_value}',
+        "assertion": {'type': 'google_ads_campaign_status', 'campaign_name': '{business_value}',
                       'status': 'ENABLED'},
     },
     'linkedin_conversions': {
@@ -168,12 +168,12 @@ ADAPTERS = {
         "body": {'desc': '{business_value}', 'due': '{business_value}', 'idBoard': '{business_value}', 'idList': '{business_value}', 'name': '{business_value}', 'pos': '{business_value}'},
         "assertion": {'action_key': 'card', 'type': 'trello_action_exists'},
     },
-    'social_app': {
+    'twitter': {
         "weak": False,
         "method": 'POST',
-        "url": 'https://api.social_app.com/2/tweets',
+        "url": 'https://api.twitter.com/2/tweets',
         "body": {'reply': {'body': '{business_value}', 'name': '{business_value}', 'value': '{business_value}'}, 'text': '{business_value}'},
-        "assertion": {'text_contains': '{business_value}', 'type': 'social_app_tweet_posted'},
+        "assertion": {'text_contains': '{business_value}', 'type': 'twitter_tweet_posted'},
     },
 }
 

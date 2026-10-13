@@ -12,14 +12,14 @@ from .construction_assets import exact, record_id, require, text
 from .construction_discovered_effect_asset import ADAPTERS as LEGACY_ADAPTERS
 
 ADAPTERS = copy.deepcopy(LEGACY_ADAPTERS)
-ADAPTERS['ads_app'] = {
-    'seed': {'ads_app': {'campaigns': [{'id': '{id}', 'name': '{business_value}',
+ADAPTERS['google_ads'] = {
+    'seed': {'google_ads': {'campaigns': [{'id': '{id}', 'name': '{business_value}',
                                           'account_id': '{id}', 'status': 'PAUSED'}]}},
     'weak': False, 'method': 'POST',
     'url': 'https://googleads.googleapis.com/v19/customers/{id}/campaigns:mutate',
     'body': {'operations': [{'update': {'id': '{id}', 'status': 'ENABLED'}}],
              'campaign_id': '{id}'},
-    'assertion': {'type': 'ads_app_campaign_status', 'campaign_id': '{id}',
+    'assertion': {'type': 'google_ads_campaign_status', 'campaign_id': '{id}',
                   'status': 'ENABLED'},
     'reads': [{'method': 'POST',
                'url': 'https://googleads.googleapis.com/v19/customers/{id}/googleAds:search',
@@ -56,7 +56,7 @@ _BODIES = {
     'pipefy': {'pipe_id': '{id}', 'fields_attributes': [{'field_id': '{id}', 'value': '{business_value}'}]},
     'recruitee': {'title': '{business_value}'},
     'trello': {'name': '{business_value}'},
-    'social_app': {'text': '{business_value}'},
+    'twitter': {'text': '{business_value}'},
 }
 for _app, _body in _BODIES.items():
     ADAPTERS[_app]['body'] = _body
@@ -122,7 +122,7 @@ def native_discovered_effect(params, context, alias):
         action['body'].update(copy.deepcopy(extra))
     entity = {'adapter': app, 'logical_reference': alias + '.effect',
               'identity_kind': 'unresolved_creation_output', 'record': {}}
-    if app == 'ads_app':
+    if app == 'google_ads':
         entity.update(id=rid, identity_kind='seeded_native', collection=[app, 'campaigns'],
                       record=copy.deepcopy(world[app]['campaigns'][0]))
     return {'world': world,
@@ -131,6 +131,6 @@ def native_discovered_effect(params, context, alias):
             'writes': [{'entity': alias + '.effect', 'field': assertion['type'], 'value': value}],
             'protected_fields': [], 'assertions': [assertion],
             'capability_semantics': {'output_identity': entity['identity_kind'],
-                'subsequent_id_consumption_supported': app == 'ads_app'},
+                'subsequent_id_consumption_supported': app == 'google_ads'},
             'obligations': (['weak_action_effect', 'native_route_effect'] if spec['weak']
                             else ['scored_creation_effect', 'native_route_effect'])}

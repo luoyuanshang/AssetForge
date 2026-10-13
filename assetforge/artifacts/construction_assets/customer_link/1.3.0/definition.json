@@ -28,7 +28,7 @@
  ],
  "id": "customer_link",
  "implementation": "assetforge/pipeline/construction_identity_policy_v2.py",
- "independent_review_required": true,
+ "model_review_required": true,
  "lifecycle": "candidate",
  "matrix_adapters": [
   "freshdesk_contacts",

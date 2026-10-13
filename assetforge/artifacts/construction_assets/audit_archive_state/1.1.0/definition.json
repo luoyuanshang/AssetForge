@@ -46,7 +46,7 @@
  ],
  "id": "audit_archive_state",
  "implementation": "assetforge/pipeline/construction_business_extensions_v2.py",
- "independent_review_required": true,
+ "model_review_required": true,
  "lifecycle": "candidate",
  "matrix_adapters": [
   "zendesk",

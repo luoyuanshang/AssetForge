@@ -34,7 +34,7 @@
  ],
  "id": "reconciliation_adjustment",
  "implementation": "assetforge/pipeline/construction_business_extensions_v2.py",
- "independent_review_required": true,
+ "model_review_required": true,
  "lifecycle": "candidate",
  "matrix_adapters": [
   "xero",

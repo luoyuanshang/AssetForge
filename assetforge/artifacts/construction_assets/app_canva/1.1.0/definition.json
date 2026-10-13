@@ -17,7 +17,7 @@
  ],
  "id": "app_canva",
  "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
- "independent_review_required": true,
+ "model_review_required": true,
  "lifecycle": "candidate",
  "matrix_adapters": [
   "canva"

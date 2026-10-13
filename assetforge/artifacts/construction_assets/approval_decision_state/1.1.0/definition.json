@@ -35,7 +35,7 @@
  ],
  "id": "approval_decision_state",
  "implementation": "assetforge/pipeline/construction_support_workflows_v2.py",
- "independent_review_required": true,
+ "model_review_required": true,
  "lifecycle": "candidate",
  "matrix_adapters": [
   "helpscout",

@@ -24,7 +24,7 @@
  ],
  "id": "app_hiver",
  "implementation": "assetforge/pipeline/construction_app_asset_v2.py",
- "independent_review_required": true,
+ "model_review_required": true,
  "lifecycle": "candidate",
  "matrix_adapters": [
   "hiver.shared_mailboxes",

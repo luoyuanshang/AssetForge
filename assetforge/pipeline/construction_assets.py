@@ -30,8 +30,20 @@ def digest(value):
     return hashlib.sha256(canonical(value).encode()).hexdigest()
 
 
-def require(test, message):
+class AssetContractError(ValueError):
+    """A parameter error with exact field and value evidence."""
+
+    def __init__(self, message, *, pointer, expected, actual):
+        super().__init__(message)
+        self.pointer = pointer
+        self.expected = expected
+        self.actual = actual
+
+
+def require(test, message, *, pointer=None, expected=None, actual=None):
     if not test:
+        if pointer is not None:
+            raise AssetContractError(message, pointer=pointer, expected=expected, actual=actual)
         raise ValueError(message)
 
 
@@ -227,69 +239,36 @@ BUILDERS = {'customer_link': linking, 'readable_policy_exception': policy, 'boun
 # Version-aware builder table.  Frozen 1.0.x entries are absent on purpose so `_version_builder`
 # falls back to BUILDERS for them and their behaviour cannot drift; newer admitted versions point at
 # their own module (the asset descriptions, not this table, decide what each version offers).
-VERSION_BUILDERS = {
-    ('native_create_effect', '1.2.0'):
-        ('assetforge.pipeline.construction_create_effect_asset_v3', 'native_create_effect'),
-    ('app_linkedin', '1.2.0'):
-        ('assetforge.pipeline.construction_create_effect_asset_v3', 'native_create_effect'),
-    ('customer_link', '1.3.0'):
-        ('assetforge.pipeline.construction_identity_policy_v2', 'linking_extended'),
-    ('bounded_contact_batch', '1.1.0'):
-        ('assetforge.pipeline.construction_identity_policy_v2', 'bounded_batch'),
-    ('readable_policy_exception', '1.2.0'):
-        ('assetforge.pipeline.construction_identity_policy_v2', 'policy_with_carriers'),
-    ('audit_archive_state', '1.1.0'):
-        ('assetforge.pipeline.construction_business_extensions_v2', 'audit_archive_state'),
-    ('reconciliation_adjustment', '1.1.0'):
-        ('assetforge.pipeline.construction_business_extensions_v2', 'reconciliation_adjustment'),
-    ('native_field_state', '1.1.0'):
-        ('assetforge.pipeline.construction_field_state_asset_v2', 'native_field_state'),
-    ('native_create_effect', '1.1.0'):
-        ('assetforge.pipeline.construction_create_effect_asset_v2', 'native_create_effect'),
-    ('native_discovered_effect', '1.1.0'):
-        ('assetforge.pipeline.construction_discovered_effect_asset_v2', 'native_discovered_effect'),
-    ('native_append_effect', '1.1.0'):
-        ('assetforge.pipeline.construction_append_effect_asset_v2', 'native_append_effect'),
-    ('approval_decision_state', '1.1.0'):
-        ('assetforge.pipeline.construction_support_workflows_v2', 'approval_decision_state'),
-    ('queue_handoff_state', '1.1.0'):
-        ('assetforge.pipeline.construction_support_workflows_v2', 'queue_handoff_state'),
-    ('application_record_effect', '1.0.0'):
-        ('assetforge.pipeline.construction_record_effect_asset', 'record_effect'),
-    ('readable_background_records', '1.0.0'):
-        ('assetforge.pipeline.construction_background_asset', 'background_state'),
-    ('readable_policy_exception', '1.1.0'):
-        ('assetforge.pipeline.construction_policy_carriers', 'policy_with_carriers'),
-    ('customer_link', '1.2.0'):
-        ('assetforge.pipeline.construction_linking_adapters', 'linking_extended'),
-    ('native_field_state', '1.0.0'):
-        ('assetforge.pipeline.construction_field_state_asset', 'native_field_state'),
-    ('native_create_effect', '1.0.0'):
-        ('assetforge.pipeline.construction_create_effect_asset', 'native_create_effect'),
-    ('native_append_effect', '1.0.0'):
-        ('assetforge.pipeline.construction_append_effect_asset', 'native_append_effect'),
-    ('native_discovered_effect', '1.0.0'):
-        ('assetforge.pipeline.construction_discovered_effect_asset', 'native_discovered_effect'),
-    ('approval_decision_state', '1.0.0'):
-        ('assetforge.pipeline.construction_approval_decision_asset', 'approval_decision_state'),
-    ('reconciliation_adjustment', '1.0.0'):
-        ('assetforge.pipeline.construction_reconciliation_adjustment_asset', 'reconciliation_adjustment'),
-    ('queue_handoff_state', '1.0.0'):
-        ('assetforge.pipeline.construction_queue_handoff_asset', 'queue_handoff_state'),
-    ('audit_archive_state', '1.0.0'):
-        ('assetforge.pipeline.construction_audit_archive_asset', 'audit_archive_state'),
-    ('sheet_row_state', '1.0.0'):
-        ('assetforge.pipeline.construction_sheet_row_asset', 'sheet_row_state'),
-    # 1.0.1 revisions are the opt-in schema-checked constructors.  They were catalogued as
-    # "declared by construction_checked_assets.py" while the version-aware constructor still
-    # dispatched them to the frozen 1.0.0 builders, so the declared increment was never reachable.
-    # They are wired here so that "declared implementation" and "actually imported implementation"
-    # are the same module.
-    ('customer_link', '1.0.1'):
-        ('assetforge.pipeline.construction_checked_assets', 'linking'),
-    ('bounded_contact_batch', '1.0.1'):
-        ('assetforge.pipeline.construction_checked_assets', 'bounded_batch'),
-}
+VERSION_BUILDERS = {('app_linkedin', '1.2.0'): ('assetforge.pipeline.construction_create_effect_asset_v3',
+                             'native_create_effect'),
+ ('application_record_effect', '1.0.0'): ('assetforge.pipeline.construction_record_effect_asset',
+                                          'record_effect'),
+ ('approval_decision_state', '1.1.0'): ('assetforge.pipeline.construction_support_workflows_v2',
+                                        'approval_decision_state'),
+ ('audit_archive_state', '1.1.0'): ('assetforge.pipeline.construction_business_extensions_v2',
+                                    'audit_archive_state'),
+ ('bounded_contact_batch', '1.1.0'): ('assetforge.pipeline.construction_identity_policy_v2',
+                                      'bounded_batch'),
+ ('customer_link', '1.3.0'): ('assetforge.pipeline.construction_identity_policy_v2',
+                              'linking_extended'),
+ ('native_append_effect', '1.1.0'): ('assetforge.pipeline.construction_append_effect_asset_v2',
+                                     'native_append_effect'),
+ ('native_create_effect', '1.2.0'): ('assetforge.pipeline.construction_create_effect_asset_v3',
+                                     'native_create_effect'),
+ ('native_discovered_effect', '1.1.0'): ('assetforge.pipeline.construction_discovered_effect_asset_v2',
+                                         'native_discovered_effect'),
+ ('native_field_state', '1.1.0'): ('assetforge.pipeline.construction_field_state_asset_v2',
+                                   'native_field_state'),
+ ('queue_handoff_state', '1.1.0'): ('assetforge.pipeline.construction_support_workflows_v2',
+                                    'queue_handoff_state'),
+ ('readable_background_records', '1.0.0'): ('assetforge.pipeline.construction_background_asset',
+                                            'background_state'),
+ ('readable_policy_exception', '1.2.0'): ('assetforge.pipeline.construction_identity_policy_v2',
+                                          'policy_with_carriers'),
+ ('reconciliation_adjustment', '1.1.0'): ('assetforge.pipeline.construction_business_extensions_v2',
+                                          'reconciliation_adjustment'),
+ ('sheet_row_state', '1.0.0'): ('assetforge.pipeline.construction_sheet_row_asset',
+                                'sheet_row_state')}
 
 
 def _version_builder(asset_id, version):
@@ -348,10 +327,10 @@ def construct(blueprint, catalog):
     require(business_time.tzinfo is not None, 'business time requires explicit timezone')
     definitions = {(x['id'], x['version']): x for x in catalog['assets']}
     require(isinstance(blueprint['assets'], list) and 1 <= len(blueprint['assets']) <= 12, 'composition size 1..12')
-    result = {'world': {}, 'entities': {}, 'relations': [], 'reads': [], 'actions': [], 'assertions': [],
+    result = {'world': {}, 'entities': {}, 'relations': [], 'reads': [], 'assertions': [],
               'writes': [], 'protected_fields': [], 'obligations': [], 'asset_bindings': []}
     seen = set()
-    for selection in blueprint['assets']:
+    for selection_index, selection in enumerate(blueprint['assets']):
         exact(selection, ['id', 'version', 'alias', 'reason', 'parameters'], 'asset selection')
         alias = text(selection['alias'], 'asset alias'); text(selection['reason'], 'Author business choice')
         require(re.fullmatch(r'[a-z][a-z0-9_]{0,31}', alias) is not None and alias not in seen, 'duplicate or invalid alias')
@@ -379,21 +358,25 @@ def construct(blueprint, catalog):
             import importlib
             builder = importlib.import_module(
                 'assetforge.pipeline.construction_app_asset').background_state
-        part = (builder(selection['parameters'], blueprint, alias, result['entities'])
-                if selection['id'] == 'bounded_contact_batch' else builder(selection['parameters'], blueprint, alias))
+        try:
+            part = (builder(selection['parameters'], blueprint, alias, result['entities'])
+                    if selection['id'] == 'bounded_contact_batch' else builder(selection['parameters'], blueprint, alias))
+        except AssetContractError as error:
+            error.pointer = '/' + str(selection_index) + error.pointer
+            raise
         if declared.get('applications'):
             require(set(part['world']) <= set(declared['applications']), 'constructed app outside asset declaration')
         result['world'] = merge(result['world'], part['world'])
         require(not (result['entities'].keys() & part['entities'].keys()), 'duplicate entity symbol')
         result['entities'].update(part['entities'])
-        for key in ('relations', 'reads', 'actions', 'assertions', 'writes', 'protected_fields'):
+        for key in ('relations', 'reads', 'assertions', 'writes', 'protected_fields'):
             result[key].extend(part[key])
         for obligation in part['obligations']:
             row = {'id': alias + '.' + obligation, 'asset_id': selection['id'], 'alias': alias}
             kind = part.get('obligation_kinds', {}).get(obligation)
             if kind is not None:
                 require(kind == 'structural_background' and part.get('background_only') is True and
-                        not any(part[k] for k in ('actions', 'writes', 'assertions')),
+                        not any(part[k] for k in ('writes', 'assertions')),
                         'invalid structural background obligation')
                 row.update(kind=kind, entity_symbols=sorted(part['entities']), reads=copy.deepcopy(part['reads']))
             result['obligations'].append(row)

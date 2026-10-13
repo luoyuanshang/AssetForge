@@ -8,7 +8,7 @@ def app_state(params, context, alias):
     if app in {'salesforce', 'hubspot', 'slack', 'mailchimp', 'gmail'}:
         from .construction_record_effect_asset import record_effect
         return record_effect(params, context, alias)
-    if app == 'mailbox_app':
+    if app == 'hiver':
         from .construction_background_asset import background_state
         return background_state(params, context, alias)
     if app == 'google_sheets':
