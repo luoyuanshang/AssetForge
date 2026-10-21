@@ -19,18 +19,14 @@ The public release includes the pipeline code and 61 reusable construction asset
 An AssetForge SFT model is available on
 [Hugging Face](https://huggingface.co/gokoururi123/AssetForge).
 
-The released pipeline can be used to reproduce the task-construction workflow
-and generate new task datasets using task-specific Author Rubrics, model
-providers, and a compatible runtime adapter.
+The open-source pipeline can be used to construct task datasets and help
+reproduce the SFT experiments.
 
 The two training datasets used in the paper have not been publicly released, and
 we do not plan to release them in the near term. The submitted manuscript
 incorrectly describes these datasets as released; we apologize for the confusion.
 The filenames and SHA-256 hashes in the paper identify the datasets used in our
 experiments, rather than publicly downloadable files.
-
-The model release supports evaluation but does not replace access to the exact
-training data for reproducing the SFT experiments.
 
 ## Quick start
 
